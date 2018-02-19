@@ -32,7 +32,7 @@ public class WriteExcel {
     private String defaultInputFile = "defaultReport.xls";
     private File file;
 
-    public String getInputFile(){
+    public String getInputFile() {
         return this.inputFile;
     }
 
@@ -50,7 +50,7 @@ public class WriteExcel {
                 file = new File(defaultInputFile);
             }
         }
-        this.inputFile =file.getPath();
+        this.inputFile = file.getPath();
     }
 
     public void write() throws IOException, WriteException {
@@ -67,10 +67,11 @@ public class WriteExcel {
         workbook.write();
         workbook.close();
     }
+
     public void writeRungeKuttaResult(RungeKuttaResult result) throws IOException, WriteException {
         int col_start = 0;
         int row_start = 3;
-        int col_step =2;
+        int col_step = 2;
 
         WorkbookSettings wbSettings = new WorkbookSettings();
 
@@ -85,39 +86,39 @@ public class WriteExcel {
         addCaption(excelSheet1, 0, 0, "Results of Runge Kutta calculation");
         addCaption(excelSheet1, col_start, 1, "Results");
         addLabel(excelSheet1, col_start, row_start, "Tetta");
-        addOneDoubleVector(excelSheet1, result.getTetta(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getTetta(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Omega");
-        addOneDoubleVector(excelSheet1, result.getOmega(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getOmega(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Eps");
-        addOneDoubleVector(excelSheet1, result.getEps(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getEps(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "A");
-        addOneDoubleVector(excelSheet1, result.getA(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getA(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Ex");
-        addOneDoubleVector(excelSheet1, result.getEx(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getEx(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Accuracy");
-        addOneDoubleVector(excelSheet1, result.getAccuracy(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getAccuracy(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Iter");
-        addOneIntegerVector(excelSheet1, result.getIter(), col_start, row_start+1);
+        addOneIntegerVector(excelSheet1, result.getIter(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Time");
-        addOneDoubleVector(excelSheet1, result.getTime(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getTime(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Step");
-        addOneDoubleVector(excelSheet1, result.getStep(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getStep(), col_start, row_start + 1);
 
         workbook.write();
         workbook.close();
@@ -126,7 +127,7 @@ public class WriteExcel {
     public void writeFullInfo(CableSystemModel model, RungeKuttaResult result) throws IOException, WriteException {
         int col_start = 0;
         int row_start = 3;
-        int col_step =2;
+        int col_step = 2;
         int row_first = 1;
 
         WorkbookSettings wbSettings = new WorkbookSettings();
@@ -147,7 +148,7 @@ public class WriteExcel {
         addNumber(excelSheet, col_start, ++row_first, model.getM1());
 
         addLabel(excelSheet, col_start, ++row_first, "Mass2");
-        addNumber(excelSheet, col_start,++row_first, model.getM2());
+        addNumber(excelSheet, col_start, ++row_first, model.getM2());
 
         addLabel(excelSheet, col_start, ++row_first, "L1");
         addNumber(excelSheet, col_start, ++row_first, model.getL1());
@@ -170,43 +171,43 @@ public class WriteExcel {
         addCaption(excelSheet1, 0, 0, "Results of Runge Kutta calculation");
         addCaption(excelSheet1, col_start, 1, "Results");
         addLabel(excelSheet1, col_start, row_start, "Tetta");
-        addOneDoubleVector(excelSheet1, result.getConvertedTetta(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getConvertedTetta(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Omega");
-        addOneDoubleVector(excelSheet1, result.getOmega(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getOmega(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Eps");
-        addOneDoubleVector(excelSheet1, result.getConvertedEps(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getConvertedEps(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "A");
-        addOneDoubleVector(excelSheet1, result.getA(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getA(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Ex");
-        addOneDoubleVector(excelSheet1, result.getEx(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getEx(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Accuracy");
-        addOneDoubleVector(excelSheet1, result.getAccuracy(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getAccuracy(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Iter");
-        addOneIntegerVector(excelSheet1, result.getIter(), col_start, row_start+1);
+        addOneIntegerVector(excelSheet1, result.getIter(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Time");
-        addOneDoubleVector(excelSheet1, result.getTime(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getTime(), col_start, row_start + 1);
 
-        col_start +=col_step;
+        col_start += col_step;
         addLabel(excelSheet1, col_start, row_start, "Step");
-        addOneDoubleVector(excelSheet1, result.getStep(), col_start, row_start+1);
+        addOneDoubleVector(excelSheet1, result.getStep(), col_start, row_start + 1);
 
 
-        excelSheet1.mergeCells(0, 0,excelSheet1.getColumns(), 0);
-        excelSheet1.mergeCells(0, 1,excelSheet1.getColumns(), 1);
+        excelSheet1.mergeCells(0, 0, excelSheet1.getColumns(), 0);
+        excelSheet1.mergeCells(0, 1, excelSheet1.getColumns(), 1);
 
         workbook.write();
         workbook.close();
@@ -279,7 +280,7 @@ public class WriteExcel {
         // Write a few number
         for (int i = 0; i < value.size(); i++) {
             // First column
-            addNumber(sheet, column, i+row, (double)value.get(i));
+            addNumber(sheet, column, i + row, (double) value.get(i));
         }
     }
 
@@ -288,7 +289,7 @@ public class WriteExcel {
         // Write a few number
         for (int i = 0; i < value.size(); i++) {
             // First column
-            addNumber(sheet, column, i+row, (int)value.get(i));
+            addNumber(sheet, column, i + row, (int) value.get(i));
         }
     }
 
@@ -309,7 +310,7 @@ public class WriteExcel {
     private void addLabel(WritableSheet sheet, int column, int row, String s)
             throws WriteException, RowsExceededException {
         Label label;
-       // label = new Label(column, row, s, times);
+        // label = new Label(column, row, s, times);
         label = new Label(column, row, s, caption);
         sheet.addCell(label);
     }
