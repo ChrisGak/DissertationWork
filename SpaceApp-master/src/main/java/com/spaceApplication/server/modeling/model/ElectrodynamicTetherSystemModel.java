@@ -1,4 +1,4 @@
-package com.spaceApplication.server.sampleModel.model;
+package com.spaceApplication.server.modeling.model;
 
 
 import com.spaceApplication.shared.calculation.BasicCalculationOperation;
@@ -22,13 +22,15 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
     private double mainSatelliteMass;
     /**
      * Параметр орбиты
+     * p
      */
-    private double p;
+    private double initialOrbitalParameter;
 
     /**
      * Высота центра масс системы
+     * Hci
      */
-    private double H;
+    private double initialHeight;
     /**
      * Расстояние центра масс системы до центра Земли
      */
@@ -36,129 +38,103 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
     /**
      * Радиусы апоцентра и перицентра
      */
-    private double r_a;
-    private double r_p;
+    private double r_apocentre;
+    private double r_pericentre;
     /**
      * Большая полуось орбиты
+     * A
      */
-    private double A;
+    private double initialSemimajorAxis;
     /**
      * Эксцентриситет орбиты
+     * ex
      */
-    private double ex;
+    private double initialEccentricity;
     /**
      * Угол отклонения троса от вертикали
+     * tetta
      */
-    private double tetta;
-    /**
-     *
-     */
-    private double omega;
+    private double initialDeflectionAngleRadians;
     /**
      * Истинная аномалия Земли
      */
-    private double eps;
-    /**
-     * Сила тока, протекающего по тросу
-     */
-    private double I;
+    private double initialTrueAnomalyRadians;
+
     private Vector startVector;
 
 
-    public ElectrodynamicTetherSystemModel(double m1, double m2, double L, double H, double tetta, double omega, double eps, double ex, double I, boolean isAccurate) {
-        this.m1 = m1;
-        this.m2 = m2;
-        this.m = m1 + m2;
-        this.m_e = m1 * m2 / (m1 + m2);
-        this.L = L;
-        this.H = H;
-        this.ex = ex;
-        if (isAccurate) {
-            setInitialLengthParameters(L);
-            setInitialRadiusParameters(H);
-        } else {
-            this.p = BasicConsts.RZ.getValue() + H;
-        }
-        this.tetta = BasicCalculationOperation.convertDegreesToRadians(tetta);
-        this.eps = BasicCalculationOperation.convertDegreesToRadians(eps);
-
-        this.omega = omega;
-        this.I = I;
+    public ElectrodynamicTetherSystemModel(BareElectrodynamicTether tether, double mainSatelliteMass, double nanoSatelliteMass, double initialHeight, double initialDeflectionAngle, double omega, double initialTrueAnomaly, double initialEccentricity double I, boolean isAccurate) {
+        this.tether = tether;
+        this.mainSatelliteMass = mainSatelliteMass;
+        this.nanoSatelliteMass = nanoSatelliteMass;
+        this.initialHeight = initialHeight;
+        this.initialEccentricity = initialEccentricity;
+        setInitialPositionParameters(initialHeight);
+        this.initialDeflectionAngleRadians = BasicCalculationOperation.convertDegreesToRadians(initialDeflectionAngle);
+        this.initialTrueAnomalyRadians = BasicCalculationOperation.convertDegreesToRadians(initialTrueAnomaly);
     }
 
-    private void setInitialRadiusParameters(double h) {
-        this.R_0 = BasicConsts.RZ.getValue() + h;
-        this.r_p = R_0;
-        this.r_a = r_p * (1.0 + ex) / (1.0 - ex);
-        this.A = (r_a + r_p) / 2.0;
-        this.p = A * (1.0 - BasicCalculationOperation.getSquare(ex));
+    private void setInitialPositionParameters(double initialHeight) {
+        this.R_0 = BasicConsts.EARTH_RADIUS.getValue() + initialHeight;
+        this.r_pericentre = R_0;
+        this.r_apocentre = r_pericentre * (1.0 + initialEccentricity) / (1.0 - initialEccentricity);
+        this.initialSemimajorAxis = (r_apocentre + r_pericentre) / 2.0;
+        this.initialOrbitalParameter = initialSemimajorAxis * (1.0 - BasicCalculationOperation.getSquare(initialEccentricity));
     }
 
-    public double getA() {
-        return A;
+    public double getOrbitalParameter(double semimajorAxis, double eccentricity) {
+        return semimajorAxis * (1.0 - BasicCalculationOperation.getSquare(eccentricity));
     }
 
-    public double getP() {
-        return p;
+    public double getOmega(double semimajorAxis, double eccentricity) {
+        return Math.sqrt(BasicConsts.K.getValue() / BasicCalculationOperation.getThirdDegree(getOrbitalParameter(semimajorAxis, eccentricity)));
     }
 
-    public void setP(double p) {
-        this.p = p;
-    }
-
-    public double getTetta() {
-        return tetta;
-    }
-
-    public void setTetta(double tetta) {
-        this.tetta = tetta;
+    public double getNu(double trueAnomaly, double eccentricity) {
+        return 1.0 + eccentricity * Math.cos(trueAnomaly);
     }
 
     /**
-     * Приведенная масса
-     *
-     * @return
+     * @param semimajorAxis
+     * @param trueAnomaly
+     * @param eccentricity
+     * @return R(A, ex, eps)
      */
-    public double getM_e() {
-        return 1;
+    public double getCenterMassOrbit(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getOrbitalParameter(semimajorAxis, eccentricity) / getNu(trueAnomaly, eccentricity);
     }
 
-    public double getOmega() {
-        return omega;
+    public double getCenterMassHeight(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly) - BasicConsts.EARTH_RADIUS.getValue();
     }
 
-    public double getEps() {
-        return eps;
+    public double getVelocity(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return Math.sqrt(BasicConsts.K.getValue() / BasicConsts.EARTH_RADIUS.getValue() + getCenterMassHeight(semimajorAxis, eccentricity, trueAnomaly));
     }
 
-    public double getEx() {
-        return ex;
+    public double getRelativeVelocity(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getVelocity(semimajorAxis, eccentricity, trueAnomaly)
+                - BasicConsts.EARTH_ROTATION_ANGULAR_VELOCITY.getValue()
+                * (BasicConsts.EARTH_RADIUS.getValue() + getCenterMassHeight(semimajorAxis, eccentricity, trueAnomaly));
     }
-
-    public void setEx(double ex) {
-        this.ex = ex;
-    }
-
-    public double getH() {
-        return H;
-    }
-
     /**
      * Добавим ДУ для возмущенной системы для движения центра масс системы в оскулирующих элементах
      */
-    protected double getOmegat(double A, double ex, double tetta, double omega, double eps) {
-        return -3.0 / 2.0 * BasicCalculationOperation.getSquare(getEpst_(A, ex, eps))
+    public double getTrueAnomalyDiff(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return Math.sqrt(BasicConsts.K.getValue() / BasicCalculationOperation.getThirdDegree(getOrbitalParameter(semimajorAxis, eccentricity)))
+                * BasicCalculationOperation.getSquare(getNu(trueAnomaly, eccentricity));
+    }
+
+    public double getOmegat(double A, double ex, double tetta, double omega, double eps) {
+        return  -3.0 / 2.0
+                * BasicCalculationOperation.getSquare(getTrueAnomalyDiff(A, ex, eps))
                 * BasicCalculationOperation.getReverseDegree(getNu(eps, ex))
                 * Math.sin(2.0 * tetta) -
                 getEpstt(A, ex, eps)
                 + getM(A, eps, ex) / (model.getM_e() * BasicCalculationOperation.getSquare(model.getL()));
     }
 
-    protected double getEpst_(double A, double ex, double eps) {
-        return Math.sqrt(BasicConsts.K.getValue() / BasicCalculationOperation.getThirdDegree(getP(A, ex)))
-                *
-                BasicCalculationOperation.getSquare(getNu(eps, ex));
-    }
+
 
     protected double getEpst(double A, double ex, double tetta, double eps) {
         return getKoefficient(A, ex) * ((BasicConsts.K.getValue() / BasicCalculationOperation.getSquare(getR(A, eps, ex)))

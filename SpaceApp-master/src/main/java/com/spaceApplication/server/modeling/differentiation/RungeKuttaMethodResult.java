@@ -1,4 +1,4 @@
-package com.spaceApplication.server.sampleModel.differentiation;
+package com.spaceApplication.server.modeling.differentiation;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 import com.spaceApplication.shared.calculation.BasicCalculationOperation;

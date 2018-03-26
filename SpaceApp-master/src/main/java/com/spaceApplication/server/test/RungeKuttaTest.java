@@ -2,9 +2,9 @@ package com.spaceApplication.server.test;
 
 import com.spaceApplication.server.export.WriteExcel;
 import com.spaceApplication.server.logging.MyLogger;
-import com.spaceApplication.server.sampleModel.differentiation.RungeKuttaMethodImpl;
-import com.spaceApplication.server.sampleModel.differentiation.RungeKuttaMethodResult;
-import com.spaceApplication.server.sampleModel.model.ElectrodynamicTetherSystemModel;
+import com.spaceApplication.server.modeling.differentiation.RungeKuttaMethodImpl;
+import com.spaceApplication.server.modeling.differentiation.RungeKuttaMethodResult;
+import com.spaceApplication.server.modeling.model.ElectrodynamicTetherSystemModel;
 import jxl.write.WriteException;
 
 import java.io.IOException;

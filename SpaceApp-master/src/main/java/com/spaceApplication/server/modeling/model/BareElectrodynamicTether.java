@@ -1,4 +1,4 @@
-package com.spaceApplication.server.sampleModel.model;
+package com.spaceApplication.server.modeling.model;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 import com.spaceApplication.shared.calculation.BasicCalculationOperation;
@@ -9,11 +9,22 @@ import com.spaceApplication.shared.calculation.BasicConsts;
  */
 
 public class BareElectrodynamicTether implements IsSerializable {
+
+    private double mass;
     /**
      * Длина троса,
      * плечо первого и второго тел
      */
-    private double L;
+    private double length;
+
+    public double getDensity(){
+        return mass / length;
+    }
+
+    private double diameter;
+    public double getCrossSectionalArea(){
+        return Math.PI * diameter * diameter / 4;
+    }
     private double L_p;
     private double L1;
     private double L2;

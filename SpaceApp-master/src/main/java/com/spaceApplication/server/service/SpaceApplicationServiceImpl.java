@@ -6,8 +6,8 @@ import com.spaceApplication.client.space.SpaceApplicationService;
 import com.spaceApplication.client.space.html.UIConsts;
 import com.spaceApplication.client.space.model.RungeKuttaResult;
 import com.spaceApplication.server.export.WriteExcel;
-import com.spaceApplication.server.sampleModel.differentiation.RungeKuttaMethodImpl;
-import com.spaceApplication.server.sampleModel.model.ElectrodynamicTetherSystemModel;
+import com.spaceApplication.server.modeling.differentiation.RungeKuttaMethodImpl;
+import com.spaceApplication.server.modeling.model.ElectrodynamicTetherSystemModel;
 import jxl.write.WriteException;
 
 import java.io.IOException;

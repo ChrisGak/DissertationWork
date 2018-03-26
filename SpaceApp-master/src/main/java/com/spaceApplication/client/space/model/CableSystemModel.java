@@ -8,7 +8,7 @@ import org.moxieapps.gwt.highcharts.client.Point;
 import java.util.Vector;
 
 /**
- * Created by Кристина on 15.05.2016.
+ * Created by Chris
  */
 public class CableSystemModel implements IsSerializable {
     /**

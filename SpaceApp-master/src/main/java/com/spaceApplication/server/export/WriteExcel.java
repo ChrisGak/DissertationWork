@@ -4,8 +4,8 @@ package com.spaceApplication.server.export;
  * Created by Кристина on 24.03.2016.
  */
 
-import com.spaceApplication.server.sampleModel.model.ElectrodynamicTetherSystemModel;
-import com.spaceApplication.server.sampleModel.differentiation.RungeKuttaMethodResult;
+import com.spaceApplication.server.modeling.model.ElectrodynamicTetherSystemModel;
+import com.spaceApplication.server.modeling.differentiation.RungeKuttaMethodResult;
 import jxl.CellView;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
