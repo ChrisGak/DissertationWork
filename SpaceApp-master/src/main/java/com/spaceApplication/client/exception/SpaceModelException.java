@@ -3,9 +3,9 @@ package com.spaceApplication.client.exception;
 import java.io.Serializable;
 
 /**
- * Created by Кристина on 28.02.2016.
+ * Created by Chris
  */
-public class SpaceModelException extends  Exception implements Serializable {
+public class SpaceModelException extends Exception implements Serializable {
     private String explanation;
 
     public SpaceModelException() {

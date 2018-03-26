@@ -18,7 +18,7 @@ public class RemoteCalculationControl {
     // create an instance of the service proxy class by calling GWT.create(Class).
     private SpaceApplicationServiceAsync spaceApplicationServiceAsync = GWT.create(SpaceApplicationService.class);
     private static VerticalPanel downloadImagePanel;
-    //private static CableSystemModel defaultTestModel = new CableSystemModel(20, 40 , 1000, 1000000, 0, 0, 0, 0.0167, 0.5,  1000, 10.0, 20.0, 0.01);
+    //private static ElectrodynamicTetherSystemModel defaultTestModel = new ElectrodynamicTetherSystemModel(20, 40 , 1000, 1000000, 0, 0, 0, 0.0167, 0.5,  1000, 10.0, 20.0, 0.01);
     private static CableSystemModel defaultTestModel = new CableSystemModel(20, 20 , 1000, 1000000, 0.1, 0, 0, 0.0167, 0.5, 1000, 10.0, 20.0, 0.01);
 
 

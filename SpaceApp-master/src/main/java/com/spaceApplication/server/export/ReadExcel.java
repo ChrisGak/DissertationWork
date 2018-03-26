@@ -20,7 +20,7 @@ public class ReadExcel {
     private String defaultInputFile = "defaultReport.xls";
     private File file;
 
-    public String getInputFile(){
+    public String getInputFile() {
         return this.inputFile;
     }
 
@@ -38,7 +38,7 @@ public class ReadExcel {
                 file = new File(defaultInputFile);
             }
         }
-        this.inputFile =file.getPath();
+        this.inputFile = file.getPath();
     }
 
     public void setInputFile(String inputFile) {
@@ -63,7 +63,7 @@ public class ReadExcel {
             w = Workbook.getWorkbook(inputWorkbook);
             // Get the first
             Sheet sheet = w.getSheet("Initial Data");
-            if (sheet == null){
+            if (sheet == null) {
                 sheet = w.getSheet(0);
             }
             // Loop over first 10 column and lines
@@ -76,11 +76,11 @@ public class ReadExcel {
                         System.out.println("I got a label "
                                 + cell.getContents());
 
-                        if (initialData.containsKey(cell.getContents())){
+                        if (initialData.containsKey(cell.getContents())) {
                             key = cell.getContents();
                             i++;
-                            cell = sheet.getCell(j,i);
-                            if (cell.getType() == CellType.NUMBER){
+                            cell = sheet.getCell(j, i);
+                            if (cell.getType() == CellType.NUMBER) {
                                 initialData.put(key, cell.getContents());
                                 System.out.println("I got a number "
                                         + cell.getContents());
@@ -96,7 +96,7 @@ public class ReadExcel {
         return initialData;
     }
 
-    public void read() throws IOException  {
+    public void read() throws IOException {
         File inputWorkbook = new File(inputFile);
         Workbook w;
         try {

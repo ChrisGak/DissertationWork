@@ -4,27 +4,144 @@ package com.spaceApplication.server.sampleModel.model;
 import com.spaceApplication.shared.calculation.BasicCalculationOperation;
 import com.spaceApplication.shared.calculation.BasicConsts;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
 /**
- * Created by Кристина on 08.02.2016.
+ * Created by Chris
  */
-public class AccurateRopeSystemModel extends RopeFunction implements BaseModel {
+public class ElectrodynamicTetherSystemModel implements Serializable {
+    private BareElectrodynamicTether tether;
     /**
-     * double tetta, double omega, double eps,double iter, double ... param
-     *
-     * @param model
-     * @param iter
+     * Массы космических аппаратов и приведенная масса
      */
-    public AccurateRopeSystemModel(CableSystemModel model, double iter) {
-        super(model);
-        setStartVector(model.getTetta(), model.getOmega(), model.getEps(), model.getEx(), model.getA(), iter);
+    private double nanoSatelliteMass;
+    private double mainSatelliteMass;
+    /**
+     * Параметр орбиты
+     */
+    private double p;
+
+    /**
+     * Высота центра масс системы
+     */
+    private double H;
+    /**
+     * Расстояние центра масс системы до центра Земли
+     */
+    private double R_0;
+    /**
+     * Радиусы апоцентра и перицентра
+     */
+    private double r_a;
+    private double r_p;
+    /**
+     * Большая полуось орбиты
+     */
+    private double A;
+    /**
+     * Эксцентриситет орбиты
+     */
+    private double ex;
+    /**
+     * Угол отклонения троса от вертикали
+     */
+    private double tetta;
+    /**
+     *
+     */
+    private double omega;
+    /**
+     * Истинная аномалия Земли
+     */
+    private double eps;
+    /**
+     * Сила тока, протекающего по тросу
+     */
+    private double I;
+    private Vector startVector;
+
+
+    public ElectrodynamicTetherSystemModel(double m1, double m2, double L, double H, double tetta, double omega, double eps, double ex, double I, boolean isAccurate) {
+        this.m1 = m1;
+        this.m2 = m2;
+        this.m = m1 + m2;
+        this.m_e = m1 * m2 / (m1 + m2);
+        this.L = L;
+        this.H = H;
+        this.ex = ex;
+        if (isAccurate) {
+            setInitialLengthParameters(L);
+            setInitialRadiusParameters(H);
+        } else {
+            this.p = BasicConsts.RZ.getValue() + H;
+        }
+        this.tetta = BasicCalculationOperation.convertDegreesToRadians(tetta);
+        this.eps = BasicCalculationOperation.convertDegreesToRadians(eps);
+
+        this.omega = omega;
+        this.I = I;
     }
 
-    private Vector startVector;
+    private void setInitialRadiusParameters(double h) {
+        this.R_0 = BasicConsts.RZ.getValue() + h;
+        this.r_p = R_0;
+        this.r_a = r_p * (1.0 + ex) / (1.0 - ex);
+        this.A = (r_a + r_p) / 2.0;
+        this.p = A * (1.0 - BasicCalculationOperation.getSquare(ex));
+    }
+
+    public double getA() {
+        return A;
+    }
+
+    public double getP() {
+        return p;
+    }
+
+    public void setP(double p) {
+        this.p = p;
+    }
+
+    public double getTetta() {
+        return tetta;
+    }
+
+    public void setTetta(double tetta) {
+        this.tetta = tetta;
+    }
+
+    /**
+     * Приведенная масса
+     *
+     * @return
+     */
+    public double getM_e() {
+        return 1;
+    }
+
+    public double getOmega() {
+        return omega;
+    }
+
+    public double getEps() {
+        return eps;
+    }
+
+    public double getEx() {
+        return ex;
+    }
+
+    public void setEx(double ex) {
+        this.ex = ex;
+    }
+
+    public double getH() {
+        return H;
+    }
 
     /**
      * Добавим ДУ для возмущенной системы для движения центра масс системы в оскулирующих элементах

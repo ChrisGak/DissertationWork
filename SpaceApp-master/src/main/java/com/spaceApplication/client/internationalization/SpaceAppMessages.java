@@ -5,7 +5,7 @@ import com.google.gwt.i18n.client.Messages;
 import java.util.Date;
 
 /**
- * Created by Кристина on 28.02.2016.
+ * Created by Chris
  */
 public interface SpaceAppMessages extends Messages {
     @DefaultMessage("''{0}'' is not a valid symbol.")

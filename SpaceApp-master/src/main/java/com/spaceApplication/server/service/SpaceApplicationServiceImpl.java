@@ -1,4 +1,4 @@
-package com.spaceApplication.server.space;
+package com.spaceApplication.server.service;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.spaceApplication.client.exception.SpaceModelException;
@@ -6,14 +6,15 @@ import com.spaceApplication.client.space.SpaceApplicationService;
 import com.spaceApplication.client.space.html.UIConsts;
 import com.spaceApplication.client.space.model.RungeKuttaResult;
 import com.spaceApplication.server.export.WriteExcel;
-import com.spaceApplication.server.sampleModel.differentiation.RungeKuttaImpl;
-import com.spaceApplication.server.sampleModel.model.AccurateRopeSystemModel;
-import com.spaceApplication.server.sampleModel.model.CableSystemModel;
+import com.spaceApplication.server.sampleModel.differentiation.RungeKuttaMethodImpl;
+import com.spaceApplication.server.sampleModel.model.ElectrodynamicTetherSystemModel;
 import jxl.write.WriteException;
 
 import java.io.IOException;
 
 public class SpaceApplicationServiceImpl extends RemoteServiceServlet implements SpaceApplicationService {
+
+    public static boolean IS_DEBUG = true;
 
     private  WriteExcel test = new WriteExcel();
     // Implementation of sample interface method
@@ -32,13 +33,13 @@ public class SpaceApplicationServiceImpl extends RemoteServiceServlet implements
         /**
          * double m1, double m2, double L, double H, double tetta, double omega, double eps, boolean isAccurate
          */
-        CableSystemModel testModel = new CableSystemModel(20, 40 , 1000, 1000000, 0, 0, 0, 0.0167, 5, isAccurate);
+        ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(20, 40 , 1000, 1000000, 0, 0, 0, 0.0167, 5, isAccurate);
         /**
-         * CableSystemModel model, double iter, double A, double ex
+         * ElectrodynamicTetherSystemModel model, double iter, double A, double ex
          */
         AccurateRopeSystemModel accurateRope = new AccurateRopeSystemModel(testModel, 0);
 
-        RungeKuttaImpl method = new RungeKuttaImpl();
+        RungeKuttaMethodImpl method = new RungeKuttaMethodImpl();
         /**
          * BaseModel rope, int maxIter, double step, double stepMax, double D
          */
@@ -66,15 +67,15 @@ public class SpaceApplicationServiceImpl extends RemoteServiceServlet implements
         /**
          * double m1, double m2, double L, double H, double tetta, double omega, double eps, boolean isAccurate
          */
-        CableSystemModel testModel = new CableSystemModel(baseModel.getM1(), baseModel.getM2(), baseModel.getL(),
+        ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(baseModel.getM1(), baseModel.getM2(), baseModel.getL(),
                 baseModel.getH(), baseModel.getTetta(), baseModel.getOmega(), baseModel.getEps(), baseModel.getEx(), baseModel.getI(), isAccurate);
 
         /**
-         * CableSystemModel model, double iter, double A, double ex
+         * ElectrodynamicTetherSystemModel model, double iter, double A, double ex
          */
         AccurateRopeSystemModel accurateRope = new AccurateRopeSystemModel(testModel, 0);
 
-        RungeKuttaImpl method = new RungeKuttaImpl();
+        RungeKuttaMethodImpl method = new RungeKuttaMethodImpl();
         /**
          * BaseModel rope, int maxIter, double step, double stepMax, double D
          */
@@ -111,15 +112,15 @@ public class SpaceApplicationServiceImpl extends RemoteServiceServlet implements
         /**
          * double m1, double m2, double L, double H, double tetta, double omega, double eps, boolean isAccurate
          */
-        CableSystemModel testModel = new CableSystemModel(baseModel.getM1(), baseModel.getM2(), baseModel.getL(),
+        ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(baseModel.getM1(), baseModel.getM2(), baseModel.getL(),
                 baseModel.getH(), baseModel.getTetta(), baseModel.getOmega(), baseModel.getEps(), baseModel.getEx(), baseModel.getI(), isAccurate);
 
         /**
-         * CableSystemModel model, double iter, double A, double ex
+         * ElectrodynamicTetherSystemModel model, double iter, double A, double ex
          */
         AccurateRopeSystemModel accurateRope = new AccurateRopeSystemModel(testModel, 0);
 
-        RungeKuttaImpl method = new RungeKuttaImpl();
+        RungeKuttaMethodImpl method = new RungeKuttaMethodImpl();
         /**
          * BaseModel rope, int maxIter, double step, double stepMax, double D
          */

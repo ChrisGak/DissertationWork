@@ -15,13 +15,13 @@ body {
 .watchList {
     border: 1px solid silver;
     padding: 2px;
-    margin-bottom:6px;
+    margin-bottom: 6px;
 }
 
 /* stock list Price and Change fields */
 .watchListNumericColumn {
     text-align: right;
-    width:8em;
+    width: 8em;
 }
 
 /* stock list Remove column */
@@ -33,6 +33,7 @@ body {
 .addPanel {
     margin: 10px 0px 15px 0px;
 }
+
 /* Add Stock panel */
 
 /* stock list, the Remove button */
@@ -52,6 +53,7 @@ body {
 .negativeChange {
     color: red;
 }
+
 .errorMessage {
     color: red;
 }
@@ -59,19 +61,40 @@ body {
 .gwt-FileUpload {
     color: green;
 }
-.info-popup{
-    color:rgba(5, 2, 46, 0.82);
+
+.info-popup {
+    color: rgba(5, 2, 46, 0.82);
     background: #dfefc8;
     border: 1px solid #808080;
     padding: 0.5em;
     width: 650px;
     height: 400px;
 }
-.img_pdng{
+
+.img_pdng {
     padding: 40px;
 }
-.test-data{
-    color: rgba(255,255,255,.7);
+
+.test-data {
+    color: rgba(255, 255, 255, .7);
     font-size: 16px;
     line-height: 1.5;
 }
+
+.column_left {
+    float: left;
+}
+
+.column_right {
+    float: right;
+}
+
+.contact .promo-item {
+    max-width: 400px;
+    padding: 25px 20px;
+}
+
+.contact .glyphicon-envelope {
+    padding-right: 10px;
+}
+

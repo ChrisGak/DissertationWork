@@ -18,7 +18,7 @@ import com.spaceApplication.client.space.model.RungeKuttaResult;
 import java.util.logging.Logger;
 
 /**
- * Created by Кристина on 28.02.2016.
+ * Created by Chris
  */
 public class SpaceAppEntryPoint implements EntryPoint {
 

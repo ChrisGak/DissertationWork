@@ -1,7 +1,7 @@
 package com.spaceApplication.client.internationalization;
 
 /**
- * Created by Кристина on 25.01.2016.
+ * Created by Chris
  */
 public class StringConsts {
     public String[] paramsNames() {
@@ -15,16 +15,11 @@ public class StringConsts {
     public String[] initialParamsNames() {
         return new String[]{"m1, кг", "m2, кг", "ρ, кг/м3", "a", "b", "Lk, м", "H, км"};
     }
-
-
     public String[] customParamsNames() {
         return new String[]{"t", "x", "y", "T"};
     }
 
-
     public String[] customParamsExtNames() {
         return new String[]{"с", "м", "м", "H"};
     }
-
-
 }

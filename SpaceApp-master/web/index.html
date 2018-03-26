@@ -1,41 +1,258 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta name="gwt:property" content="locale=eng">
+<meta name="gwt:property" content="locale=ru">
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <!--                                           -->
-    <!-- Any title is fine                         -->
-    <!--                                           -->
-    <title>Space Application</title>
+    <title>Моделирование и анализ процесса торможения наноспутника с помощью проводящего ток троса</title>
 
-    <link type="text/css" rel="stylesheet" href="SpaceApplication.css">
+    <link type="text/css" rel="stylesheet" href="main.css">
 
     <!--                                            -->
     <!-- This script is required bootstrap stuff.   -->
     <!--                                            -->
     <script type="text/javascript" language="javascript" src="SpaceApplication/SpaceApplication.nocache.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom Fonts from Google -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+
 </head>
 
-<!--                                           -->
-<!-- The body can have arbitrary html, or      -->
-<!-- you can leave the body empty if you want  -->
-<!-- to create a completely dynamic ui         -->
-<!--                                           -->
 <body>
+<!-- Navigation -->
+<nav id="siteNav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Logo and responsive toggle -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <!-- Navbar links -->
+        <!-- Language -->
+        <div class="collapse navbar-collapse" id="navbar">
+            <!--<ul class="nav navbar-nav navbar-left">-->
+            <!--<li class="active">-->
+            <!--<a href="#">-->
+            <!--<button id="lang-rus" title="Русский" class="lang">RU</button>-->
+            <!--</a>-->
+            <!--</li>-->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active">
+                    <a href="#">На главную</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Теория <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="about-us">
+                        <li><a href="">Тросовые системы</a></li>
+                        <li><a href="">Орбитальное движение</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#contact">Контакты</a>
+                </li>
+            </ul>
 
-
-<!--img src="images/rocket.png" /-->
-<h1 id="appTitle">Space Application</h1>
-<h2> This is a prototype of your thesis.</h2>
-<div id="entryPoint"></div>
-   <div><img src="images/space-rocket.png" /></div>
-
-<iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
-<noscript>
-    <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
-        Your web browser must have JavaScript enabled
-        in order for this application to display correctly.
+        </div>
     </div>
-</noscript>
+</nav>
+
+<!-- Header -->
+<header>
+    <div>
+        <a href="http://www.ssau.ru/">
+            <img class="logo" src="images/logo2.svg">
+        </a>
+    </div>
+    <div class="header-content">
+        <div class="header-content-inner">
+            <div id="appTitle">
+                <p></p>
+                <h1>Моделирование и анализ процесса торможения наноспутника с помощью проводящего ток троса</h1>
+                <p>Магистерская диссертация</p>
+                <a href="#gotoCalc">
+                    <button id="mainButton" class="btn btn-primary btn-lg">Начать моделирование</button>
+                </a>
+                <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1'
+                        style="position:absolute;width:0;height:0;border:0"></iframe>
+                <noscript>
+                    <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+                        В вашем браузере должен быть включен JavaScript, чтобы это приложение отображалось правильно.
+                    </div>
+                </noscript>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="application-section">
+    <div class="dynamic-section"></div>
+    <div class="static-section">
+        <!-- Intro Section -->
+        <section id="intro" class="intro">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h2 id="intro_h2" class="section-heading">Система позволяет настроить математическую модель
+                            космической электродинамической тросовой системы,
+                            включающей в себя наноспутник и неизолированный трос, произвести интегрирование модели и
+                            проанализиовать
+                            процесс торможения наноспутника</h2>
+                        <p id="intro_p" class="text-light"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Content 1 -->
+        <section class="content">
+            <div id="content_container" class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img class="img-responsive img-circle center-block" src="images/tips.jpg" alt="">
+                    </div>
+                    <div class="col-sm-6">
+                        <h2 class="section-header">Что такое тросовые системы?</h2>
+                        <p class="lead text-muted">
+                            Система аппаратов, соединенных тросами для обеспечения выполнения требований по относительному
+                            положению без затрат рабочего тела. К тросовой системе относится и космический лифт, соединяющий
+                            Землю и орбитальную станцию.</p>
+                        <a href="pages/CableSystems.html" class="btn btn-primary btn-lg">Подробнее</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- Content 2 -->
+
+        <section class="content content-2" id="gotoCalc">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2 class="section-header">Орбитальное движение</h2>
+                        <p class="lead text-light">Орбитальные элементы — набор параметров, задающих траекторию движения
+                            небесного тела.
+                            Одной из задач небесной механики является определение орбит небесных тел. Для задания орбиты
+                            спутника планеты, астероида или Земли используют так называемые орбитальные элементы. Они отвечают
+                            за задание базовой системы координат (точка отсчёта, оси координат), форму и размер орбиты, её
+                            ориентацию в пространстве и момент времени, в который небесное тело находится в определённой точке
+                            орбиты. В основном, используются два способа задания орбиты (при наличии системы координат):
+                            при помощи векторов положения и скорости;
+                            при помощи орбитальных элементов.</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <img class="img-responsive img-circle center-block" src="images/1419.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Promos -->
+        <div class="container-fluid">
+            <div class="row promo">
+                <a href="#intro">
+                    <div class="col-md-4 promo-item item-1">
+                        <h3>
+                            <button id="modeling" class="btn btn-primary btn-lg">
+                                Моделирование
+                            </button>
+                        </h3>
+                    </div>
+                </a>
+                <div class="col-md-4 promo-item item-2">
+                    <h3>
+                        <a href="files/report.xls">
+                            <button id="results" class="btn btn-primary btn-lg">
+                                Скачать образец файла ввода данных
+                            </button>
+                        </a>
+                    </h3>
+                </div>
+
+                <a href="#intro">
+                    <div class="col-md-4 promo-item item-3">
+                        <h3>
+                            <button id="testExample" class="btn btn-primary btn-lg">
+                                Тестовый пример
+                            </button>
+                        </h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer">
+    <!-- Contact Us -->
+    <div id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-heading">Контакты разработчиков</h2>
+            <div class="row promo">
+                <a href="mailto:chrissaigak@gmail.com">
+                    <div class="column_left promo-item">
+                        <p>
+                            Разработчик: Сайгак Кристина Олеговна
+                        </p>
+                        <p><span class="glyphicon glyphicon-envelope"></span> <a href="mailto:chrissaigak@gmail.com">
+                            chrissaigak@gmail.com</a>
+                        </p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="column_right promo-item">
+                        <p>
+                            Научный руководитель: Заболотнов Юрий Михайлович
+                        </p>
+                        <p><span class="glyphicon glyphicon-envelope"></span><a href="mailto:yumz@yandex.ru">
+                            yumz@yandex.ru</a>
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <!-- Copyright etc -->
+    <div class="small-print">
+        <div class="container">
+            <p>2018</p>
+        </div>
+    </div>
+</footer>
+<!-- jQuery -->
+<script src="js/jquery-1.11.3.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="js/jquery.easing.min.js"></script>
+
+<!-- Custom Javascript -->
+<script src="js/custom.js"></script>
+
+<!-- GWT Highcharts -->
+<script type="text/javascript" src="js/highcharts.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@ package com.spaceApplication.client.internationalization;
 import com.google.gwt.i18n.client.Constants;
 
 /**
- * Created by Кристина on 28.02.2016.
+ * Created by Chris
  */
 public interface SpaceAppConstants extends Constants {
     @DefaultStringValue("Space Application")

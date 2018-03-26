@@ -2,10 +2,9 @@ package com.spaceApplication.server.test;
 
 import com.spaceApplication.server.export.WriteExcel;
 import com.spaceApplication.server.logging.MyLogger;
-import com.spaceApplication.server.sampleModel.differentiation.RungeKuttaImpl;
-import com.spaceApplication.server.sampleModel.model.AccurateRopeSystemModel;
-import com.spaceApplication.server.sampleModel.model.CableSystemModel;
-import com.spaceApplication.server.sampleModel.model.RungeKuttaResult;
+import com.spaceApplication.server.sampleModel.differentiation.RungeKuttaMethodImpl;
+import com.spaceApplication.server.sampleModel.differentiation.RungeKuttaMethodResult;
+import com.spaceApplication.server.sampleModel.model.ElectrodynamicTetherSystemModel;
 import jxl.write.WriteException;
 
 import java.io.IOException;
@@ -37,26 +36,26 @@ public class RungeKuttaTest{
     }
 
 
-    public static RungeKuttaImpl testFullModel() {
+    public static RungeKuttaMethodImpl testFullModel() {
         boolean isAccurate = true;
         /**
          * double m1, double m2, double L, double H, double tetta in angles, double omega, double eps in angles, double I, boolean isAccurate
          */
 
-        CableSystemModel testModel = new CableSystemModel(20, 40 , 1000, 1000000, 0, 0, 0, 0.0167, 5, isAccurate);
+        ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(20, 40 , 1000, 1000000, 0, 0, 0, 0.0167, 5, isAccurate);
 
         AccurateRopeSystemModel accurateRope = new AccurateRopeSystemModel(testModel, 0);
 
-        RungeKuttaImpl method = new RungeKuttaImpl();
+        RungeKuttaMethodImpl method = new RungeKuttaMethodImpl();
         /**
          * BaseModel rope, int maxIter, double step, double stepMax, double D
          */
         //method.fullDiffCalc(accurateRope, 100, 10.0, 10.0, 100000);
-        RungeKuttaResult.printResultsToConsole(method.getResult());
+        RungeKuttaMethodResult.printResultsToConsole(method.getResult());
         System.out.println("_____________________________");
         System.out.println("testFullModel \n");
         System.out.println("_____________________________");
-        RungeKuttaResult.printResultsToConsole(method.getResult());
+        RungeKuttaMethodResult.printResultsToConsole(method.getResult());
 
         return method;
     }
@@ -67,11 +66,11 @@ public class RungeKuttaTest{
         /**
          * double m1, double m2, double L, double H, double tetta in angles, double omega, double eps in angles, double I, boolean isAccurate
          */
-        CableSystemModel testModel = new CableSystemModel(20, 20 , 1000, 1000000, 0.1, 0, 0, 0.0167, 0.5, isAccurate);
+        ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(20, 20 , 1000, 1000000, 0.1, 0, 0, 0.0167, 0.5, isAccurate);
 
         AccurateRopeSystemModel accurateRope = new AccurateRopeSystemModel(testModel, 0);
 
-        RungeKuttaImpl method = new RungeKuttaImpl();
+        RungeKuttaMethodImpl method = new RungeKuttaMethodImpl();
         /**
          * BaseModel rope, int maxIter, double step, double stepMax
          */
@@ -79,7 +78,7 @@ public class RungeKuttaTest{
         System.out.println("_____________________________");
         System.out.println("testFullModel1 \n");
         System.out.println("_____________________________");
-        //RungeKuttaResult.printResultsToConsole(method.getResult());
+        //RungeKuttaMethodResult.printResultsToConsole(method.getResult());
 
         LOGGER.info("testFullModel1 \n");
         LOGGER.info(method.getResult().getA().get(0)+ "\n");
@@ -107,11 +106,11 @@ public class RungeKuttaTest{
          * double m1, double m2, double L, double H, double tetta in angles, double omega, double eps in angles, double I, boolean isAccurate
          */
 
-        CableSystemModel testModel = new CableSystemModel(20, 40 , 1000, 1000000, 0, 0, 0, 0.0167, 5, isAccurate);
+        ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(20, 40 , 1000, 1000000, 0, 0, 0, 0.0167, 5, isAccurate);
 
         AccurateRopeSystemModel accurateRope = new AccurateRopeSystemModel(testModel, 0);
 
-        RungeKuttaImpl method = new RungeKuttaImpl();
+        RungeKuttaMethodImpl method = new RungeKuttaMethodImpl();
         /**
          * BaseModel rope, int maxIter, double step, double stepMax, double D
          */
@@ -119,7 +118,7 @@ public class RungeKuttaTest{
         System.out.println("_____________________________");
         System.out.println("testFullModel2 \n");
         System.out.println("_____________________________");
-        RungeKuttaResult.printFirstAndLastResults(method.getResult());
+        RungeKuttaMethodResult.printFirstAndLastResults(method.getResult());
 
         LOGGER.info("testFullModel2 \n");
     }
@@ -130,11 +129,11 @@ public class RungeKuttaTest{
          * double m1, double m2, double L, double H, double tetta in angles, double omega, double eps in angles, double I, boolean isAccurate
          */
 
-        CableSystemModel testModel = new CableSystemModel(20, 40 , 1000, 1000000, 45, 0.1, 30, 0.0167, 10, isAccurate);
+        ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(20, 40 , 1000, 1000000, 45, 0.1, 30, 0.0167, 10, isAccurate);
 
         AccurateRopeSystemModel accurateRope = new AccurateRopeSystemModel(testModel, 0);
 
-        RungeKuttaImpl method = new RungeKuttaImpl();
+        RungeKuttaMethodImpl method = new RungeKuttaMethodImpl();
         /**
          * BaseModel rope, int maxIter, double step, double stepMax, double D
          */
@@ -142,7 +141,7 @@ public class RungeKuttaTest{
         System.out.println("_____________________________");
         System.out.println("testFullModel3 \n");
         System.out.println("_____________________________");
-        RungeKuttaResult.printFirstAndLastResults(method.getResult());
+        RungeKuttaMethodResult.printFirstAndLastResults(method.getResult());
 
         LOGGER.info("testFullModel3 \n");
     }

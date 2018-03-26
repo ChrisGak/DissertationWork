@@ -4,8 +4,8 @@ package com.spaceApplication.server.export;
  * Created by Кристина on 24.03.2016.
  */
 
-import com.spaceApplication.server.sampleModel.model.CableSystemModel;
-import com.spaceApplication.server.sampleModel.model.RungeKuttaResult;
+import com.spaceApplication.server.sampleModel.model.ElectrodynamicTetherSystemModel;
+import com.spaceApplication.server.sampleModel.differentiation.RungeKuttaMethodResult;
 import jxl.CellView;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
@@ -68,7 +68,7 @@ public class WriteExcel {
         workbook.close();
     }
 
-    public void writeRungeKuttaResult(RungeKuttaResult result) throws IOException, WriteException {
+    public void writeRungeKuttaResult(RungeKuttaMethodResult result) throws IOException, WriteException {
         int col_start = 0;
         int row_start = 3;
         int col_step = 2;
@@ -124,7 +124,7 @@ public class WriteExcel {
         workbook.close();
     }
 
-    public void writeFullInfo(CableSystemModel model, RungeKuttaResult result) throws IOException, WriteException {
+    public void writeFullInfo(ElectrodynamicTetherSystemModel model, RungeKuttaMethodResult result) throws IOException, WriteException {
         int col_start = 0;
         int row_start = 3;
         int col_step = 2;

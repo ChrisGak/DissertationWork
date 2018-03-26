@@ -23,6 +23,6 @@
     <entry-point class='com.spaceApplication.client.space.SpaceAppEntryPoint'/>
     <extend-property name="locale" values="ru"/>
     <!-- Specify the app servlets.                   -->
-    <servlet path='/SpaceApplicationService' class='com.spaceApplication.server.space.SpaceApplicationServiceImpl'/>
+    <servlet path='/SpaceApplicationService' class='com.spaceApplication.server.service.SpaceApplicationServiceImpl'/>
 
 </module>

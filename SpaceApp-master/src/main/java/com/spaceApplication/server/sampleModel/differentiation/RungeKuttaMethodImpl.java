@@ -1,7 +1,5 @@
 package com.spaceApplication.server.sampleModel.differentiation;
 
-import com.spaceApplication.server.sampleModel.model.BaseModel;
-import com.spaceApplication.server.sampleModel.model.RungeKuttaResult;
 import com.spaceApplication.shared.calculation.BasicCalculationOperation;
 
 import java.util.Vector;
@@ -9,14 +7,22 @@ import java.util.Vector;
 /**
  * Created by Кристина on 08.02.2016.
  */
-public class RungeKuttaImpl {
-    private RungeKuttaResult result;
+public class RungeKuttaMethodImpl {
+    private int resultCapacity = 6;
+    private RungeKuttaMethodResult result;
+
+    public RungeKuttaMethodImpl(int resultCapacity){
+        y = new Vector(6);
+        ys = new Vector(6);
+        DS = new Vector(6);
+        innerDS = new Vector(6);
+    }
 
     private Vector k1, k2, k3, k4;
-    private Vector y = new Vector(6);
-    private Vector ys = new Vector(6);
-    private Vector DS = new Vector(6);
-    private Vector innerDS = new Vector(6);
+    private Vector y = new Vector(resultCapacity);
+    private Vector ys = new Vector(resultCapacity);
+    private Vector DS = new Vector(resultCapacity);
+    private Vector innerDS = new Vector(resultCapacity);
     /**
      * Мапа векторов расчитанных значений
      * 0 - время
@@ -33,7 +39,7 @@ public class RungeKuttaImpl {
     public void fullDiffCalc(BaseModel rope, int maxIter, double step, double stepMax, double D) {
         double t = 0, tt = 0;
         int i = 0;
-        result = new RungeKuttaResult();
+        result = new RungeKuttaMethodResult();
 
         y = rope.getStartVector();
         while (t < maxIter) {
@@ -74,7 +80,7 @@ public class RungeKuttaImpl {
     public void fullDiffCalcConstStep(BaseModel rope, int maxIter, double step, double D) {
         double t = 0, tt = 0;
         int i = 0;
-        result = new RungeKuttaResult();
+        result = new RungeKuttaMethodResult();
         y = rope.getStartVector();
         while (t < maxIter) {
             tt = t + step;
@@ -159,11 +165,11 @@ public class RungeKuttaImpl {
         } else return step_;
     }
 
-    public RungeKuttaResult getResult() {
+    public RungeKuttaMethodResult getResult() {
         return result;
     }
 
-    public void setResult(RungeKuttaResult result) {
+    public void setResult(RungeKuttaMethodResult result) {
         this.result = result;
     }
 }
