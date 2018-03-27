@@ -4,6 +4,8 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 import com.spaceApplication.shared.calculation.BasicCalculationOperation;
 import com.spaceApplication.shared.calculation.BasicConsts;
 
+import static javafx.scene.input.KeyCode.L;
+
 /**
  * Created by Chris
  */
@@ -16,21 +18,22 @@ public class BareElectrodynamicTether implements IsSerializable {
      * плечо первого и второго тел
      */
     private double length;
-
-    public double getDensity(){
-        return mass / length;
-    }
-
     private double diameter;
-    public double getCrossSectionalArea(){
-        return Math.PI * diameter * diameter / 4;
-    }
     private double L_p;
     private double L1;
     private double L2;
     public BareElectrodynamicTether() {
 
     }
+
+    public double getDensity() {
+        return mass / length;
+    }
+
+    public double getCrossSectionalArea() {
+        return Math.PI * diameter * diameter / 4;
+    }
+
     private void setInitialLengthParameters(double l) {
         this.L1 = L * m2 / (m1 + m2);
         this.L2 = L * m1 / (m1 + m2);
@@ -140,4 +143,19 @@ public class BareElectrodynamicTether implements IsSerializable {
         //return Math.sqrt(BasicConsts.K.getValue()/ BasicCalculationOperation.getThirdDegree(model.getP()));
     }
 
+    public double getMass() {
+        return mass;
+    }
+
+    public void setMass(double mass) {
+        this.mass = mass;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
+    }
 }

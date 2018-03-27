@@ -47,18 +47,6 @@ public class BasicCalculationOperation {
         return (z);
     }
 
-    public static double getSquare(double x) {
-        return x * x;
-    }
-
-    public static double getReverseDegree(double x) {
-        return 1.0 / x;
-    }
-
-    public static double getThirdDegree(double x) {
-        return x * x * x;
-    }
-
     public static double convertDegreesToRadians(double x) {
         return x * Math.PI / 180.0;
     }
@@ -101,7 +89,7 @@ public class BasicCalculationOperation {
 
     public static double getP(double A, double ex) {
 
-        return A * (1.0 - BasicCalculationOperation.getSquare(ex));
+        return A * (1.0 - Math.pow(ex, 2));
     }
 
     public static double getNu(double eps, double ex) {

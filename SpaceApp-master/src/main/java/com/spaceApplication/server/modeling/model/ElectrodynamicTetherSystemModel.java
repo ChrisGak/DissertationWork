@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
+import static javax.swing.text.html.HTML.Tag.I;
 
 /**
  * Created by Chris
@@ -16,7 +17,7 @@ import static java.lang.Math.sin;
 public class ElectrodynamicTetherSystemModel implements Serializable {
     private BareElectrodynamicTether tether;
     /**
-     * Массы космических аппаратов и приведенная масса
+     * Массы космических аппаратов
      */
     private double nanoSatelliteMass;
     private double mainSatelliteMass;
@@ -60,6 +61,11 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      */
     private double initialTrueAnomalyRadians;
 
+    /**
+     * Ток короткого замыкания
+     */
+    private double shortCircuitCurrent = 0.1;
+
     private Vector startVector;
 
 
@@ -77,21 +83,21 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
     private void setInitialPositionParameters(double initialHeight) {
         this.R_0 = BasicConsts.EARTH_RADIUS.getValue() + initialHeight;
         this.r_pericentre = R_0;
-        this.r_apocentre = r_pericentre * (1.0 + initialEccentricity) / (1.0 - initialEccentricity);
-        this.initialSemimajorAxis = (r_apocentre + r_pericentre) / 2.0;
-        this.initialOrbitalParameter = initialSemimajorAxis * (1.0 - BasicCalculationOperation.getSquare(initialEccentricity));
+        this.r_apocentre = r_pericentre * (1 + initialEccentricity) / (1 - initialEccentricity);
+        this.initialSemimajorAxis = (r_apocentre + r_pericentre) / 2;
+        this.initialOrbitalParameter = initialSemimajorAxis * (1 - Math.pow(initialEccentricity, 2));
     }
 
     public double getOrbitalParameter(double semimajorAxis, double eccentricity) {
-        return semimajorAxis * (1.0 - BasicCalculationOperation.getSquare(eccentricity));
+        return semimajorAxis * (1 - Math.pow(eccentricity, 2));
     }
 
     public double getOmega(double semimajorAxis, double eccentricity) {
-        return Math.sqrt(BasicConsts.K.getValue() / BasicCalculationOperation.getThirdDegree(getOrbitalParameter(semimajorAxis, eccentricity)));
+        return Math.sqrt(BasicConsts.K.getValue() / Math.pow(getOrbitalParameter(semimajorAxis, eccentricity), 3));
     }
 
     public double getNu(double trueAnomaly, double eccentricity) {
-        return 1.0 + eccentricity * Math.cos(trueAnomaly);
+        return 1 + eccentricity * Math.cos(trueAnomaly);
     }
 
     /**
@@ -117,44 +123,101 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
                 - BasicConsts.EARTH_ROTATION_ANGULAR_VELOCITY.getValue()
                 * (BasicConsts.EARTH_RADIUS.getValue() + getCenterMassHeight(semimajorAxis, eccentricity, trueAnomaly));
     }
+
     /**
      * Добавим ДУ для возмущенной системы для движения центра масс системы в оскулирующих элементах
      */
     public double getTrueAnomalyDiff(double semimajorAxis, double eccentricity, double trueAnomaly) {
-        return Math.sqrt(BasicConsts.K.getValue() / BasicCalculationOperation.getThirdDegree(getOrbitalParameter(semimajorAxis, eccentricity)))
-                * BasicCalculationOperation.getSquare(getNu(trueAnomaly, eccentricity));
+        return Math.sqrt(BasicConsts.K.getValue() / Math.pow(getOrbitalParameter(semimajorAxis, eccentricity), 3))
+                * Math.pow(getNu(trueAnomaly, eccentricity), 2);
     }
 
-    public double getOmegat(double A, double ex, double tetta, double omega, double eps) {
-        return  -3.0 / 2.0
-                * BasicCalculationOperation.getSquare(getTrueAnomalyDiff(A, ex, eps))
-                * BasicCalculationOperation.getReverseDegree(getNu(eps, ex))
-                * Math.sin(2.0 * tetta) -
-                getEpstt(A, ex, eps)
-                + getM(A, eps, ex) / (model.getM_e() * BasicCalculationOperation.getSquare(model.getL()));
+    public double getTrueAnomalySecondDiff(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return -2 * BasicConsts.K.getValue()
+                * eccentricity
+                * Math.sin(trueAnomaly)
+                / Math.pow(getOrbitalParameter(semimajorAxis, eccentricity), 3);
     }
 
-
-
-    protected double getEpst(double A, double ex, double tetta, double eps) {
-        return getKoefficient(A, ex) * ((BasicConsts.K.getValue() / BasicCalculationOperation.getSquare(getR(A, eps, ex)))
-                + (getA_s(A, eps, ex, tetta) * cos(eps) / ex) - getA_t(A, eps, ex, tetta) * sin(eps) / ex * (1 + getR(A, eps, ex) / getP(A, ex)));
+    //todo check with the doc
+    public double getOmegat(double semimajorAxis, double eccentricity, double deflectionAngle, double omega, double trueAnomaly) {
+        return -3 / 2
+                * Math.pow(getTrueAnomalyDiff(semimajorAxis, eccentricity, trueAnomaly), 2)
+                * Math.pow(getNu(trueAnomaly, eccentricity), -1)
+                * Math.sin(2 * deflectionAngle)
+                - getTrueAnomalySecondDiff(semimajorAxis, eccentricity, trueAnomaly);
+//                + getM(A, eps, ex) / (model.getM_e() * BasicCalculationOperation.getSquare(model.getL()));
     }
 
-    protected double getAt(double A, double ex, double tetta, double eps) {
-        return getKoefficient(A, ex) * ((2.0 * A
-                / (1.0 - BasicCalculationOperation.getSquare(ex))) *
-                (getA_s(A, eps, ex, tetta) * ex * sin(eps) + getA_t(A, eps, ex, tetta) * getP(A, ex) / getR(A, eps, ex)));
+    //todo check with the doc
+    public double getDeflectionAngleDiff(double omegatetta) {
+        return omegatetta;
     }
 
-    protected double getExt(double A, double ex, double tetta, double eps) {
-        return getKoefficient(A, ex) * ((getA_s(A, eps, ex, tetta) * sin(eps) + getA_t(A, eps, ex, tetta) *
-                ((1.0 + getR(A, eps, ex) / getP(A, ex)) * cos(eps) + ex * getR(A, eps, ex) / getP(A, ex))));
+    /**
+     * Модуль магнитной индукции
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getMagneticInduction(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return BasicConsts.MU.getValue()
+                / Math.pow(BasicConsts.EARTH_RADIUS.getValue()
+                + getCenterMassHeight(semimajorAxis, eccentricity, trueAnomaly), 3);
     }
 
-    protected double getEpstt(double A, double ex, double eps) {
-        //return (-2.0)* BasicConsts.K.getValue() * ex * sin(eps)/ BasicCalculationOperation.getThirdDegree(getP(A, ex));
-        return 0;//(-2.0)* BasicConsts.K.getValue() * ex * sin(eps)/ BasicCalculationOperation.getThirdDegree(getP(A, ex));
+    /**
+     * Напряженность электрического поля
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getElectricFieldStrength(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getMagneticInduction(semimajorAxis, eccentricity, trueAnomaly)
+                * getRelativeVelocity(semimajorAxis, eccentricity, trueAnomaly);
+    }
+
+    //todo what's this
+    public double getL0(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return 1 / Math.pow(9 * Math.PI
+                * BasicConsts.ELECTRON_MASS.getValue()
+                * BasicConsts.ALUMINUM_CONDUCTIVITY.getValue() * BasicConsts.ALUMINUM_CONDUCTIVITY.getValue()
+                * getElectricFieldStrength(semimajorAxis, eccentricity, trueAnomaly)
+                * tether.getCrossSectionalArea()
+                / (128 * Math.abs(Math.pow(BasicConsts.ELECTON_CHARGE.getValue(), 3))
+                * BasicConsts.PLASMA_CONCENTRATION.getValue() * BasicConsts.PLASMA_CONCENTRATION.getValue()), 3);
+
+    }
+
+    /**
+     * Напряжение электрического поля
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getElectricFieldVoltage(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getElectricFieldStrength(semimajorAxis, eccentricity, trueAnomaly)
+                * getL0(semimajorAxis, eccentricity, trueAnomaly);
+    }
+
+    /**
+     * Электрический ток
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getElectricCurrent(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return BasicConsts.ALUMINUM_CONDUCTIVITY.getValue()
+                * getElectricFieldStrength(semimajorAxis, eccentricity, trueAnomaly)
+                * tether.getCrossSectionalArea();
     }
 
     /**
@@ -198,4 +261,88 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
         startVector.add(4, ex);
         startVector.add(5, iter);
     }
+
+    public double getShortCircuitCurrent() {
+        return shortCircuitCurrent;
+    }
+
+    public void setShortCircuitCurrent(double shortCircuitCurrent) {
+        this.shortCircuitCurrent = shortCircuitCurrent;
+    }
+
+    /**
+     * Переход к безразмерным величинам
+     */
+    /**
+     * Безразмерный ток в точке С
+     * ic(A,ex,eps)
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getiC(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getShortCircuitCurrent()
+                / getElectricCurrent(semimajorAxis, eccentricity, trueAnomaly);
+    }
+
+    /**
+     * Безразмерный потенциал в точке А
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getPotentialA(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return Math.pow(2 * getiC(semimajorAxis, eccentricity, trueAnomaly)
+                - Math.pow(getiC(semimajorAxis, eccentricity, trueAnomaly), 2), 2 / 3);
+    }
+
+    public double getNanoSatelliteMass() {
+        return nanoSatelliteMass;
+    }
+
+    public void setNanoSatelliteMass(double nanoSatelliteMass) {
+        this.nanoSatelliteMass = nanoSatelliteMass;
+    }
+
+    public double getMainSatelliteMass() {
+        return mainSatelliteMass;
+    }
+
+    public void setMainSatelliteMass(double mainSatelliteMass) {
+        this.mainSatelliteMass = mainSatelliteMass;
+    }
+
+    public double getTotalSystemMass() {
+        return mainSatelliteMass + nanoSatelliteMass + tether.getMass();
+    }
+
+    /**
+     * Todo
+     * Зависимость длины участка троса от потенциала - интеграл
+     */
+    public double getS(double semimajorAxis, double eccentricity, double trueAnomaly, double potential) {
+        return 0;
+    }
+
+    /**
+     * Положение центра масс относительно точки А
+     *
+     * @return
+     */
+    public double massCenterRelativePosition() {
+        double mC = mainSatelliteMass;
+        double mA = nanoSatelliteMass;
+        return (1 / getTotalSystemMass())
+                * (mC + tether.getMass() / 2)
+                * tether.getLength();
+    }
+
+    public double getRelativeLength(double semimajorAxis, double eccentricity, double trueAnomaly){
+        return tether.getLength() / getL0(semimajorAxis, eccentricity, trueAnomaly);
+    }
+
 }
