@@ -1,65 +1,5 @@
-/* Formatting specific to the StockWatcher application */
-
-body {
-    padding: 10px;
-}
-
-/* stock list header row */
-.watchListHeader {
-    background-color: #2062B8;
-    color: white;
-    font-style: italic;
-}
-
-/* stock list flex table */
-.watchList {
-    border: 1px solid silver;
-    padding: 2px;
-    margin-bottom: 6px;
-}
-
-/* stock list Price and Change fields */
-.watchListNumericColumn {
-    text-align: right;
-    width: 8em;
-}
-
-/* stock list Remove column */
-.watchListRemoveColumn {
-    text-align: center;
-}
-
-/* Add Stock panel */
-.addPanel {
-    margin: 10px 0px 15px 0px;
-}
-
-/* Add Stock panel */
-
-/* stock list, the Remove button */
-.gwt-Button-remove {
-    width: 50px;
-}
-
-/* Dynamic color changes for the Change field */
-.noChange {
-    color: black;
-}
-
-.positiveChange {
-    color: green;
-}
-
-.negativeChange {
-    color: red;
-}
-
-.errorMessage {
-    color: red;
-}
-
-.gwt-FileUpload {
-    color: green;
+header .header-content .header-content-inner #appTitle h1 {
+    font-size: 50px;
 }
 
 .info-popup {
@@ -97,4 +37,26 @@ body {
 .contact .glyphicon-envelope {
     padding-right: 10px;
 }
+
+.application-section .dynamic-section {
+    background: #EBF0F3;
+
+    height: 500px;
+}
+
+.dynamic-section .page-header {
+    padding-bottom: 0;
+    margin: 0;
+    border-bottom: none;
+    height: 81px;
+    position: relative;
+    padding-top: 25px;
+    padding-right: 25px;
+}
+
+.dynamic-section .page-inner {
+    position: relative;
+    padding: 5px 40px 42px 30px;
+}
+
 

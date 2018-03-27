@@ -51,26 +51,15 @@
         <!-- Navbar links -->
         <!-- Language -->
         <div class="collapse navbar-collapse" id="navbar">
-            <!--<ul class="nav navbar-nav navbar-left">-->
-            <!--<li class="active">-->
-            <!--<a href="#">-->
-            <!--<button id="lang-rus" title="Русский" class="lang">RU</button>-->
-            <!--</a>-->
-            <!--</li>-->
             <ul class="nav navbar-nav navbar-right">
                 <li class="active">
                     <a href="#">На главную</a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Теория <span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="about-us">
-                        <li><a href="">Тросовые системы</a></li>
-                        <li><a href="">Орбитальное движение</a></li>
-                    </ul>
+                <li>
+                    <a href="#intro">Теория</a>
                 </li>
                 <li>
-                    <a href="#contact">Контакты</a>
+                    <a href="#about">О программе</a>
                 </li>
             </ul>
 
@@ -80,17 +69,16 @@
 
 <!-- Header -->
 <header>
-    <div>
-        <a href="http://www.ssau.ru/">
-            <img class="logo" src="images/logo2.svg">
-        </a>
-    </div>
     <div class="header-content">
         <div class="header-content-inner">
             <div id="appTitle">
-                <p></p>
+                <div>
+                    <a href="http://www.ssau.ru/">
+                        <img class="logo" src="images/logo2.svg">
+                    </a>
+                </div>
                 <h1>Моделирование и анализ процесса торможения наноспутника с помощью проводящего ток троса</h1>
-                <p>Магистерская диссертация</p>
+                <!--<p>Магистерская диссертация</p>-->
                 <a href="#gotoCalc">
                     <button id="mainButton" class="btn btn-primary btn-lg">Начать моделирование</button>
                 </a>
@@ -107,7 +95,22 @@
 </header>
 
 <div class="application-section">
-    <div class="dynamic-section"></div>
+    <div class="dynamic-section">
+        <div class="page-header"></div>
+        <div class="page-inner">
+            <div id="main-wrapper">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading clearfix"></div>
+                            <div class="panel-body"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="static-section">
         <!-- Intro Section -->
         <section id="intro" class="intro">
@@ -205,7 +208,7 @@
 <!-- Footer -->
 <footer class="page-footer">
     <!-- Contact Us -->
-    <div id="contact" class="contact">
+    <div id="about" class="contact">
         <div class="container">
             <h2 class="section-heading">Контакты разработчиков</h2>
             <div class="row promo">
