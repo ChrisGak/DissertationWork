@@ -7,8 +7,6 @@ import com.spaceApplication.shared.calculation.BasicConsts;
 import java.io.Serializable;
 import java.util.Vector;
 
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
 import static javax.swing.text.html.HTML.Tag.I;
 
 /**
@@ -110,18 +108,18 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
         return getOrbitalParameter(semimajorAxis, eccentricity) / getNu(trueAnomaly, eccentricity);
     }
 
-    public double getCenterMassHeight(double semimajorAxis, double eccentricity, double trueAnomaly) {
+    public double getMassCenterHeight(double semimajorAxis, double eccentricity, double trueAnomaly) {
         return getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly) - BasicConsts.EARTH_RADIUS.getValue();
     }
 
     public double getVelocity(double semimajorAxis, double eccentricity, double trueAnomaly) {
-        return Math.sqrt(BasicConsts.K.getValue() / BasicConsts.EARTH_RADIUS.getValue() + getCenterMassHeight(semimajorAxis, eccentricity, trueAnomaly));
+        return Math.sqrt(BasicConsts.K.getValue() / BasicConsts.EARTH_RADIUS.getValue() + getMassCenterHeight(semimajorAxis, eccentricity, trueAnomaly));
     }
 
     public double getRelativeVelocity(double semimajorAxis, double eccentricity, double trueAnomaly) {
         return getVelocity(semimajorAxis, eccentricity, trueAnomaly)
                 - BasicConsts.EARTH_ROTATION_ANGULAR_VELOCITY.getValue()
-                * (BasicConsts.EARTH_RADIUS.getValue() + getCenterMassHeight(semimajorAxis, eccentricity, trueAnomaly));
+                * (BasicConsts.EARTH_RADIUS.getValue() + getMassCenterHeight(semimajorAxis, eccentricity, trueAnomaly));
     }
 
     /**
@@ -165,7 +163,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
     public double getMagneticInduction(double semimajorAxis, double eccentricity, double trueAnomaly) {
         return BasicConsts.MU.getValue()
                 / Math.pow(BasicConsts.EARTH_RADIUS.getValue()
-                + getCenterMassHeight(semimajorAxis, eccentricity, trueAnomaly), 3);
+                + getMassCenterHeight(semimajorAxis, eccentricity, trueAnomaly), 3);
     }
 
     /**
@@ -330,10 +328,11 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
 
     /**
      * Положение центра масс относительно точки А
+     * phiA
      *
      * @return
      */
-    public double massCenterRelativePosition() {
+    public double getMassCenterRelativePosition() {
         double mC = mainSatelliteMass;
         double mA = nanoSatelliteMass;
         return (1 / getTotalSystemMass())
@@ -341,8 +340,158 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
                 * tether.getLength();
     }
 
-    public double getRelativeLength(double semimajorAxis, double eccentricity, double trueAnomaly){
+    /**
+     * sk(A,ex, eps)
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getRelativeLength(double semimajorAxis, double eccentricity, double trueAnomaly) {
         return tether.getLength() / getL0(semimajorAxis, eccentricity, trueAnomaly);
     }
+
+
+    /**
+     * LB
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getLB(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getS(semimajorAxis, eccentricity, trueAnomaly, 0) * getL0(semimajorAxis, eccentricity, trueAnomaly);
+    }
+
+    /**
+     * LC
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getLC(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getRelativeLength(semimajorAxis, eccentricity, trueAnomaly) * getL0(semimajorAxis, eccentricity, trueAnomaly);
+    }
+
+    /**
+     * Сила на участке AB
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getForce1(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return (1 / 2) * getShortCircuitCurrent()
+                * getLB(semimajorAxis, eccentricity, trueAnomaly)
+                * getMagneticInduction(semimajorAxis, eccentricity, trueAnomaly);
+    }
+
+    /**
+     * Сила на участке BC
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getForce2(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getShortCircuitCurrent()
+                * (getLC(semimajorAxis, eccentricity, trueAnomaly) - getLB(semimajorAxis, eccentricity, trueAnomaly))
+                * getMagneticInduction(semimajorAxis, eccentricity, trueAnomaly);
+    }
+
+    public double getFullForce(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getForce1(semimajorAxis, eccentricity, trueAnomaly) + getForce2(semimajorAxis, eccentricity, trueAnomaly);
+    }
+
+    /**
+     * Момент силы на участке AB
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getMoment1(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getForce1(semimajorAxis, eccentricity, trueAnomaly)
+                * ((2 / 3) * getLB(semimajorAxis, eccentricity, trueAnomaly)
+                - getMassCenterRelativePosition());
+    }
+
+    /**
+     * Момент силы на участке BC
+     *
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @return
+     */
+    public double getMoment2(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getForce2(semimajorAxis, eccentricity, trueAnomaly)
+                * ((getLB(semimajorAxis, eccentricity, trueAnomaly) + getLC(semimajorAxis, eccentricity, trueAnomaly)) / 2
+                - getMassCenterRelativePosition());
+    }
+
+    public double getFullMoment2(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        return getMoment1(semimajorAxis, eccentricity, trueAnomaly) + getMoment2(semimajorAxis, eccentricity, trueAnomaly);
+    }
+
+
+    /** Ft
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @param deflectionAngle
+     * @return
+     */
+    public double getTransversalForce(double semimajorAxis, double eccentricity, double trueAnomaly, double deflectionAngle) {
+        return getForce1(semimajorAxis, eccentricity, trueAnomaly)
+                * -Math.cos(deflectionAngle);
+    }
+
+    /** Fs
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @param deflectionAngle
+     * @return
+     */
+    public double getRadialForce(double semimajorAxis, double eccentricity, double trueAnomaly, double deflectionAngle) {
+        return getForce2(semimajorAxis, eccentricity, trueAnomaly)
+                * Math.sin(deflectionAngle);
+    }
+
+    /** Трансверсальное ускорение
+     * at
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @param deflectionAngle
+     * @return
+     */
+    public double getTransversalAcceleration(double semimajorAxis, double eccentricity, double trueAnomaly, double deflectionAngle) {
+        return getTransversalForce(semimajorAxis, eccentricity, trueAnomaly, deflectionAngle)
+                / getTotalSystemMass();
+    }
+
+    /** Радиальное ускорение
+     * as
+     * @param semimajorAxis
+     * @param eccentricity
+     * @param trueAnomaly
+     * @param deflectionAngle
+     * @return
+     */
+    public double getRadialAcceleration(double semimajorAxis, double eccentricity, double trueAnomaly, double deflectionAngle) {
+        return getRadialForce(semimajorAxis, eccentricity, trueAnomaly, deflectionAngle)
+                / getTotalSystemMass();
+    }
+
+
 
 }
