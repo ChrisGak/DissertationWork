@@ -59,4 +59,17 @@ header .header-content .header-content-inner #appTitle h1 {
     padding: 5px 40px 42px 30px;
 }
 
+/**
+    Widgets with highcharts graphics
+ */
+.panel-title {
+    color: #637282;
+    padding: 0 0 30px;
+    font-size: 14px;
+}
+
+.panel-body {
+    padding: 0;
+}
+
 
