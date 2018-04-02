@@ -40,7 +40,7 @@ public class RungeKuttaTest {
         System.out.println("    testFullModel1           ");
         testModel.printInitialState();
         OrbitalElements integrationTestResult = RungeKuttaMethodImpl.integrateWithVariableStep(testModel,
-                100, 5, 10, 0.001);
+                10, 5, 10, 0.001);
         OrbitalElements.printFirstAndLastResults(integrationTestResult);
         System.out.println("_____________________________");
     }

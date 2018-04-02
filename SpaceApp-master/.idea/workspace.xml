@@ -23,23 +23,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GraphResult.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/GraphResult.java">
+      <file leaf-file-name="ElectrodynamicTetherSystemModel.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/model/ElectrodynamicTetherSystemModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="53" lean-forward="true" selection-start-line="0" selection-start-column="53" selection-end-line="0" selection-end-column="53" />
+            <state relative-caret-position="479">
+              <caret line="406" column="58" lean-forward="false" selection-start-line="399" selection-start-column="9" selection-end-line="406" selection-end-column="58" />
+              <folding>
+                <element signature="e#4823#4824#0" expanded="true" />
+                <element signature="e#4886#4887#0" expanded="true" />
+                <element signature="e#14291#14292#0" expanded="true" />
+                <element signature="e#14333#14334#0" expanded="true" />
+                <element signature="e#15795#15796#0" expanded="true" />
+                <element signature="e#15874#15875#0" expanded="true" />
+                <marker date="1522694886929" expanded="true" signature="6379:6552" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseAbstractUnivariateIntegrator.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar!/org/apache/commons/math3/analysis/integration/BaseAbstractUnivariateIntegrator.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="115" column="18" lean-forward="false" selection-start-line="115" selection-start-column="18" selection-end-line="115" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GraphResult.ui.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/GraphResult.ui.xml">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1638">
-              <caret line="234" column="10" lean-forward="false" selection-start-line="234" selection-start-column="10" selection-end-line="234" selection-end-column="10" />
+            <state relative-caret-position="530">
+              <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BasicConsts.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/shared/calculation/BasicConsts.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
-                <element signature="n#div#2;n#div#1;n#div#1;n#div#0;n#ui:UiBinder#0;n#!!top" expanded="false" />
+                <element signature="e#1128#1129#0" expanded="false" />
+                <element signature="e#1162#1163#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -50,7 +79,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#461#462#0" expanded="false" />
+                <element signature="e#535#536#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.ui.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="11" column="47" lean-forward="true" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
+              <caret line="11" column="47" lean-forward="false" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -78,8 +111,8 @@
       <file leaf-file-name="RungeKuttaTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/test/RungeKuttaTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="42" column="22" lean-forward="false" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+            <state relative-caret-position="268">
+              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -87,45 +120,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ElectrodynamicTetherSystemModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/model/ElectrodynamicTetherSystemModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-33">
-              <caret line="313" column="18" lean-forward="false" selection-start-line="313" selection-start-column="18" selection-end-line="313" selection-end-column="18" />
-              <folding>
-                <element signature="e#13441#13442#0" expanded="true" />
-                <element signature="e#13475#13476#0" expanded="true" />
-                <marker date="1522675139271" expanded="true" signature="6206:6379" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/main.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="210" column="18" lean-forward="false" selection-start-line="210" selection-start-column="18" selection-end-line="210" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModelConfiguration.ui.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelConfiguration.ui.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="86" column="21" lean-forward="true" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
+              <caret line="86" column="21" lean-forward="false" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RungeKuttaMethodImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="84" column="41" lean-forward="false" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -182,8 +191,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/sampleModel/model/BaseModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/sampleModel/model/CableSystemModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/sampleModel/model/RopeFunction.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/sampleModel/model/ElectrodynamicTetherSystem.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/sampleModel/model/AccurateRopeSystemModel.java" />
@@ -212,7 +219,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/OrbitalElementsClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/model/BareElectrodynamicTether.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/ElectrodynamicTetherSystemModelClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/model/ElectrodynamicTetherSystemModel.java" />
         <option value="$PROJECT_DIR$/TestingLog.html" />
         <option value="$PROJECT_DIR$/TestingLog.txt" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/logging/CustomLogger.java" />
@@ -226,13 +232,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/modelConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelConfiguration.ui.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/test/RungeKuttaTest.java" />
         <option value="$PROJECT_DIR$/web/main.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.ui.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/GraphResult.ui.xml" />
         <option value="$PROJECT_DIR$/web/index.html" />
         <option value="$PROJECT_DIR$/web/css/custom.css" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaSample.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/test/RungeKuttaTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/model/ElectrodynamicTetherSystemModel.java" />
       </list>
     </option>
   </component>
@@ -1343,12 +1352,12 @@
       <workItem from="1519041992015" duration="4882000" />
       <workItem from="1522066921399" duration="7823000" />
       <workItem from="1522085061519" duration="19193000" />
-      <workItem from="1522655539703" duration="29230000" />
+      <workItem from="1522655539703" duration="33665000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="216217000" />
+    <option name="totallyTimeSpent" value="220652000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1374,7 +1383,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42398885" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5523012" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904148" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32357043" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1382,9 +1391,9 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32775453" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32775453" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904148" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16709511" sideWeight="0.74058574" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20565553" sideWeight="0.74058574" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26696542" sideWeight="0.50482756" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27094972" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1413,7 +1422,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="74" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/model/ElectrodynamicTetherSystemModel.java</url>
+          <line>301</line>
+          <properties />
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="79" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1422,20 +1439,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/pages/OrbitalMotion.html" />
-    <entry file="file://$PROJECT_DIR$/web/pages/CableSystems.html" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_73/jre/lib/rt.jar!/jdk/internal/util/xml/BasicXmlPropertiesProvider.class" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_73/src.zip!/java/lang/Math.java" />
     <entry file="file://$PROJECT_DIR$/web/href/Тросовая система.html" />
     <entry file="file://$PROJECT_DIR$/web/href/space.jpg" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/shared/calculation/BasicConsts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/IndexOutOfBoundsException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -1678,9 +1684,9 @@
         <state relative-caret-position="128">
           <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1635#1636#0" expanded="true" />
-            <element signature="e#3477#3485#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1635#1636#0" expanded="false" />
+            <element signature="e#3477#3485#0" expanded="false" />
             <marker date="1522664897192" expanded="true" signature="3112:3121" ph="{...}" />
           </folding>
         </state>
@@ -1731,10 +1737,10 @@
         <state relative-caret-position="245">
           <caret line="189" column="73" lean-forward="true" selection-start-line="189" selection-start-column="72" selection-end-line="189" selection-end-column="73" />
           <folding>
-            <element signature="e#3161#3162#0" expanded="true" />
-            <element signature="e#3208#3209#0" expanded="true" />
-            <element signature="e#8953#9119#0" expanded="true" />
-            <element signature="e#9118#9119#0" expanded="true" />
+            <element signature="e#3161#3162#0" expanded="false" />
+            <element signature="e#3208#3209#0" expanded="false" />
+            <element signature="e#8953#9119#0" expanded="false" />
+            <element signature="e#9118#9119#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1744,26 +1750,6 @@
         <state relative-caret-position="136">
           <caret line="10" column="81" lean-forward="false" selection-start-line="10" selection-start-column="81" selection-end-line="10" selection-end-column="81" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="108" column="9" lean-forward="true" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/model/ElectrodynamicTetherSystemModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-33">
-          <caret line="313" column="18" lean-forward="false" selection-start-line="313" selection-start-column="18" selection-end-line="313" selection-end-column="18" />
-          <folding>
-            <element signature="e#13441#13442#0" expanded="true" />
-            <element signature="e#13475#13476#0" expanded="true" />
-            <marker date="1522675139271" expanded="true" signature="6206:6379" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1796,16 +1782,12 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/GraphResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="53" lean-forward="true" selection-start-line="0" selection-start-column="53" selection-end-line="0" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <caret line="0" column="53" lean-forward="false" selection-start-line="0" selection-start-column="53" selection-end-line="0" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#461#462#0" expanded="false" />
+            <element signature="e#535#536#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1820,26 +1802,97 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.ui.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="47" lean-forward="true" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
+          <caret line="11" column="47" lean-forward="false" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/test/RungeKuttaTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="42" column="22" lean-forward="false" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="86" column="21" lean-forward="true" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
+          <caret line="86" column="21" lean-forward="false" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaSample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/test/RungeKuttaTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#461#462#0" expanded="false" />
+            <element signature="e#535#536#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="84" column="41" lean-forward="false" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/shared/calculation/BasicConsts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#1128#1129#0" expanded="false" />
+            <element signature="e#1162#1163#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar!/org/apache/commons/math3/analysis/integration/BaseAbstractUnivariateIntegrator.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="115" column="18" lean-forward="false" selection-start-line="115" selection-start-column="18" selection-end-line="115" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/model/ElectrodynamicTetherSystemModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="406" column="58" lean-forward="false" selection-start-line="399" selection-start-column="9" selection-end-line="406" selection-end-column="58" />
+          <folding>
+            <element signature="e#4823#4824#0" expanded="true" />
+            <element signature="e#4886#4887#0" expanded="true" />
+            <element signature="e#14291#14292#0" expanded="true" />
+            <element signature="e#14333#14334#0" expanded="true" />
+            <element signature="e#15795#15796#0" expanded="true" />
+            <element signature="e#15874#15875#0" expanded="true" />
+            <marker date="1522694886929" expanded="true" signature="6379:6552" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

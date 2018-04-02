@@ -78,6 +78,7 @@ public class RungeKuttaMethodImpl {
         result = new OrbitalElements();
         Vector y = tetherSystemModel.getStartVector();
 
+
         while (iteration < maxIteration) {
             iteration+=step;
 

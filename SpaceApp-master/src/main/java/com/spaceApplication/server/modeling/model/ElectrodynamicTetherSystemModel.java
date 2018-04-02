@@ -5,6 +5,8 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 import com.spaceApplication.server.modeling.VectorSizeCustomException;
 import com.spaceApplication.shared.calculation.CalculationUtils;
 import com.spaceApplication.shared.calculation.BasicConsts;
+import org.apache.commons.math3.analysis.UnivariateFunction;
+import org.apache.commons.math3.analysis.integration.SimpsonIntegrator;
 
 import java.io.Console;
 import java.io.Serializable;
@@ -77,18 +79,18 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
         setStartVector(tetherVerticalDeflectionAngle, tetherVerticalDeflectionAngle, initialTrueAnomaly, initialEccentricity, initialSemimajorAxis);
     }
 
-    public void printInitialState(){
+    public void printInitialState() {
         System.out.println("_________________________________________");
         System.out.println("    Tether system model initial state:   ");
-        System.out.println("tetherVerticalDeflectionAngle = " + tetherVerticalDeflectionAngleRadians);
-        System.out.println("initialTrueAnomaly = " + initialTrueAnomalyRadians);
-        System.out.println("initialSemimajorAxis = " + initialSemimajorAxis);
-        System.out.println("initialEccentricity = "+ initialEccentricity);
-        System.out.println("mainSatelliteMass = " + mainSatelliteMass);
-        System.out.println("nanoSatelliteMass = "+ nanoSatelliteMass);
-        System.out.println("tether mass = " + tether.getMass());
-        System.out.println("tether length = " + tether.getLength());
-        System.out.println("tether diameter = "+ tether.getDiameter());
+        System.out.println("    tetherVerticalDeflectionAngle = " + tetherVerticalDeflectionAngleRadians);
+        System.out.println("    initialTrueAnomaly = " + initialTrueAnomalyRadians);
+        System.out.println("    initialSemimajorAxis = " + initialSemimajorAxis);
+        System.out.println("    initialEccentricity = " + initialEccentricity);
+        System.out.println("    mainSatelliteMass = " + mainSatelliteMass);
+        System.out.println("    nanoSatelliteMass = " + nanoSatelliteMass);
+        System.out.println("    tether mass = " + tether.getMass());
+        System.out.println("    tether length = " + tether.getLength());
+        System.out.println("    tether diameter = " + tether.getDiameter());
         System.out.println("_____________________________");
     }
 
@@ -392,7 +394,17 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * Todo
      * Зависимость длины участка троса от потенциала - интеграл
      */
-    public double getS(double semimajorAxis, double eccentricity, double trueAnomaly, double potential) {
+    public double getS(double semimajorAxis, double eccentricity, double trueAnomaly, double potential)throws IllegalArgumentException {
+        SimpsonIntegrator integrator = new SimpsonIntegrator();
+
+//        UnivariateFunction function = new UnivariateFunction() {
+//
+//            public double value(double x)
+//            {
+//                return Math.pow(x, r) * Math.pow(1 - x, s);
+//            }
+//        };
+//        return integrator.integrate(function, 0.0, 1.0);
         return 0;
     }
 
@@ -511,7 +523,6 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
         return getMoment1(semimajorAxis, eccentricity, trueAnomaly) + getMoment2(semimajorAxis, eccentricity, trueAnomaly);
     }
 
-
     /**
      * Ft
      *
@@ -522,7 +533,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * @return
      */
     public double getTransversalForce(double semimajorAxis, double eccentricity, double trueAnomaly, double tetherVerticalDeflectionAngle) {
-        return getForce1(semimajorAxis, eccentricity, trueAnomaly)
+        return getFullForce(semimajorAxis, eccentricity, trueAnomaly)
                 * -Math.cos(tetherVerticalDeflectionAngle);
     }
 
@@ -536,7 +547,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * @return
      */
     public double getRadialForce(double semimajorAxis, double eccentricity, double trueAnomaly, double tetherVerticalDeflectionAngle) {
-        return getForce2(semimajorAxis, eccentricity, trueAnomaly)
+        return getFullForce(semimajorAxis, eccentricity, trueAnomaly)
                 * Math.sin(tetherVerticalDeflectionAngle);
     }
 
@@ -582,6 +593,4 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
                 / (mainSatelliteMass + nanoSatelliteMass + tether.getMass());
 
     }
-
-
 }
