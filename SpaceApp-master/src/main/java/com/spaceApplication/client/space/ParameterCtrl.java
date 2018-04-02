@@ -7,13 +7,13 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
-import com.spaceApplication.client.exception.SpaceModelException;
-import com.spaceApplication.client.internationalization.SpaceAppConstants;
-import com.spaceApplication.client.internationalization.SpaceAppMessages;
+import com.spaceApplication.client.exception.TetherSystemModelValueException;
+import com.spaceApplication.client.consts.SpaceAppConstants;
+import com.spaceApplication.client.consts.SpaceAppMessages;
 import com.spaceApplication.client.space.html.Slider;
 import com.spaceApplication.client.space.html.UIConsts;
-import com.spaceApplication.client.space.model.CableSystemModel;
-import com.spaceApplication.client.space.model.RungeKuttaResult;
+import com.spaceApplication.client.space.model.ElectrodynamicTetherSystemModelClient;
+import com.spaceApplication.client.space.model.OrbitalElementsClient;
 
 /**
  * Created by Кристина on 14.05.2016.
@@ -37,7 +37,7 @@ public class ParameterCtrl {
     private double toKilo = 1000;
     private IntegerBox maxIterCell;
     private DoubleBox stepCell, stepMaxCell, DCell;
-    private  CableSystemModel cableSystemModel;
+    private ElectrodynamicTetherSystemModelClient cableSystemModel;
     private HTML headerOfContent;
 
     private SpaceAppConstants constants = GWT.create(SpaceAppConstants.class);
@@ -409,7 +409,7 @@ public class ParameterCtrl {
             if (cableSystemModel != null){
                 cableSystemModel = null;
             }
-            cableSystemModel = new CableSystemModel(m1_, m2_, L_, H_, tetta_, omega_, eps_, ex_, I_);
+            cableSystemModel = new ElectrodynamicTetherSystemModelClient(m1_, m2_, L_, H_, tetta_, omega_, eps_, ex_, I_);
             Label infoMessage;
             if (cableSystemModel != null)
             {
@@ -470,11 +470,11 @@ public class ParameterCtrl {
     };
 
     // Set up the callback object.
-    AsyncCallback<RungeKuttaResult> calculationCallback = new AsyncCallback<RungeKuttaResult>() {
+    AsyncCallback<OrbitalElementsClient> calculationCallback = new AsyncCallback<OrbitalElementsClient>() {
         public void onFailure(Throwable caught) {
             String details = caught.getMessage();
-            if (caught instanceof SpaceModelException) {
-                details = "Model has exception:  '" + ((SpaceModelException)caught).getCause();
+            if (caught instanceof TetherSystemModelValueException) {
+                details = "Model has exception:  '" + ((TetherSystemModelValueException)caught).getCause();
             }
             headerOfContent = new HTML("<h2 class=" +UIConsts.headerStyle+ ">"+ "Error: " + details +"</h2>");
             vPanel.add(headerOfContent);
@@ -482,7 +482,7 @@ public class ParameterCtrl {
         }
 
         @Override
-        public void onSuccess(RungeKuttaResult result) {
+        public void onSuccess(OrbitalElementsClient result) {
             vPanel.clear();
             vPanel.add(RemoteCalculationControl.createAllResultPlots(result, cableSystemModel));
             RootPanel.get(UIConsts.appDivId).add(vPanel);

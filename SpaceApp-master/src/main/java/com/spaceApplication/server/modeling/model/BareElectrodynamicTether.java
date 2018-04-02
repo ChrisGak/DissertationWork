@@ -1,12 +1,11 @@
 package com.spaceApplication.server.modeling.model;
-
-import com.google.gwt.user.client.rpc.IsSerializable;
+import java.io.Serializable;
 
 /**
  * Created by Chris
  */
 
-public class BareElectrodynamicTether implements IsSerializable {
+public class BareElectrodynamicTether implements Serializable {
     private double mass;
     /**
      * Длина троса,
@@ -19,6 +18,10 @@ public class BareElectrodynamicTether implements IsSerializable {
         this.mass = mass;
         this.length = length;
         this.diameter = diameter;
+    }
+
+    public double getDiameter() {
+        return diameter;
     }
 
     public double getMass() {

@@ -1,6 +1,8 @@
 package com.spaceApplication.server.modeling.differentiation;
 
-import com.spaceApplication.shared.calculation.BasicCalculationOperation;
+import com.spaceApplication.server.modeling.model.ElectrodynamicTetherSystemModel;
+import com.spaceApplication.server.service.MainAppServiceImpl;
+import com.spaceApplication.shared.calculation.CalculationUtils;
 
 import java.util.Vector;
 
@@ -8,146 +10,34 @@ import java.util.Vector;
  * Created by Кристина on 08.02.2016.
  */
 public class RungeKuttaMethodImpl {
-    private int resultCapacity = 6;
-    private RungeKuttaMethodResult result;
+    private static int capacity = 6;
 
-    public RungeKuttaMethodImpl(int resultCapacity){
-        y = new Vector(6);
-        ys = new Vector(6);
-        DS = new Vector(6);
-        innerDS = new Vector(6);
-    }
-
-    private Vector k1, k2, k3, k4;
-    private Vector y = new Vector(resultCapacity);
-    private Vector ys = new Vector(resultCapacity);
-    private Vector DS = new Vector(resultCapacity);
-    private Vector innerDS = new Vector(resultCapacity);
-    /**
-     * Мапа векторов расчитанных значений
-     * 0 - время
-     * 1 - тетта
-     * 2 - омега
-     * 3 - ипсилон
-     * 4 - А полуось орбиты - extra
-     * 5 - эксцентриситет орбиты - extra
-     * 6 - шаг
-     * 7 - значение точности
-     * 8 - номер итерации
-     */
-
-    public void fullDiffCalc(BaseModel rope, int maxIter, double step, double stepMax, double D) {
-        double t = 0, tt = 0;
-        int i = 0;
-        result = new RungeKuttaMethodResult();
-
-        y = rope.getStartVector();
-        while (t < maxIter) {
-            tt = t + step;
-
-            k1 = rope.getDiffVector(y);
-            k2 = rope.getDiffVector(BasicCalculationOperation.scalarMultiplyAndAddVectors(k1, y, step / 2.0));
-            k3 = rope.getDiffVector(BasicCalculationOperation.scalarMultiplyAndAddVectors(k2, y, step / 2.0));
-            k4 = rope.getDiffVector(BasicCalculationOperation.scalarMultiplyAndAddVectors(k3, y, step));
-            /**
-             * Return result vector
-             */
-            calculateResY(step);
-
-            t = tt;
-            y = (Vector) ys.clone();
-            result.getTime().add(i, t);
-            result.getTetta().add(i, y.get(0));
-            result.getOmega().add(i, y.get(1));
-            result.getEps().add(i, y.get(2));
-            result.getA().add(i, y.get(3));
-            result.getEx().add(i, y.get(4));
-            result.getStep().add(i, step);
-
-            calculateDS(step);
-
-            double DSMax = calculateDSMax(D);
-            result.getAccuracy().add(i ,DSMax);
-            result.getIter().add(i, i);
-            i++;
-
-            step = calculateAcuraccy(step, DSMax, stepMax);
-
-        }
-        System.out.println("The end of RungeKutta method implementation.");
-    }
-
-    public void fullDiffCalcConstStep(BaseModel rope, int maxIter, double step, double D) {
-        double t = 0, tt = 0;
-        int i = 0;
-        result = new RungeKuttaMethodResult();
-        y = rope.getStartVector();
-        while (t < maxIter) {
-            tt = t + step;
-
-            k1 = rope.getDiffVector(y);
-            k2 = rope.getDiffVector(BasicCalculationOperation.scalarMultiplyAndAddVectors(k1, y, step / 2.0));
-            k3 = rope.getDiffVector(BasicCalculationOperation.scalarMultiplyAndAddVectors(k2, y, step / 2.0));
-            k4 = rope.getDiffVector(BasicCalculationOperation.scalarMultiplyAndAddVectors(k3, y, step));
-            /**
-             * Return result vector
-             */
-            calculateResY(step);
-
-            t = tt;
-            y = (Vector) ys.clone();
-
-            result.getTime().add(i, t);
-            result.getTetta().add(i, y.get(0));
-            result.getOmega().add(i, y.get(1));
-            result.getEps().add(i, y.get(2));
-            result.getA().add(i, y.get(3));
-            result.getEx().add(i, y.get(4));
-            result.getStep().add(i, step);
-
-            calculateDS(step);
-
-            double DSMax = calculateDSMax(D);
-
-            result.getAccuracy().add(i ,DSMax);
-            result.getIter().add(i, i);
-            i++;
-        }
-        System.out.println("The end of RungeKutta method with const step implementation.");
-    }
-
-    private double calculateDSMax(double d) {
+    private static double calculateDSMax(double calcAccuracy, Vector DS) {
         if (DS.isEmpty()) {
             throw new RuntimeException("Вектор пуст");
         }
-
-        innerDS.clear();
+        Vector tempAccuracyAbs = new Vector(DS.size());
         for (int i = 0; i < DS.size(); i++) {
-            innerDS.add(i, Math.abs((double) DS.get(i) / d));
+            tempAccuracyAbs.add(Math.abs((double) DS.get(i) / calcAccuracy));
         }
 
-        return BasicCalculationOperation.getMaxElem(innerDS);
+        return CalculationUtils.getMaxElem(tempAccuracyAbs);
     }
 
-    private void calculateDS(double step) {
-        if (k1.size() != k2.size() && k2.size() != k3.size() && k3.size() != k4.size() && k4.size() != y.size()) {
-            throw new RuntimeException("Вектора должны быть одной размерности");
-        }
-        DS.clear();
+    private static Vector calculateDS(double step, Vector k1, Vector k2, Vector k3, Vector k4) {
+        Vector DS = new Vector(capacity);
         for (int i = 0; i < k1.size(); i++) {
-            DS.add(i, step * ((double) k1.get(i) - (double) k2.get(i) - (double) k3.get(i) + (double) k4.get(i)));
-            //DS.add(i, BasicCalculationOperation.r(step * ((double) k1.get(i) - (double) k2.get(i) - (double) k3.get(i) + (double) k4.get(i)), 5));
+            DS.add(step * ((double) k1.get(i) - (double) k2.get(i) - (double) k3.get(i) + (double) k4.get(i)));
         }
+        return DS;
     }
 
-    private void calculateResY(double step) {
-        if (k1.size() != k2.size() && k2.size() != k3.size() && k3.size() != k4.size() && k4.size() != y.size()) {
-            throw new RuntimeException("Вектора должны быть одной размерности");
-        }
-        ys.clear();
+    private static Vector calculateResY(double step, Vector y, Vector k1, Vector k2, Vector k3, Vector k4) {
+        Vector result = new Vector(capacity);
         for (int i = 0; i < k1.size(); i++) {
-            ys.add(i, (double) y.get(i) + step / 6.0 * ((double) k1.get(i) + 2.0 * (double) k2.get(i) + 2.0 * (double) k3.get(i) + (double) k4.get(i)));
+            result.add((double) y.get(i) + step / 6.0 * ((double) k1.get(i) + 2.0 * (double) k2.get(i) + 2.0 * (double) k3.get(i) + (double) k4.get(i)));
         }
+        return result;
     }
 
     private static double calculateAcuraccy(double step, double DSMax, double stepMax) {
@@ -165,11 +55,101 @@ public class RungeKuttaMethodImpl {
         } else return step_;
     }
 
-    public RungeKuttaMethodResult getResult() {
+    /**
+     * Мапа векторов расчитанных значений
+     * 0 - время
+     * 1 - тетта
+     * 2 - омега
+     * 3 - ипсилон
+     * 4 - А полуось орбиты - extra
+     * 5 - эксцентриситет орбиты - extra
+     * 6 - шаг
+     * 7 - значение точности
+     * 8 - номер итерации
+     */
+
+    public static OrbitalElements integrateWithVariableStep(ElectrodynamicTetherSystemModel tetherSystemModel,
+                                                            int maxIteration, double step, double stepMax, double calcAccuracy) {
+        OrbitalElements result;
+        Vector k1, k2, k3, k4;
+        Vector ys;
+        double iteration = 0;
+        int i = 0;
+        result = new OrbitalElements();
+        Vector y = tetherSystemModel.getStartVector();
+
+        while (iteration < maxIteration) {
+            iteration+=step;
+
+            k1 = tetherSystemModel.getDiffVector(y);
+            k2 = tetherSystemModel.getDiffVector(CalculationUtils.scalarMultiplyAndAddVectors(k1, y, step / 2.0));
+            k3 = tetherSystemModel.getDiffVector(CalculationUtils.scalarMultiplyAndAddVectors(k2, y, step / 2.0));
+            k4 = tetherSystemModel.getDiffVector(CalculationUtils.scalarMultiplyAndAddVectors(k3, y, step));
+            /**
+             * Return result vector
+             */
+            ys = calculateResY(step, y, k1, k2, k3, k4);
+
+            y = ys;
+            result.getTime().add(iteration);
+            result.getTetherVerticalDeflectionAngle().add(y.get(0));
+            result.getTetherVerticalDeflectionAngleDiff().add(y.get(1));
+            result.getTrueAnomaly().add(y.get(2));
+            result.getSemimajorAxis().add(y.get(3));
+            result.getEccentricity().add(y.get(4));
+            result.getStep().add(step);
+
+            double DSMax = calculateDSMax(calcAccuracy, calculateDS(step, k1, k2, k3, k4));
+            result.getAccuracy().add(DSMax);
+            result.getIteration().add(i);
+            i++;
+
+            step = calculateAcuraccy(step, DSMax, stepMax);
+
+        }
+
         return result;
     }
 
-    public void setResult(RungeKuttaMethodResult result) {
-        this.result = result;
+    public static OrbitalElements integrateWithConstStep(ElectrodynamicTetherSystemModel tetherSystemModel, int maxIter, double step, double calcAccuracy) {
+        OrbitalElements result;
+        Vector k1, k2, k3, k4;
+        Vector ys;
+        double t = 0, tt = 0;
+        int i = 0;
+        result = new OrbitalElements();
+        Vector y = tetherSystemModel.getStartVector();
+        while (t < maxIter) {
+            tt = t + step;
+
+            k1 = tetherSystemModel.getDiffVector(y);
+            k2 = tetherSystemModel.getDiffVector(CalculationUtils.scalarMultiplyAndAddVectors(k1, y, step / 2.0));
+            k3 = tetherSystemModel.getDiffVector(CalculationUtils.scalarMultiplyAndAddVectors(k2, y, step / 2.0));
+            k4 = tetherSystemModel.getDiffVector(CalculationUtils.scalarMultiplyAndAddVectors(k3, y, step));
+            /**
+             * Return result vector
+             */
+            ys = calculateResY(step, y, k1, k2, k3, k4);
+
+            t = tt;
+            y = (Vector) ys.clone();
+
+            result.getTime().add(i, t);
+            result.getTetherVerticalDeflectionAngle().add(i, y.get(0));
+            result.getTetherVerticalDeflectionAngleDiff().add(i, y.get(1));
+            result.getTrueAnomaly().add(i, y.get(2));
+            result.getSemimajorAxis().add(i, y.get(3));
+            result.getEccentricity().add(i, y.get(4));
+            result.getStep().add(i, step);
+
+            double DSMax = calculateDSMax(calcAccuracy, calculateDS(step, k1, k2, k3, k4));
+
+            result.getAccuracy().add(i, DSMax);
+            result.getIteration().add(i, i);
+            i++;
+        }
+
+        return result;
     }
+
 }

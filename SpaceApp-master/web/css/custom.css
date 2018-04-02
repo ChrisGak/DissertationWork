@@ -243,7 +243,7 @@ header .header-content .header-content-inner p {
 
     .navbar-default .nav > li > a,
     .navbar-default .nav > li > a:focus {
-        color: rgba(255, 255, 255, .7);
+        color: rgba(197, 194, 187, 0.93);
     }
 
     .navbar-default .nav > li > a:hover,

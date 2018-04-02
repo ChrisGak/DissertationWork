@@ -67,6 +67,18 @@
     </div>
 </nav>
 
+<div id="dynamic-section" class="dynamic-section">
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        <div id="page-sidebar">
+        </div>
+        <!-- Page Content -->
+        <div id="page-content">
+        </div>
+    </div>
+</div>
+
+<div id="application-section" class="application-section">
 <!-- Header -->
 <header>
     <div class="header-content">
@@ -94,171 +106,162 @@
     </div>
 </header>
 
-<div class="application-section">
-    <div class="dynamic-section">
-        <div class="page-header"></div>
-        <div class="page-inner">
-            <div id="main-wrapper">
-                <div class="row">
-                    <div class="col-lg-8 col-md-12">
-                        <div class="panel">
-                            <div class="panel-heading clearfix">
-                                <h4 class="panel-title">Server Status</h4>
-                                <h4 class="panel-title">Server Status</h4>фи
-                            </div>
-                            <div class="panel-body"></div>
+
+        <div id="static-section" class="static-section">
+            <!-- Intro Section -->
+            <section id="intro" class="intro">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <h2 id="intro_h2" class="section-heading">Система позволяет настроить математическую модель
+                                космической электродинамической тросовой системы,
+                                включающей в себя наноспутник и неизолированный трос, произвести интегрирование модели и
+                                проанализиовать
+                                процесс торможения наноспутника</h2>
+                            <p id="intro_p" class="text-light"></p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12"></div>
+                </div>
+            </section>
+            <!-- Content 1 -->
+            <section class="content">
+                <div id="content_container" class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img class="img-responsive img-circle center-block" src="images/tips.jpg" alt="">
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="section-header">Что такое тросовые системы?</h2>
+                            <p class="lead text-muted">
+                                Система аппаратов, соединенных тросами для обеспечения выполнения требований по
+                                относительному
+                                положению без затрат рабочего тела. К тросовой системе относится и космический лифт,
+                                соединяющий
+                                Землю и орбитальную станцию.</p>
+                            <a href="pages/CableSystems.html" class="btn btn-primary btn-lg">Подробнее</a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- Content 2 -->
+
+            <section class="content content-2" id="gotoCalc">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2 class="section-header">Орбитальное движение</h2>
+                            <p class="lead text-light">Орбитальные элементы — набор параметров, задающих траекторию
+                                движения
+                                небесного тела.
+                                Одной из задач небесной механики является определение орбит небесных тел. Для задания
+                                орбиты
+                                спутника планеты, астероида или Земли используют так называемые орбитальные элементы.
+                                Они отвечают
+                                за задание базовой системы координат (точка отсчёта, оси координат), форму и размер
+                                орбиты, её
+                                ориентацию в пространстве и момент времени, в который небесное тело находится в
+                                определённой точке
+                                орбиты. В основном, используются два способа задания орбиты (при наличии системы
+                                координат):
+                                при помощи векторов положения и скорости;
+                                при помощи орбитальных элементов.</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <img class="img-responsive img-circle center-block" src="images/1419.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Promos -->
+            <div class="container-fluid">
+                <div class="row promo">
+                    <a href="#intro">
+                        <div class="col-md-4 promo-item item-1">
+                            <h3>
+                                <button id="modeling" class="btn btn-primary btn-lg">
+                                    Моделирование
+                                </button>
+                            </h3>
+                        </div>
+                    </a>
+                    <div class="col-md-4 promo-item item-2">
+                        <h3>
+                            <a href="files/report.xls">
+                                <button id="results" class="btn btn-primary btn-lg">
+                                    Скачать образец файла ввода данных
+                                </button>
+                            </a>
+                        </h3>
+                    </div>
+
+                    <a href="#intro">
+                        <div class="col-md-4 promo-item item-3">
+                            <h3>
+                                <button id="testExample" class="btn btn-primary btn-lg">
+                                    Тестовый пример
+                                </button>
+                            </h3>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="static-section">
-        <!-- Intro Section -->
-        <section id="intro" class="intro">
+
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <!-- Contact Us -->
+        <div id="about" class="contact">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <h2 id="intro_h2" class="section-heading">Система позволяет настроить математическую модель
-                            космической электродинамической тросовой системы,
-                            включающей в себя наноспутник и неизолированный трос, произвести интегрирование модели и
-                            проанализиовать
-                            процесс торможения наноспутника</h2>
-                        <p id="intro_p" class="text-light"></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Content 1 -->
-        <section class="content">
-            <div id="content_container" class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <img class="img-responsive img-circle center-block" src="images/tips.jpg" alt="">
-                    </div>
-                    <div class="col-sm-6">
-                        <h2 class="section-header">Что такое тросовые системы?</h2>
-                        <p class="lead text-muted">
-                            Система аппаратов, соединенных тросами для обеспечения выполнения требований по относительному
-                            положению без затрат рабочего тела. К тросовой системе относится и космический лифт, соединяющий
-                            Землю и орбитальную станцию.</p>
-                        <a href="pages/CableSystems.html" class="btn btn-primary btn-lg">Подробнее</a>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        <!-- Content 2 -->
-
-        <section class="content content-2" id="gotoCalc">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h2 class="section-header">Орбитальное движение</h2>
-                        <p class="lead text-light">Орбитальные элементы — набор параметров, задающих траекторию движения
-                            небесного тела.
-                            Одной из задач небесной механики является определение орбит небесных тел. Для задания орбиты
-                            спутника планеты, астероида или Земли используют так называемые орбитальные элементы. Они отвечают
-                            за задание базовой системы координат (точка отсчёта, оси координат), форму и размер орбиты, её
-                            ориентацию в пространстве и момент времени, в который небесное тело находится в определённой точке
-                            орбиты. В основном, используются два способа задания орбиты (при наличии системы координат):
-                            при помощи векторов положения и скорости;
-                            при помощи орбитальных элементов.</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <img class="img-responsive img-circle center-block" src="images/1419.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Promos -->
-        <div class="container-fluid">
-            <div class="row promo">
-                <a href="#intro">
-                    <div class="col-md-4 promo-item item-1">
-                        <h3>
-                            <button id="modeling" class="btn btn-primary btn-lg">
-                                Моделирование
-                            </button>
-                        </h3>
-                    </div>
-                </a>
-                <div class="col-md-4 promo-item item-2">
-                    <h3>
-                        <a href="files/report.xls">
-                            <button id="results" class="btn btn-primary btn-lg">
-                                Скачать образец файла ввода данных
-                            </button>
-                        </a>
-                    </h3>
+                <h2 class="section-heading">Контакты разработчиков</h2>
+                <div class="row promo">
+                    <a href="mailto:chrissaigak@gmail.com">
+                        <div class="column_left promo-item">
+                            <p>
+                                Разработчик: Сайгак Кристина Олеговна
+                            </p>
+                            <p><span class="glyphicon glyphicon-envelope"></span> <a
+                                    href="mailto:chrissaigak@gmail.com">
+                                chrissaigak@gmail.com</a>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="column_right promo-item">
+                            <p>
+                                Научный руководитель: Заболотнов Юрий Михайлович
+                            </p>
+                            <p><span class="glyphicon glyphicon-envelope"></span><a href="mailto:yumz@yandex.ru">
+                                yumz@yandex.ru</a>
+                            </p>
+                        </div>
+                    </a>
                 </div>
 
-                <a href="#intro">
-                    <div class="col-md-4 promo-item item-3">
-                        <h3>
-                            <button id="testExample" class="btn btn-primary btn-lg">
-                                Тестовый пример
-                            </button>
-                        </h3>
-                    </div>
-                </a>
             </div>
         </div>
-    </div>
+        <!-- Copyright etc -->
+        <div class="small-print">
+            <div class="container">
+                <p>Сайгак Кристина, 2018</p>
+            </div>
+        </div>
+    </footer>
 </div>
+    <!-- jQuery -->
+    <script src="js/jquery-1.11.3.min.js"></script>
 
-<!-- Footer -->
-<footer class="page-footer">
-    <!-- Contact Us -->
-    <div id="about" class="contact">
-        <div class="container">
-            <h2 class="section-heading">Контакты разработчиков</h2>
-            <div class="row promo">
-                <a href="mailto:chrissaigak@gmail.com">
-                    <div class="column_left promo-item">
-                        <p>
-                            Разработчик: Сайгак Кристина Олеговна
-                        </p>
-                        <p><span class="glyphicon glyphicon-envelope"></span> <a href="mailto:chrissaigak@gmail.com">
-                            chrissaigak@gmail.com</a>
-                        </p>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="column_right promo-item">
-                        <p>
-                            Научный руководитель: Заболотнов Юрий Михайлович
-                        </p>
-                        <p><span class="glyphicon glyphicon-envelope"></span><a href="mailto:yumz@yandex.ru">
-                            yumz@yandex.ru</a>
-                        </p>
-                    </div>
-                </a>
-            </div>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 
-        </div>
-    </div>
-    <!-- Copyright etc -->
-    <div class="small-print">
-        <div class="container">
-            <p>Сайгак Кристина, 2018</p>
-        </div>
-    </div>
-</footer>
-<!-- jQuery -->
-<script src="js/jquery-1.11.3.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+    <!-- Custom Javascript -->
+    <script src="js/custom.js"></script>
 
-<!-- Plugin JavaScript -->
-<script src="js/jquery.easing.min.js"></script>
-
-<!-- Custom Javascript -->
-<script src="js/custom.js"></script>
-
-<!-- GWT Highcharts -->
-<script type="text/javascript" src="js/highcharts.js"></script>
+    <!-- GWT Highcharts -->
+    <script type="text/javascript" src="js/highcharts.js"></script>
 </body>
 </html>

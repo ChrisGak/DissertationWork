@@ -2,6 +2,10 @@ header .header-content .header-content-inner #appTitle h1 {
     font-size: 50px;
 }
 
+.nav > li a {
+    font-weight: 600;
+}
+
 .info-popup {
     color: rgba(5, 2, 46, 0.82);
     background: #dfefc8;
@@ -62,6 +66,56 @@ header .header-content .header-content-inner #appTitle h1 {
 /**
     Widgets with highcharts graphics
  */
+
+.page-container {
+    display: flex;
+    width: 100%;
+}
+
+.page-sidebar, .logo-box {
+    background: #1F2A40;
+}
+
+.logo-box {
+    padding: 20px 40px 11px;
+    color: rgb(218, 216, 247) !important;
+    font-weight: 800;
+    font-size: 18px;
+    display: block;
+    text-decoration: none;
+    z-index: 9999;
+    line-height: 30px;
+}
+
+.page-content {
+    min-height: 56px;
+    vertical-align: bottom;
+    background: #EBF0F3;
+    width: calc(100% - 240px);
+    float: right;
+    padding-top: 50px;
+}
+
+.page-header {
+    background: #EBF0F3;
+}
+
+.page-inner {
+    position: relative;
+    min-height: calc(100% - 81px);
+    padding: 5px 40px 42px 30px;
+    background: #EBF0F3;
+}
+
+.page-sidebar {
+    width: 240px;
+    min-height: 100%;
+    float: left;
+    z-index: 100;
+    position: relative;
+    padding-top: 50px;
+}
+
 .panel-title {
     color: #637282;
     padding: 0 0 30px;
@@ -70,6 +124,91 @@ header .header-content .header-content-inner #appTitle h1 {
 
 .panel-body {
     padding: 0;
+}
+
+.page-sidebar-menu ul li.menu-divider {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #1E2636;
+    margin: 10px 0;
+}
+
+.page-sidebar-menu ul li {
+    list-style-type: none;
+    position: relative;
+}
+
+.page-sidebar a:hover,
+.page-sidebar-menu ul li a:link,
+.page-sidebar-menu ul li a:hover {
+    text-decoration: none;
+}
+
+.page-sidebar-fixed .page-sidebar .accordion-menu,
+.page-sidebar-menu {
+    margin-top: 10px;
+}
+
+.page-sidebar-menu ul li a {
+    display: block;
+    padding: 9px 40px 9px 0;
+    font-size: 14px;
+}
+
+.page-sidebar-menu ul li.active-page > a {
+    color: #D0D8E9;
+    font-weight: 500;
+}
+
+.page-sidebar-menu .menu-divider {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #1E2636;
+    margin: 10px 0;
+}
+
+.breadcrumb-header {
+    font-size: 22px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, .6);
+    margin-bottom: 24px;
+}
+
+.hidden {
+    display: none;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.panel {
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid #E6E8EB;
+}
+
+.stats-widget .stats-number {
+    color: #637282;
+    font-size: 25px;
+}
+
+.stats-widget .stats-info {
+    margin: 0;
+    color: #637282;
+}
+
+.stats-widget .stats-icon {
+    font-size: 38px;
+}
+
+.custom_chart {
+    height: 200px;
 }
 
 

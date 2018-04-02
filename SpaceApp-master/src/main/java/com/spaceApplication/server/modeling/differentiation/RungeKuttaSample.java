@@ -1,8 +1,8 @@
 package com.spaceApplication.server.modeling.differentiation;
 
-import static com.spaceApplication.shared.calculation.BasicCalculationOperation.f;
-import static com.spaceApplication.shared.calculation.BasicCalculationOperation.g;
-import static com.spaceApplication.shared.calculation.BasicCalculationOperation.r;
+import static com.spaceApplication.shared.calculation.CalculationUtils.f;
+import static com.spaceApplication.shared.calculation.CalculationUtils.g;
+import static com.spaceApplication.shared.calculation.CalculationUtils.r;
 
 /**
  * Created by Кристина on 06.02.2016.

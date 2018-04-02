@@ -9,11 +9,11 @@ import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
-import com.spaceApplication.client.exception.SpaceModelException;
-import com.spaceApplication.client.internationalization.SpaceAppConstants;
-import com.spaceApplication.client.internationalization.SpaceAppMessages;
+import com.spaceApplication.client.exception.TetherSystemModelValueException;
+import com.spaceApplication.client.consts.SpaceAppConstants;
+import com.spaceApplication.client.consts.SpaceAppMessages;
 import com.spaceApplication.client.space.html.UIConsts;
-import com.spaceApplication.client.space.model.RungeKuttaResult;
+import com.spaceApplication.client.space.model.OrbitalElementsClient;
 
 import java.util.logging.Logger;
 
@@ -23,6 +23,9 @@ import java.util.logging.Logger;
 public class SpaceAppEntryPoint implements EntryPoint {
 
     private static final Logger log = Logger.getLogger(String.valueOf(SpaceAppEntryPoint.class));
+    private static String APPLICATION_SELECTOR = "application-section";
+    private static String DYNAMIC_SELECTOR = "dynamic-section";
+    private static String STATIC_SELECTOR = "static-section";
 
     // create an instance of the service proxy class by calling GWT.create(Class).
     private SpaceApplicationServiceAsync spaceApplicationServiceAsync = GWT.create(SpaceApplicationService.class);
@@ -43,8 +46,19 @@ public class SpaceAppEntryPoint implements EntryPoint {
     String introH2Id = UIConsts.introH2Id;
     String introParagrapgId = UIConsts.introParagrapgId;
 
+    private void toggleContentBlocks(boolean toHideDynamic){
+        if (toHideDynamic){
+            RootPanel.get(DYNAMIC_SELECTOR).setVisible(false);
+            RootPanel.get(STATIC_SELECTOR).setVisible(true);
+        } else {
+            RootPanel.get(DYNAMIC_SELECTOR).setVisible(true);
+            RootPanel.get(STATIC_SELECTOR).setVisible(false);
+        }
+    }
+
     public void onModuleLoad() {
-        Window.setTitle(constants.modeling());
+        //Window.setTitle(constants.modeling());
+        toggleContentBlocks(true);
 
         testButton = Button.wrap(Document.get().getElementById("testExample"));
         modelingButton = Button.wrap(Document.get().getElementById("modeling"));
@@ -57,17 +71,15 @@ public class SpaceAppEntryPoint implements EntryPoint {
     }
 
     private void clearContentDiv() {
-        RootPanel.get(appDivId).clear(true);
         RootPanel.get(appDivId).clear();
-        mainPanel.clear();
     }
 
     // Set up the callback object.
-    AsyncCallback<RungeKuttaResult> calculationCallback = new AsyncCallback<RungeKuttaResult>() {
+    AsyncCallback<OrbitalElementsClient> calculationCallback = new AsyncCallback<OrbitalElementsClient>() {
         public void onFailure(Throwable caught) {
             String details = caught.getMessage();
-            if (caught instanceof SpaceModelException) {
-                details = "Model has exception:  '" + ((SpaceModelException)caught).getCause();
+            if (caught instanceof TetherSystemModelValueException) {
+                details = "Model has exception:  '" + caught.getCause();
             }
 
             errorMsgLabel.setText("Error: " + details);
@@ -79,7 +91,7 @@ public class SpaceAppEntryPoint implements EntryPoint {
         }
 
         @Override
-        public void onSuccess(RungeKuttaResult result) {
+        public void onSuccess(OrbitalElementsClient result) {
             mainPanel.add(RemoteCalculationControl.createAllResultPlotsTest(result));
             RootPanel.get(appDivId).add(mainPanel);
         }

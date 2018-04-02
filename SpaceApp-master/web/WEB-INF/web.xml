@@ -12,7 +12,7 @@
     <!-- Servlets -->
     <servlet>
         <servlet-name>SpaceApplicationService</servlet-name>
-        <servlet-class>com.spaceApplication.server.service.SpaceApplicationServiceImpl</servlet-class>
+        <servlet-class>com.spaceApplication.server.service.MainAppServiceImpl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SpaceApplicationService</servlet-name>

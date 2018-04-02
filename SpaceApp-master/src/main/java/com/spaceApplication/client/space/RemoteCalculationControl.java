@@ -4,14 +4,14 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.spaceApplication.client.space.html.UIConsts;
-import com.spaceApplication.client.space.model.CableSystemModel;
-import com.spaceApplication.client.space.model.RungeKuttaResult;
+import com.spaceApplication.client.space.model.ElectrodynamicTetherSystemModelClient;
+import com.spaceApplication.client.space.model.OrbitalElementsClient;
 import org.moxieapps.gwt.highcharts.client.Chart;
 import org.moxieapps.gwt.highcharts.client.Legend;
 import org.moxieapps.gwt.highcharts.client.Series;
 
 /**
- * Created by Кристина on 16.05.2016.
+ * Created by Chris
  */
 public class RemoteCalculationControl {
 
@@ -19,7 +19,7 @@ public class RemoteCalculationControl {
     private SpaceApplicationServiceAsync spaceApplicationServiceAsync = GWT.create(SpaceApplicationService.class);
     private static VerticalPanel downloadImagePanel;
     //private static ElectrodynamicTetherSystemModel defaultTestModel = new ElectrodynamicTetherSystemModel(20, 40 , 1000, 1000000, 0, 0, 0, 0.0167, 0.5,  1000, 10.0, 20.0, 0.01);
-    private static CableSystemModel defaultTestModel = new CableSystemModel(20, 20 , 1000, 1000000, 0.1, 0, 0, 0.0167, 0.5, 1000, 10.0, 20.0, 0.01);
+    private static ElectrodynamicTetherSystemModelClient defaultTestModel = new ElectrodynamicTetherSystemModelClient(20, 20 , 1000, 1000000, 0.1, 0, 0, 0.0167, 0.5, 1000, 10.0, 20.0, 0.01);
 
 
     public RemoteCalculationControl(){
@@ -27,7 +27,7 @@ public class RemoteCalculationControl {
         initFileDownloadAnchor();
     }
 
-    public void callRPCTest( AsyncCallback<RungeKuttaResult> calculationCallback){
+    public void callRPCTest( AsyncCallback<OrbitalElementsClient> calculationCallback){
         if (spaceApplicationServiceAsync==null)
             spaceApplicationServiceAsync = GWT.create(SpaceApplicationService.class);
 
@@ -35,7 +35,7 @@ public class RemoteCalculationControl {
         spaceApplicationServiceAsync.getCalculationResult(defaultTestModel, calculationCallback);
     }
 
-    public void callRemoteCalculation(AsyncCallback<RungeKuttaResult> calculationCallback, CableSystemModel model){
+    public void callRemoteCalculation(AsyncCallback<OrbitalElementsClient> calculationCallback, ElectrodynamicTetherSystemModelClient model){
         if (spaceApplicationServiceAsync==null)
             spaceApplicationServiceAsync = GWT.create(SpaceApplicationService.class);
 
@@ -54,7 +54,7 @@ public class RemoteCalculationControl {
         downloadImagePanel.add(downloadHref);
     }
 
-    public static Widget createAllResultPlots(RungeKuttaResult results, CableSystemModel model){
+    public static Widget createAllResultPlots(OrbitalElementsClient results, ElectrodynamicTetherSystemModelClient model){
         HorizontalPanel horizontalPanel = new HorizontalPanel();
         VerticalPanel verticalPanel = new VerticalPanel();
         verticalPanel.add(createResultCharts(results));
@@ -66,7 +66,7 @@ public class RemoteCalculationControl {
         return horizontalPanel;
     }
 
-    public static Widget createAllResultPlotsTest(RungeKuttaResult results){
+    public static Widget createAllResultPlotsTest(OrbitalElementsClient results){
         HorizontalPanel horizontalPanel = new HorizontalPanel();
         VerticalPanel inputDataVPanel = new VerticalPanel();
         HTML h1 = new HTML("<h1 class="+  UIConsts.headerStyle +">"+ "Параметры тросовой системы" +"</h1>");
@@ -92,7 +92,7 @@ public class RemoteCalculationControl {
         inputDataVPanel.add(new Label("Время интегрирования " + defaultTestModel.getMaxIter()  + " с" ));
         inputDataVPanel.add(new Label("Начальный шаг интегрирования " + defaultTestModel.getStep()+ " с" ));
         inputDataVPanel.add(new Label("Максимальный шаг " + defaultTestModel.getStepMax()+ " с" ));
-        inputDataVPanel.add(new Label("Погрешность интегрирования " + defaultTestModel.getD()));
+        inputDataVPanel.add(new Label("Погрешность интегрирования " + defaultTestModel.getCalcAccuracy()));
 
         VerticalPanel verticalPanel = new VerticalPanel();
         verticalPanel.add(inputDataVPanel);
@@ -105,7 +105,7 @@ public class RemoteCalculationControl {
         return horizontalPanel;
     }
 
-    public static Widget createResultPlots(RungeKuttaResult results){
+    public static Widget createResultPlots(OrbitalElementsClient results){
         HorizontalPanel horizontalPanel = new HorizontalPanel();
         VerticalPanel verticalPanel = new VerticalPanel();
         verticalPanel.add(createResultCharts(results));
@@ -116,7 +116,7 @@ public class RemoteCalculationControl {
         return horizontalPanel;
     }
 
-    public static Widget createBigChart(RungeKuttaResult results, CableSystemModel model){
+    public static Widget createBigChart(OrbitalElementsClient results, ElectrodynamicTetherSystemModelClient model){
         VerticalPanel contentPanel = new VerticalPanel();
         Series XNB1,  XNB2 ,  YNB1 , YNB2;
 
@@ -144,7 +144,7 @@ public class RemoteCalculationControl {
         return  contentPanel;
     }
 
-    public static Widget createResultCharts(RungeKuttaResult results){
+    public static Widget createResultCharts(OrbitalElementsClient results){
         VerticalPanel contentPanel = new VerticalPanel();
 
         HTML headerOfContent = new HTML("<h1 class="+ UIConsts.headerStyle+">"+ "Результаты моделирования"+"</h1>");

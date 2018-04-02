@@ -1,24 +1,23 @@
 package com.spaceApplication.server.test;
 
-import com.spaceApplication.client.exception.SpaceModelException;
-import com.spaceApplication.client.space.model.CableSystemModel;
-import com.spaceApplication.server.service.SpaceApplicationServiceImpl;
+import com.spaceApplication.client.exception.TetherSystemModelValueException;
+import com.spaceApplication.client.space.model.ElectrodynamicTetherSystemModelClient;
+import com.spaceApplication.client.space.model.OrbitalElementsClient;
+import com.spaceApplication.server.modeling.differentiation.OrbitalElements;
+import com.spaceApplication.server.service.MainAppServiceImpl;
 
 /**
- * Created by Кристина on 17.05.2016.
+ * Created by Chris
  */
 public class TestRungeKuttaFromClient {
-    private static CableSystemModel defaultTestModel = new CableSystemModel(20, 40, 1000, 1000000, 10, 0.1, 10, 0.0167, 5, 1000, 10.0, 20.0, 0.01);
-
     public TestRungeKuttaFromClient() {
 
     }
 
-    public static void main(String[] args) throws SpaceModelException {
-        SpaceApplicationServiceImpl impl = new SpaceApplicationServiceImpl();
+    public static void main(String[] args) throws TetherSystemModelValueException {
+        MainAppServiceImpl impl = new MainAppServiceImpl();
 
-        impl.testCalculationResult(defaultTestModel);
-
+        OrbitalElementsClient results = impl.getTestModelIntegrationResult();
 
     }
 }

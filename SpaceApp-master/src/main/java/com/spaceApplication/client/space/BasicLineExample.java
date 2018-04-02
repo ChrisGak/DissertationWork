@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import org.moxieapps.gwt.highcharts.client.*;
 
 /**
- * Created by Кристина on 29.04.2016.
+ * Created by Chris
  */
 public class BasicLineExample implements EntryPoint {
 

@@ -1,4 +1,5 @@
 package com.spaceApplication.server.logging;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Formatter;
@@ -7,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 
 /**
- * Created by Кристина on 24.03.2016.
+ * Created by Chris
  */
 class MyHtmlFormatter extends Formatter {
     // this method is called for every log records
