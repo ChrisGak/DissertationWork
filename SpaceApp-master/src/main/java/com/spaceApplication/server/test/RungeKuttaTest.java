@@ -41,7 +41,7 @@ public class RungeKuttaTest {
         System.out.println("    testFullModel1           ");
         testModel.printInitialState();
         OrbitalElements integrationTestResult = RungeKuttaMethodImpl.integrateWithVariableStep(testModel,
-                10, 5, 10, 0.001);
+                50, 5, 10, 0.001);
 //        OrbitalElements.printFirstAndLastResults(integrationTestResult);
         OrbitalElements.printResultToConsole(integrationTestResult);
         System.out.println("_____________________________");
@@ -56,7 +56,9 @@ public class RungeKuttaTest {
         System.out.println("_____________________________");
         System.out.println("    Model1: test equations           ");
         testModel.printInitialState();
-//        testModel.getOrbitalParameter()
+
+        System.out.println("p(A, ex) = " +
+                testModel.getOrbitalParameter(testModel.getInitialSemimajorAxis(), BasicConsts.INITIAL_ECCENTICITY.getValue()));
         System.out.println("_____________________________");
     }
 }

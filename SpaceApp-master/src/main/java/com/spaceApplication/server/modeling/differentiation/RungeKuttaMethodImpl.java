@@ -45,9 +45,9 @@ public class RungeKuttaMethodImpl {
         if (0.1 <= DSMax && DSMax <= 1) {
             step_ = step;
         } else if (DSMax < 0.1) {
-            step_ = step * 2;
+            step_ = step * 2.0;
         } else if (DSMax > 1) {
-            step_ = step / 2;
+            step_ = step / 2.0;
         }
 
         if (step_ > stepMax) {

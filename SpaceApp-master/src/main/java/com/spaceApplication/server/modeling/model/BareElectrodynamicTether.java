@@ -1,4 +1,5 @@
 package com.spaceApplication.server.modeling.model;
+
 import java.io.Serializable;
 
 /**
@@ -45,7 +46,7 @@ public class BareElectrodynamicTether implements Serializable {
     }
 
     public double getCrossSectionalArea() {
-        return Math.PI * diameter * diameter / 4;
+        return Math.PI * diameter * diameter / 4.0;
     }
 
     /**
@@ -80,7 +81,7 @@ public class BareElectrodynamicTether implements Serializable {
      * @return
      */
     public double getMassCenterMomentArm(double nanoSatelliteMass, double mainSatelliteMass) {
-        return (length / 2) * (mainSatelliteMass - nanoSatelliteMass)
+        return (length / 2.0) * (mainSatelliteMass - nanoSatelliteMass)
                 / (nanoSatelliteMass + mainSatelliteMass);
     }
 }

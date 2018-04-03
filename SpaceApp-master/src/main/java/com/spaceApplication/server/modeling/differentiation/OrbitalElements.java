@@ -1,10 +1,9 @@
 package com.spaceApplication.server.modeling.differentiation;
 
-        import com.google.gwt.user.client.rpc.IsSerializable;
-        import com.spaceApplication.shared.calculation.CalculationUtils;
+import com.spaceApplication.shared.calculation.CalculationUtils;
 
-        import java.io.Serializable;
-        import java.util.Vector;
+import java.io.Serializable;
+import java.util.Vector;
 
 /**
  * Created by Chris
@@ -44,7 +43,6 @@ public class OrbitalElements implements Serializable {
         this.iteration = new Vector<>();
     }
 
-
     public OrbitalElements(Vector time, Vector tetherVerticalDeflectionAngle, Vector tetherVerticalDeflectionAngleDiff,
                            Vector trueAnomaly, Vector semimajorAxis, Vector eccentricity, Vector step, Vector accuracy, Vector iteration) {
         this.time = time;
@@ -71,7 +69,6 @@ public class OrbitalElements implements Serializable {
          * 7 - значение точности
          * 8 - номер итерации
          */
-
         System.out.println("\nTime");
         result.getTime().forEach(z -> System.out.println((double) z));
         System.out.println("\nTetta");
@@ -230,4 +227,25 @@ public class OrbitalElements implements Serializable {
         return iteration;
     }
 
+    public enum DESCRIPTIONS {
+        TIME("Время"),
+        TETTA("Угол отклонения троса от вертикали"),
+        OMEGA("Производная угла отклонения троса от вертикали"),
+        EPS("Истинная аномалия"),
+        A("Большая полуось"),
+        EX("Эксцентриситет"),
+        STEP("Шаг"),
+        ACCURACY("Точность"),
+        ITERATION("Итерация");
+
+        private final String value;
+
+        DESCRIPTIONS(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
 }
