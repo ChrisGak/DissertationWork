@@ -2,6 +2,7 @@ package com.spaceApplication.client.space.model;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 import com.spaceApplication.client.space.html.UIConsts;
+import com.spaceApplication.shared.calculation.BasicConsts;
 import com.spaceApplication.shared.calculation.CalculationUtils;
 import org.moxieapps.gwt.highcharts.client.Point;
 
@@ -87,7 +88,32 @@ public class OrbitalElementsClient implements IsSerializable {
     }
 
     public Vector getHeightUnderEarth(){
-        return CalculationUtils.getRR_RZ(getA(), getEps(), getEx());
+        return getRR_RZ(getA(), getEps(), getEx());
+    }
+
+    public static double getP(double A, double ex) {
+
+        return A * (1.0 - Math.pow(ex, 2));
+    }
+
+    public static double getNu(double eps, double ex) {
+
+        return 1.0 + ex * Math.cos(eps);
+    }
+
+    /**
+     * @param A
+     * @param eps
+     * @param ex
+     * @return Уравнение орбиты центра масс
+     */
+    public static Vector<Double> getRR_RZ(Vector<Double> A, Vector<Double> eps, Vector<Double> ex) {
+        Vector<Double> r = new Vector<Double>();
+
+        for (int i = 0; i < A.size(); i++) {
+            r.add((getP(A.get(i), ex.get(i)) / getNu(eps.get(i), ex.get(i)) - BasicConsts.EARTH_RADIUS.getValue()));
+        }
+        return r;
     }
 
     public Point[] getHeightPoints() {

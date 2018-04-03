@@ -6,6 +6,7 @@ import com.spaceApplication.server.modeling.differentiation.RungeKuttaMethodImpl
 import com.spaceApplication.server.modeling.differentiation.OrbitalElements;
 import com.spaceApplication.server.modeling.model.BareElectrodynamicTether;
 import com.spaceApplication.server.modeling.model.ElectrodynamicTetherSystemModel;
+import com.spaceApplication.shared.calculation.BasicConsts;
 import jxl.write.WriteException;
 
 import java.io.IOException;
@@ -41,7 +42,21 @@ public class RungeKuttaTest {
         testModel.printInitialState();
         OrbitalElements integrationTestResult = RungeKuttaMethodImpl.integrateWithVariableStep(testModel,
                 10, 5, 10, 0.001);
-        OrbitalElements.printFirstAndLastResults(integrationTestResult);
+//        OrbitalElements.printFirstAndLastResults(integrationTestResult);
+        OrbitalElements.printResultToConsole(integrationTestResult);
+        System.out.println("_____________________________");
+    }
+
+
+    public static void testEquations(){
+        BareElectrodynamicTether testTether = new BareElectrodynamicTether(0.4, 2000, 0.001);
+        ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(testTether,
+                6, 2, 500000, 0, 0, BasicConsts.INITIAL_ECCENTICITY.getValue());
+
+        System.out.println("_____________________________");
+        System.out.println("    Model1: test equations           ");
+        testModel.printInitialState();
+//        testModel.getOrbitalParameter()
         System.out.println("_____________________________");
     }
 }

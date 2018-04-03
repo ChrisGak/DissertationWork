@@ -1,10 +1,10 @@
 package com.spaceApplication.server.modeling.differentiation;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
-import com.spaceApplication.shared.calculation.CalculationUtils;
+        import com.google.gwt.user.client.rpc.IsSerializable;
+        import com.spaceApplication.shared.calculation.CalculationUtils;
 
-import java.io.Serializable;
-import java.util.Vector;
+        import java.io.Serializable;
+        import java.util.Vector;
 
 /**
  * Created by Chris
@@ -19,19 +19,6 @@ public class OrbitalElements implements Serializable {
     private Vector<Double> step;
     private Vector<Double> accuracy;
     private Vector<Integer> iteration;
-    private int size;
-
-    public OrbitalElements() {
-        this.time = new Vector<>();
-        this.tetherVerticalDeflectionAngle = new Vector<>();
-        this.tetherVerticalDeflectionAngleDiff = new Vector<>();
-        this.trueAnomaly = new Vector<>();
-        this.semimajorAxis = new Vector<>();
-        this.eccentricity = new Vector<>();
-        this.step = new Vector<>();
-        this.accuracy = new Vector<>();
-        this.iteration = new Vector<>();
-    }
 
     /**
      * Мапа векторов расчитанных значений
@@ -45,6 +32,19 @@ public class OrbitalElements implements Serializable {
      * 7 - значение точности
      * 8 - номер итерации
      */
+    public OrbitalElements() {
+        this.time = new Vector<>();
+        this.tetherVerticalDeflectionAngle = new Vector<>();
+        this.tetherVerticalDeflectionAngleDiff = new Vector<>();
+        this.trueAnomaly = new Vector<>();
+        this.semimajorAxis = new Vector<>();
+        this.eccentricity = new Vector<>();
+        this.step = new Vector<>();
+        this.accuracy = new Vector<>();
+        this.iteration = new Vector<>();
+    }
+
+
     public OrbitalElements(Vector time, Vector tetherVerticalDeflectionAngle, Vector tetherVerticalDeflectionAngleDiff,
                            Vector trueAnomaly, Vector semimajorAxis, Vector eccentricity, Vector step, Vector accuracy, Vector iteration) {
         this.time = time;
@@ -56,7 +56,6 @@ public class OrbitalElements implements Serializable {
         this.step = step;
         this.accuracy = accuracy;
         this.iteration = iteration;
-        size = time.size();
     }
 
     public static void printResultToConsole(OrbitalElements result) {
@@ -92,7 +91,6 @@ public class OrbitalElements implements Serializable {
         result.getAccuracy().forEach(z -> System.out.println((double) z));
         System.out.println("\nIter");
         result.getIteration().forEach(z -> System.out.println(z));
-
     }
 
     public static void printFirstAndLastResults(OrbitalElements result) {
@@ -113,14 +111,14 @@ public class OrbitalElements implements Serializable {
         System.out.println((double) result.getTime().get(0));
         System.out.println((double) result.getTime().get(size));
         System.out.println("\nTetta");
-        System.out.println(CalculationUtils.convertRadiansToDegrees((double) result.getTetherVerticalDeflectionAngle().get(0)));
-        System.out.println(CalculationUtils.convertRadiansToDegrees((double) result.getTetherVerticalDeflectionAngle().get(size)));
+        System.out.println(Math.toDegrees((double) result.getTetherVerticalDeflectionAngle().get(0)));
+        System.out.println(Math.toDegrees((double) result.getTetherVerticalDeflectionAngle().get(size)));
         System.out.println("\nOmega");
         System.out.println((double) result.getTetherVerticalDeflectionAngleDiff().get(0));
         System.out.println((double) result.getTetherVerticalDeflectionAngleDiff().get(size));
         System.out.println("\nEps");
-        System.out.println(CalculationUtils.convertRadiansToDegrees((double) result.getTrueAnomaly().get(0)));
-        System.out.println(CalculationUtils.convertRadiansToDegrees((double) result.getTrueAnomaly().get(size)));
+        System.out.println(Math.toDegrees((double) result.getTrueAnomaly().get(0)));
+        System.out.println(Math.toDegrees((double) result.getTrueAnomaly().get(size)));
         System.out.println("\nA");
         System.out.println((double) result.getSemimajorAxis().get(0));
         System.out.println((double) result.getSemimajorAxis().get(size));
@@ -136,7 +134,6 @@ public class OrbitalElements implements Serializable {
         System.out.println("\nIter");
         System.out.println(result.getIteration().get(0));
         System.out.println(result.getIteration().get(size));
-
     }
 
     public static void printResultsWithSignsToConsole(OrbitalElements result, int signes) {
@@ -171,12 +168,10 @@ public class OrbitalElements implements Serializable {
         result.getAccuracy().forEach(z -> System.out.println(CalculationUtils.r((double) z, signes)));
         System.out.println("\nIter");
         result.getIteration().forEach(z -> System.out.println(z));
-
     }
 
     public int getSize() {
         return time.size();
-//        return size;
     }
 
     public Vector getTime() {
@@ -189,8 +184,9 @@ public class OrbitalElements implements Serializable {
 
     public Vector getTetherVerticalDeflectionAngleDegrees() {
         Vector degrees = new Vector(tetherVerticalDeflectionAngle.size());
-        for (int i = 0; i < tetherVerticalDeflectionAngle.size(); i++) {
-            degrees.add(CalculationUtils.convertRadiansToDegrees(tetherVerticalDeflectionAngle.get(i)));
+        for (double elem : tetherVerticalDeflectionAngle
+                ) {
+            degrees.add(Math.toDegrees(elem));
         }
         return degrees;
     }
@@ -206,8 +202,10 @@ public class OrbitalElements implements Serializable {
 
     public Vector getTrueAnomalyDegrees() {
         Vector degrees = new Vector();
-        for (int i = 0; i < degrees.size(); i++) {
-            degrees.add(CalculationUtils.convertRadiansToDegrees(trueAnomaly.get(i)));
+        for (double elem : trueAnomaly
+                ) {
+            degrees.add(Math.toDegrees(elem));
+
         }
         return degrees;
     }

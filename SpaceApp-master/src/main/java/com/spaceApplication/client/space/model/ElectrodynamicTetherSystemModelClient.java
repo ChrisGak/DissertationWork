@@ -180,8 +180,8 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
         this.initialHeight = initialHeight;
         this.initialEccentricity = initialEccentricity;
         setInitialPositionParameters(initialHeight);
-        this.tetherVerticalDeflectionAngleRadians = CalculationUtils.convertDegreesToRadians(tetherVerticalDeflectionAngle);
-        this.initialTrueAnomalyRadians = CalculationUtils.convertDegreesToRadians(initialTrueAnomaly);
+        this.tetherVerticalDeflectionAngleRadians = Math.toRadians(tetherVerticalDeflectionAngle);
+        this.initialTrueAnomalyRadians = Math.toRadians(initialTrueAnomaly);
         setStartVector(tetherVerticalDeflectionAngle, tetherVerticalDeflectionAngle, initialTrueAnomaly, initialEccentricity, initialSemimajorAxis);
     }
 
