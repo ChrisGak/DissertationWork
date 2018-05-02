@@ -7,7 +7,7 @@
 <web-app>
     <!-- Default page to serve -->
    <welcome-file>
-       SpaceApplication.html
+       /index.html
    </welcome-file>
     <!-- Servlets -->
     <servlet>

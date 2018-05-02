@@ -1,7 +1,7 @@
 package com.spaceApplication.server.modeling;
 
 /**
- * Created by Chris on 02.04.2018.
+ * Created by Chris
  */
 public class VectorSizeCustomException extends IndexOutOfBoundsException {
     public VectorSizeCustomException(String message){

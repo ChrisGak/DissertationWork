@@ -1,9 +1,8 @@
 package com.spaceApplication.client.space.model;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
-import com.spaceApplication.client.space.html.UIConsts;
+import com.spaceApplication.client.space.ui.components.UIConsts;
 import com.spaceApplication.shared.calculation.BasicConsts;
-import com.spaceApplication.shared.calculation.CalculationUtils;
 import org.moxieapps.gwt.highcharts.client.Point;
 
 import java.util.Vector;

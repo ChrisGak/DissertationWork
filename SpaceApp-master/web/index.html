@@ -49,17 +49,16 @@
             </button>
         </div>
         <!-- Navbar links -->
-        <!-- Language -->
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active">
-                    <a href="#">На главную</a>
+                    <a id="navigationBar_main" href="#">На главную</a>
                 </li>
                 <li>
-                    <a href="#intro">Теория</a>
+                    <a id="navigationBar_theory" href="#intro">Теория</a>
                 </li>
                 <li>
-                    <a href="#about">Контакты</a>
+                    <a id="navigationBar_contacts" href="#about">Контакты</a>
                 </li>
             </ul>
 
@@ -67,148 +66,136 @@
     </div>
 </nav>
 
-<div id="dynamic-section" class="dynamic-section">
-    <div class="page-container">
-        <!-- Page Sidebar -->
-        <div id="page-sidebar">
-        </div>
-        <!-- Page Content -->
-        <div id="page-content">
-        </div>
-    </div>
+<div id="application-section" class="dynamic-section">
 </div>
 
-<div id="application-section" class="application-section">
-<!-- Header -->
-<header>
-    <div class="header-content">
-        <div class="header-content-inner">
-            <div id="appTitle">
-                <div>
-                    <a href="http://www.ssau.ru/">
-                        <img class="logo" src="images/logo2.svg">
-                    </a>
-                </div>
-                <h1>Моделирование и анализ процесса торможения наноспутника с помощью проводящего ток троса</h1>
-                <!--<p>Магистерская диссертация</p>-->
-                <a href="#gotoCalc">
-                    <button id="mainButton" class="btn btn-primary btn-lg">Начать моделирование</button>
-                </a>
-                <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1'
-                        style="position:absolute;width:0;height:0;border:0"></iframe>
-                <noscript>
-                    <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
-                        В вашем браузере должен быть включен JavaScript, чтобы это приложение отображалось правильно.
+<div id="static-section">
+    <!-- Header -->
+    <header id="header-section">
+        <div class="header-content">
+            <div class="header-content-inner">
+                <div id="appTitle">
+                    <div>
+                        <a href="http://www.ssau.ru/">
+                            <img class="logo" src="images/logo2.svg">
+                        </a>
                     </div>
-                </noscript>
+                    <h1>Моделирование и анализ процесса торможения наноспутника с помощью проводящего ток троса</h1>
+                    <!--<p>Магистерская диссертация</p>-->
+                    <a href="#gotoCalc">
+                        <button id="mainButton" class="btn btn-primary btn-lg">Перейти к моделированию</button>
+                    </a>
+                    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1'
+                            style="position:absolute;width:0;height:0;border:0"></iframe>
+                    <noscript>
+                        <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+                            В вашем браузере должен быть включен JavaScript, чтобы это приложение отображалось
+                            правильно.
+                        </div>
+                    </noscript>
+                </div>
             </div>
         </div>
+    </header>
+    <div class="static-section">
+        <!-- Intro Section -->
+        <section id="intro" class="intro">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h2 id="intro_h2" class="section-heading">Система позволяет настраивать параметры
+                            модели электродинамической космической тросовой системы, включающей в себя наноспутник и
+                            неизолированный трос на околоземной орбите, и проводить можелирование и анализ процесса торможения наноспутника
+                        </h2>
+                        <p id="intro_p" class="text-light"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Content 1 -->
+        <section class="content">
+            <div id="content_container" class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img class="img-responsive img-circle center-block" src="images/Jemini11_NASA.jpg" alt="«Джемини 11», соединенный тросом с мишенью «Аджена»,
+фото НАСА" title="«Джемини 11», соединенный тросом с мишенью «Аджена»,
+фото НАСА">
+                    </div>
+                    <div class="col-sm-6">
+                        <h2 class="section-header">Что такое тросовые системы?</h2>
+                        <p class="lead text-muted">
+                            В простейшем виде космическая тросовая система
+                            представляет собой связку двух космических объектов
+                            (спутников, грузов), соединенных длинным тонким гибким кабелем, совершающую орбитальный
+                            полет.
+                            Более сложные системы могут состоять из множества объектов, соединенных тросами в форме
+                            замкнутых колец,
+                            древовидных образований, объемных многогранников.
+                            К тросовой системе относится и космический лифт,
+                            соединяющий
+                            Землю и орбитальную станцию
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Content 2 -->
+        <section class="content content-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2 class="section-header">Орбитальное движение</h2>
+                        <p class="lead text-light">Орбитальные элементы — набор параметров, задающих траекторию
+                            движения
+                            небесного тела.
+                            Одной из задач небесной механики является определение орбит небесных тел. Для задания
+                            орбиты
+                            спутника планеты, астероида или Земли используют так называемые орбитальные элементы.
+                            Они отвечают
+                            за задание базовой системы координат (точка отсчёта, оси координат), форму и размер
+                            орбиты, её
+                            ориентацию в пространстве и момент времени, в который небесное тело находится в
+                            определённой точке
+                            орбиты. В основном, используются два способа задания орбиты (при наличии системы
+                            координат):
+                            при помощи векторов положения и скорости;
+                            при помощи орбитальных элементов. В данной работе используется метод задания орбиты с
+                            помощью <a
+                                    href="https://ru.wikipedia.org/wiki/%D0%9A%D0%B5%D0%BF%D0%BB%D0%B5%D1%80%D0%BE%D0%B2%D1%8B_%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D1%8B_%D0%BE%D1%80%D0%B1%D0%B8%D1%82%D1%8B">орбитальных
+                                элементов</a></p>
+                    </div>
+                    <div class="col-sm-6">
+                        <img class="img-responsive img-circle center-block" src="images/1419.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Content 3 -->
+        <section class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img class="img-responsive img-circle center-block" src="images/NanoSatellite_ESTCube1.jpg"
+                             alt="Наноспутник ESTCube-1" title="Наноспутник ESTCube-1">
+                    </div>
+                    <div class="col-sm-6">
+                        <h2 class="section-header">Наноспутник</h2>
+                        <p class="lead text-muted">
+                            Малые спутники представляют собой тип искусственных спутников Земли, имеющих малый вес и
+                            размеры. Обычно малыми считают спутники с массой менее 0.5–1 тонны.
+                            Несмотря на малый размер, современные наноспутники имеют широкую область применения – от
+                            попыток дистанционного зондирования Земли до космических наблюдений:</br>
+                            - Отработка новейших технологий, методов и программно-аппаратных решений; </br>
+                            - Образовательные программы;</br>
+                            - Экологический мониторинг;</br>
+                            - Исследования геофизических полей;</br>
+                            - Астрономические наблюдения</br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-</header>
-
-
-        <div id="static-section" class="static-section">
-            <!-- Intro Section -->
-            <section id="intro" class="intro">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 col-lg-offset-2">
-                            <h2 id="intro_h2" class="section-heading">Система позволяет настроить математическую модель
-                                космической электродинамической тросовой системы,
-                                включающей в себя наноспутник и неизолированный трос, произвести интегрирование модели и
-                                проанализиовать
-                                процесс торможения наноспутника</h2>
-                            <p id="intro_p" class="text-light"></p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Content 1 -->
-            <section class="content">
-                <div id="content_container" class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <img class="img-responsive img-circle center-block" src="images/tips.jpg" alt="">
-                        </div>
-                        <div class="col-sm-6">
-                            <h2 class="section-header">Что такое тросовые системы?</h2>
-                            <p class="lead text-muted">
-                                Система аппаратов, соединенных тросами для обеспечения выполнения требований по
-                                относительному
-                                положению без затрат рабочего тела. К тросовой системе относится и космический лифт,
-                                соединяющий
-                                Землю и орбитальную станцию.</p>
-                            <a href="pages/CableSystems.html" class="btn btn-primary btn-lg">Подробнее</a>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-            <!-- Content 2 -->
-
-            <section class="content content-2" id="gotoCalc">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h2 class="section-header">Орбитальное движение</h2>
-                            <p class="lead text-light">Орбитальные элементы — набор параметров, задающих траекторию
-                                движения
-                                небесного тела.
-                                Одной из задач небесной механики является определение орбит небесных тел. Для задания
-                                орбиты
-                                спутника планеты, астероида или Земли используют так называемые орбитальные элементы.
-                                Они отвечают
-                                за задание базовой системы координат (точка отсчёта, оси координат), форму и размер
-                                орбиты, её
-                                ориентацию в пространстве и момент времени, в который небесное тело находится в
-                                определённой точке
-                                орбиты. В основном, используются два способа задания орбиты (при наличии системы
-                                координат):
-                                при помощи векторов положения и скорости;
-                                при помощи орбитальных элементов.</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <img class="img-responsive img-circle center-block" src="images/1419.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Promos -->
-            <div class="container-fluid">
-                <div class="row promo">
-                    <a href="#intro">
-                        <div class="col-md-4 promo-item item-1">
-                            <h3>
-                                <button id="modeling" class="btn btn-primary btn-lg">
-                                    Моделирование
-                                </button>
-                            </h3>
-                        </div>
-                    </a>
-                    <div class="col-md-4 promo-item item-2">
-                        <h3>
-                            <a href="files/report.xls">
-                                <button id="results" class="btn btn-primary btn-lg">
-                                    Скачать образец файла ввода данных
-                                </button>
-                            </a>
-                        </h3>
-                    </div>
-
-                    <a href="#intro">
-                        <div class="col-md-4 promo-item item-3">
-                            <h3>
-                                <button id="testExample" class="btn btn-primary btn-lg">
-                                    Тестовый пример
-                                </button>
-                            </h3>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
     <!-- Footer -->
     <footer class="page-footer">
         <!-- Contact Us -->
@@ -249,19 +236,20 @@
         </div>
     </footer>
 </div>
-    <!-- jQuery -->
-    <script src="js/jquery-1.11.3.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+<!-- jQuery -->
+<script src="js/jquery-1.11.3.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
 
-    <!-- Custom Javascript -->
-    <script src="js/custom.js"></script>
+<!-- Plugin JavaScript -->
+<script src="js/jquery.easing.min.js"></script>
 
-    <!-- GWT Highcharts -->
-    <script type="text/javascript" src="js/highcharts.js"></script>
+<!-- Custom Javascript -->
+<script src="js/custom.js"></script>
+
+<!-- GWT Highcharts -->
+<script type="text/javascript" src="js/highcharts.js"></script>
 </body>
 </html>

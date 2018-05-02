@@ -19,6 +19,8 @@ import java.util.logging.Logger;
 public class RungeKuttaTest {
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
+
+
     public static void main(String[] args) {
         try {
             CustomLogger.setupTesting();
@@ -28,7 +30,18 @@ public class RungeKuttaTest {
         }
         LOGGER.setLevel(Level.INFO);
         LOGGER.info("Тестирование результатов интегрирования: \n");
-        testFullModel();
+        //testFullModel();
+        testReducedMass();
+
+    }
+
+    private static void testReducedMass(){
+        BareElectrodynamicTether testTether = new BareElectrodynamicTether(0.4, 2000, 0.001);
+        ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(testTether,
+                6, 2, 500000, 0, 0, 0.0167);
+
+        System.out.println("    testReducedMass           ");
+        System.out.println("me = " + testModel.getReducedMass());
     }
 
 

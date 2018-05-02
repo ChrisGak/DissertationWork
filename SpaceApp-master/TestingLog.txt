@@ -1,3 +1,3 @@
-апр 03, 2018 5:55:27 PM com.spaceApplication.server.test.RungeKuttaTest main
+апр 15, 2018 3:48:54 PM com.spaceApplication.server.test.RungeKuttaTest main
 INFO: Тестирование результатов интегрирования: 
 

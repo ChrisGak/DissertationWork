@@ -13,13 +13,13 @@ public interface SpaceAppConstants extends Constants {
     String startCalc();
 
     @DefaultStringValue("Тестовый пример")
-    String testCalculation();
+    String testCalculationTitle();
 
     @DefaultStringValue("Интегрирование методом Рунге-Кутты 4 порядка")
     String testCalculationInfo();
 
     @DefaultStringValue("Моделирование движения ЭДКТС")
-    String modeling();
+    String modelingTitle();
 
     @DefaultStringValue("Скачать образец файла")
     String downloadSample();

@@ -60,16 +60,24 @@ header .header-content .header-content-inner #appTitle h1 {
 
 .dynamic-section .page-inner {
     position: relative;
-    padding: 5px 40px 42px 30px;
+    padding: 5px 40px 40px 45px;
 }
 
 /**
-    Widgets with highcharts graphics
+    Forms and widgets with highcharts graphics
  */
 
 .page-container {
     display: flex;
     width: 100%;
+}
+
+.page-container .page-content table td {
+    vertical-align: middle;
+}
+
+.page-container .page-content .btn.btn-primary.btn-lg {
+    margin: 10px;
 }
 
 .page-sidebar, .logo-box {
@@ -156,9 +164,16 @@ header .header-content .header-content-inner #appTitle h1 {
     font-size: 14px;
 }
 
-.page-sidebar-menu ul li.active-page > a {
+.page-sidebar-menu ul li a,
+.page-sidebar-menu ul li > a > span {
     color: #D0D8E9;
     font-weight: 500;
+}
+
+.page-sidebar-menu .disabled a,
+.page-sidebar-menu .disabled span {
+    pointer-events: none;
+    opacity: 0.8;
 }
 
 .page-sidebar-menu .menu-divider {
@@ -209,6 +224,12 @@ header .header-content .header-content-inner #appTitle h1 {
 
 .custom_chart {
     height: 200px;
+}
+
+.static-section a,
+.static-section a:visited,
+.static-section a:hover {
+    color: whitesmoke;
 }
 
 

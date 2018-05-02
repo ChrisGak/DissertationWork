@@ -7,7 +7,7 @@ import com.spaceApplication.shared.calculation.CalculationUtils;
 import java.util.Vector;
 
 /**
- * Created by Кристина on 08.02.2016.
+ * Created by Chris
  */
 public class RungeKuttaMethodImpl {
     private static int capacity = 6;
@@ -40,7 +40,7 @@ public class RungeKuttaMethodImpl {
         return result;
     }
 
-    private static double calculateAcuraccy(double step, double DSMax, double stepMax) {
+    private static double calculateAccuracy(double step, double DSMax, double stepMax) {
         double step_ = 0;
         if (0.1 <= DSMax && DSMax <= 1) {
             step_ = step;
@@ -105,7 +105,7 @@ public class RungeKuttaMethodImpl {
             result.getIteration().add(i);
             i++;
 
-            step = calculateAcuraccy(step, DSMax, stepMax);
+            step = calculateAccuracy(step, DSMax, stepMax);
 
         }
 

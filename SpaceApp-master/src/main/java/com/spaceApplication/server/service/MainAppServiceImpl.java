@@ -2,8 +2,8 @@ package com.spaceApplication.server.service;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.spaceApplication.client.exception.TetherSystemModelValueException;
-import com.spaceApplication.client.space.SpaceApplicationService;
-import com.spaceApplication.client.space.html.UIConsts;
+import com.spaceApplication.client.space.controllers.SpaceApplicationService;
+import com.spaceApplication.client.space.ui.components.UIConsts;
 import com.spaceApplication.client.space.model.ElectrodynamicTetherSystemModelClient;
 import com.spaceApplication.client.space.model.OrbitalElementsClient;
 import com.spaceApplication.server.export.ExcelWritter;

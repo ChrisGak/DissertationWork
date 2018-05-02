@@ -644,9 +644,9 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * @return
      */
     public double getReducedMass() {
-        double result = (mainSatelliteMass * tether.getMass()
-                + nanoSatelliteMass * tether.getMass()
-                + mainSatelliteMass * nanoSatelliteMass)
+        double result = ((mainSatelliteMass * nanoSatelliteMass)
+                + ((mainSatelliteMass + nanoSatelliteMass) * tether.getMass()) / 3
+                +(tether.getMass() * tether.getMass() / 12))
                 / (mainSatelliteMass + nanoSatelliteMass + tether.getMass());
         return result;
 

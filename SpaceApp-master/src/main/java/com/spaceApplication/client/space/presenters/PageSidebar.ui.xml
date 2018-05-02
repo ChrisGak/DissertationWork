@@ -1,7 +1,7 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:d="urn:import:com.google.gwt.user.client.ui">
-    <div class="page-sidebar">
-        <a class="logo-box" href="index.html">
+             xmlns:gwt='urn:import:com.google.gwt.user.client.ui'>
+    <gwt:HTMLPanel styleName="page-sidebar">
+        <a class="logo-box">
             <span>Меню</span>
             <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
             <i class="icon-close" id="sidebar-toggle-button-close"></i>
@@ -11,24 +11,39 @@
                 <div class="accordion-menu">
                     <ul class="accordion-menu">
                         <li class="active-page">
-                            <g:Anchor href="index.html">
-                                <i class="menu-icon icon-home4"></i><span>Тестовый пример</span>
-                            </g:Anchor>
-                        </li>
-                        <li class="active-page">
                             <a href="index.html">
-                                <i class="menu-icon icon-home4"></i><span>Результаты</span>
+                                <i class="menu-icon icon-home4"></i>
+                                <gwt:Anchor ui:field="showTestSample">Тестовый пример</gwt:Anchor>
                             </a>
                         </li>
                         <li class="menu-divider"></li>
-                        <li>
+                        <li class="active-page">
                             <a href="index.html">
-                                <i class="menu-icon icon-help_outline"></i><span>Вопросы</span>
+                                <i class="menu-icon icon-home4"></i>
+                                <gwt:Anchor ui:field="importModel">Импорт параметров модели</gwt:Anchor>
+                            </a>
+                        </li>
+                        <li class="active-page">
+                            <a href="files/report.xls">
+                                Скачать образец файла для импорта модели
+                            </a>
+                        </li>
+                        <li class="menu-divider"></li>
+                        <li class="disabled">
+                            <a href="index.html">
+                                <i class="menu-icon icon-home4"></i>
+                                <gwt:Anchor ui:field="showCalculationResults">Результаты</gwt:Anchor>
+                            </a>
+                        </li>
+                        <li class="disabled">
+                            <a href="index.html">
+                                <i class="menu-icon icon-home4"></i>
+                                <gwt:Anchor ui:field="exportResults">Экспорт результатов</gwt:Anchor>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
+    </gwt:HTMLPanel>
 </ui:UiBinder>

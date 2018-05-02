@@ -14,8 +14,15 @@ public class BareElectrodynamicTetherClient implements IsSerializable {
     private double length;
     private double diameter;
 
+    public BareElectrodynamicTetherClient() {
+    }
+
     public double getDiameter(){
         return diameter;
+    }
+
+    public void setDiameter(double diameter){
+        this.diameter = diameter;
     }
 
     public BareElectrodynamicTetherClient(double mass, double length, double diameter) {

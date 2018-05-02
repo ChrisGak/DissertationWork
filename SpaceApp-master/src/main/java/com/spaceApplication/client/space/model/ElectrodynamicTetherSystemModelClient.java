@@ -1,6 +1,5 @@
 package com.spaceApplication.client.space.model;
 
-import com.spaceApplication.shared.calculation.CalculationUtils;
 import com.spaceApplication.shared.calculation.BasicConsts;
 import org.moxieapps.gwt.highcharts.client.Point;
 
@@ -11,6 +10,9 @@ import java.util.Vector;
  * Created by Chris
  */
 public class ElectrodynamicTetherSystemModelClient implements Serializable {
+    private static double defaultDeflectionAngle = 0;
+    private static double defaultInitialTrueAnomaly = 0;
+    private static double defaultInitialEccentricity = 0.0167;
     /**
      * Массы космических аппаратов а приведенная масса
      */
@@ -18,7 +20,6 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
     private double m2;
     private double m_e;
     private double m;
-
     /**
      * Параметр орбиты
      */
@@ -29,16 +30,16 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
      */
     private double L;
     private double L_p;
+    /**
+     * Расстояние центра масс системы до центра Земли
+     */
+//    private  double R_0;
     private double L1;
     private double L2;
     /**
      * Высота центра масс системы
      */
     private double H;
-    /**
-     * Расстояние центра масс системы до центра Земли
-     */
-//    private  double R_0;
     /**
      * Радиусы апоцентра и перицентра
      */
@@ -68,7 +69,6 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
      * Сила тока, протекающего по тросу
      */
     private double I;
-
     private int maxIter;
     private double step;
     private double stepMax;
@@ -183,6 +183,18 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
         this.tetherVerticalDeflectionAngleRadians = Math.toRadians(tetherVerticalDeflectionAngle);
         this.initialTrueAnomalyRadians = Math.toRadians(initialTrueAnomaly);
         setStartVector(tetherVerticalDeflectionAngle, tetherVerticalDeflectionAngle, initialTrueAnomaly, initialEccentricity, initialSemimajorAxis);
+    }
+
+    public static double getDefaultDeflectionAngle() {
+        return defaultDeflectionAngle;
+    }
+
+    public static double getDefaultInitialTrueAnomaly() {
+        return defaultInitialTrueAnomaly;
+    }
+
+    public static double getDefaultInitialEccentricity() {
+        return defaultInitialEccentricity;
     }
 
     private void setInitialLengthParameters(double l) {
@@ -328,7 +340,7 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
         return calcAccuracy;
     }
 
-    public void setD(double calcAccuracy) {
+    public void setCalcAccuracy(double calcAccuracy) {
         this.calcAccuracy = calcAccuracy;
     }
 
@@ -640,6 +652,10 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
         return startVector;
     }
 
+    /**
+     * Переход к безразмерным величинам
+     */
+
     public void setStartVector(double tetherVerticalDeflectionAngle, double tetherVerticalDeflectionAngleDiff, double trueAnomaly, double eccentricity, double semimajorAxis) {
         startVector = new Vector();
         // tetta
@@ -663,9 +679,6 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
         this.shortCircuitCurrent = shortCircuitCurrent;
     }
 
-    /**
-     * Переход к безразмерным величинам
-     */
     /**
      * Безразмерный ток в точке С
      * ic(A,ex,eps)
@@ -746,7 +759,6 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
     public double getRelativeLength(double semimajorAxis, double eccentricity, double trueAnomaly) {
         return tether.getLength() / getL0(semimajorAxis, eccentricity, trueAnomaly);
     }
-
 
     /**
      * LB
@@ -836,7 +848,6 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
         return getMoment1(semimajorAxis, eccentricity, trueAnomaly) + getMoment2(semimajorAxis, eccentricity, trueAnomaly);
     }
 
-
     /**
      * Ft
      *
@@ -907,7 +918,6 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
                 / (mainSatelliteMass + nanoSatelliteMass + tether.getMass());
 
     }
-
 
     public double getTetherVerticalDeflectionAngleRadians() {
         return tetherVerticalDeflectionAngleRadians;
