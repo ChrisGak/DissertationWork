@@ -13,72 +13,18 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
     private static double defaultDeflectionAngle = 0;
     private static double defaultInitialTrueAnomaly = 0;
     private static double defaultInitialEccentricity = 0.0167;
-    /**
-     * Массы космических аппаратов а приведенная масса
-     */
-    private double m1;
-    private double m2;
-    private double m_e;
-    private double m;
-    /**
-     * Параметр орбиты
-     */
-    private double p;
-    /**
-     * Длина троса,
-     * плечо первого и второго тел
-     */
-    private double L;
-    private double L_p;
-    /**
-     * Расстояние центра масс системы до центра Земли
-     */
-//    private  double R_0;
-    private double L1;
-    private double L2;
-    /**
-     * Высота центра масс системы
-     */
-    private double H;
-    /**
-     * Радиусы апоцентра и перицентра
-     */
-    private double r_a;
-    private double r_p;
-    /**
-     * Большая полуось орбиты
-     */
-    private double A;
-    /**
-     * Эксцентриситет орбиты
-     */
-    private double ex;
-    /**
-     * Угол отклонения троса от вертикали
-     */
-    private double tetta;
-    /**
-     *
-     */
-    private double omega;
-    /**
-     * Истинная аномалия Земли
-     */
-    private double eps;
-    /**
-     * Сила тока, протекающего по тросу
-     */
-    private double I;
-    private int maxIter;
-    private double step;
-    private double stepMax;
-    private double calcAccuracy;
+
+    private int maxIterations;
+    private double integrationStep;
+    private double integrationMaxStep;
+    private double calculateAccuracy;
     private BareElectrodynamicTetherClient tether;
     /**
      * Массы космических аппаратов
      */
-    private double nanoSatelliteMass;
     private double mainSatelliteMass;
+    private double nanoSatelliteMass;
+
     /**
      * Параметр орбиты
      * p
@@ -124,56 +70,12 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
     private double shortCircuitCurrent = 0.1;
     private Vector startVector;
 
-    /**
-     * tetta and eps in radians
-     */
-    public ElectrodynamicTetherSystemModelClient(double m1, double m2, double L, double H, double tetta, double omega,
-                                                 double eps, double ex, double I, int maxIter, double step, double stepMax, double D) {
-        this.m1 = m1;
-        this.m2 = m2;
-        this.m = m1 + m2;
-        this.m_e = m1 * m2 / (m1 + m2);
-        this.L = L;
-        this.H = H;
-        this.omega = omega;
-
-        this.tetta = tetta;
-        this.eps = eps;
-
-        this.I = I;
-        this.ex = ex;
-        setInitialLengthParameters(L);
-        setInitialRadiusParameters(H);
-
-        this.maxIter = maxIter;
-        this.step = step;
-        this.stepMax = stepMax;
-        this.calcAccuracy = D;
-    }
-
-    public ElectrodynamicTetherSystemModelClient(double m1, double m2, double L, double H, double tetta, double omega, double eps, double ex, double I) {
-        this.m1 = m1;
-        this.m2 = m2;
-        this.m = m1 + m2;
-        this.m_e = m1 * m2 / (m1 + m2);
-        this.L = L;
-        this.H = H;
-        this.omega = omega;
-
-        this.tetta = tetta;
-        this.eps = eps;
-
-        this.I = I;
-        this.ex = ex;
-
-        setInitialLengthParameters(L);
-        setInitialRadiusParameters(H);
-    }
-
     public ElectrodynamicTetherSystemModelClient() {
     }
 
-    public ElectrodynamicTetherSystemModelClient(BareElectrodynamicTetherClient tether, double mainSatelliteMass, double nanoSatelliteMass, double initialHeight, double tetherVerticalDeflectionAngle, double initialTrueAnomaly, double initialEccentricity) {
+    public ElectrodynamicTetherSystemModelClient(BareElectrodynamicTetherClient tether, double mainSatelliteMass, double nanoSatelliteMass,
+                                                 double initialHeight, double tetherVerticalDeflectionAngle, double initialTrueAnomaly, double initialEccentricity,
+                                                 int maxIterations, double integrationStep, double integrationMaxStep, double calculateAccuracy) {
         this.tether = tether;
         this.mainSatelliteMass = mainSatelliteMass;
         this.nanoSatelliteMass = nanoSatelliteMass;
@@ -183,6 +85,10 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
         this.tetherVerticalDeflectionAngleRadians = Math.toRadians(tetherVerticalDeflectionAngle);
         this.initialTrueAnomalyRadians = Math.toRadians(initialTrueAnomaly);
         setStartVector(tetherVerticalDeflectionAngle, tetherVerticalDeflectionAngle, initialTrueAnomaly, initialEccentricity, initialSemimajorAxis);
+        this.maxIterations = maxIterations;
+        this.integrationStep = integrationStep;
+        this.integrationMaxStep = integrationMaxStep;
+        this.calculateAccuracy = calculateAccuracy;
     }
 
     public static double getDefaultDeflectionAngle() {
@@ -197,158 +103,11 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
         return defaultInitialEccentricity;
     }
 
-    private void setInitialLengthParameters(double l) {
-        this.L1 = L * m2 / (m1 + m2);
-        this.L2 = L * m1 / (m1 + m2);
-        this.L_p = L * (m2 - m1) / (2.0 * (m1 + m2));
-    }
-
-    private void setInitialRadiusParameters(double h) {
-        this.R_0 = BasicConsts.EARTH_RADIUS.getValue() + h;
-        this.r_p = R_0;
-        this.r_a = r_p * (1 + ex) / (1 - ex);
-        this.A = (r_a + r_p) / 2;
-        this.p = A * (1 - Math.pow(ex, 2));
-    }
-
-    public double getM1() {
-        return m1;
-    }
-
-    public double getM1_e() {
-        return m1 / (m1 + m2);
-    }
-
-    public double getM2_e() {
-        return m2 / (m1 + m2);
-    }
-
-    public double getA() {
-        return A;
-    }
-
-    public double getM2() {
-        return m2;
-    }
-
-    public double getP() {
-        return p;
-    }
-
-    public void setP(double p) {
-        this.p = p;
-    }
-
-    public double getL() {
-        return L;
-    }
-
-    public void setL(double l) {
-        L = l;
-    }
-
-    public double getM() {
-        return m;
-    }
-
-    public double getI() {
-        return I;
-    }
-
-    public void setI(double i) {
-        I = i;
-    }
-
-    public double getTetta() {
-        return tetta;
-        // return CalculationUtils.convertRadiansToDegrees(tetta);
-
-    }
-
-    public void setTetta(double tetta) {
-
-        this.tetta = tetta;
-    }
-
-    /**
-     * Приведенная масса
-     *
-     * @return
-     */
-    public double getM_e() {
-        return m_e;
-    }
-
-    public double getL1() {
-        return L1;
-    }
-
-    public double getL2() {
-        return L2;
-    }
-
-    public double getOmega() {
-        return omega;
-    }
-
-    public double getEps() {
-        return eps;
-        //return CalculationUtils.convertRadiansToDegrees(eps);
-    }
-
-    public double getL_p() {
-        return L_p;
-    }
-
-    public double getEx() {
-        return ex;
-    }
-
-    public void setEx(double ex) {
-        this.ex = ex;
-    }
-
-    public double getH() {
-        return H;
-    }
-
-    public int getMaxIter() {
-        return maxIter;
-    }
-
-    public void setMaxIter(int maxIter) {
-        this.maxIter = maxIter;
-    }
-
-    public double getStep() {
-        return step;
-    }
-
-    public void setStep(double step) {
-        this.step = step;
-    }
-
-    public double getStepMax() {
-        return stepMax;
-    }
-
-    public void setStepMax(double stepMax) {
-        this.stepMax = stepMax;
-    }
-
-    public double getCalcAccuracy() {
-        return calcAccuracy;
-    }
-
-    public void setCalcAccuracy(double calcAccuracy) {
-        this.calcAccuracy = calcAccuracy;
-    }
-
     public Vector getXNB1(Vector<Double> tetta) {
         Vector xnb1 = new Vector();
-        double m2_e = getM2_e();
+        double m2_e = getMainSatelliteMass();
         for (double value : tetta) {
-            xnb1.add(m2_e * L * Math.sin(value));
+            xnb1.add(m2_e * tether.getLength() * Math.sin(value));
         }
         return xnb1;
     }
@@ -365,9 +124,9 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
 
     public Vector getXNB2(Vector<Double> tetta) {
         Vector xnb2 = new Vector();
-        double m1_e = -getM1_e();
+        double m1_e = - getNanoSatelliteMass();
         for (double value : tetta) {
-            xnb2.add(m1_e * L * Math.sin(value));
+            xnb2.add(m1_e * tether.getLength() * Math.sin(value));
         }
         return xnb2;
 
@@ -385,9 +144,9 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
 
     public Vector getYNB1(Vector<Double> tetta) {
         Vector ynb1 = new Vector();
-        double m2_e = -getM2_e();
+        double m2_e = - getMainSatelliteMass();
         for (double value : tetta) {
-            ynb1.add(m2_e * L * Math.cos(value));
+            ynb1.add(m2_e * tether.getLength() * Math.cos(value));
         }
         return ynb1;
     }
@@ -404,9 +163,9 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
 
     public Vector getYNB2(Vector<Double> tetta) {
         Vector ynb2 = new Vector();
-        double m1_e = getM1_e();
+        double m1_e = getNanoSatelliteMass();
         for (double value : tetta) {
-            ynb2.add(m1_e * L * Math.cos(value));
+            ynb2.add(m1_e * tether.getLength() * Math.cos(value));
         }
         return ynb2;
     }
@@ -652,20 +411,12 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
         return startVector;
     }
 
-    /**
-     * Переход к безразмерным величинам
-     */
-
     public void setStartVector(double tetherVerticalDeflectionAngle, double tetherVerticalDeflectionAngleDiff, double trueAnomaly, double eccentricity, double semimajorAxis) {
         startVector = new Vector();
-        // tetta
         startVector.add(0, tetherVerticalDeflectionAngle);
-        // omega
         startVector.add(1, tetherVerticalDeflectionAngleDiff);
         startVector.add(2, trueAnomaly);
-        // A
         startVector.add(3, semimajorAxis);
-        // ex
         startVector.add(4, eccentricity);
         double iteration = 0;
         startVector.add(5, iteration);
@@ -933,5 +684,37 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
 
     public void setTetherVerticalDeflectionAngleDiff(double tetherVerticalDeflectionAngleDiff) {
         this.tetherVerticalDeflectionAngleDiff = tetherVerticalDeflectionAngleDiff;
+    }
+
+    public int getMaxIterations() {
+        return maxIterations;
+    }
+
+    public void setMaxIterations(int maxIterations) {
+        this.maxIterations = maxIterations;
+    }
+
+    public double getIntegrationStep() {
+        return integrationStep;
+    }
+
+    public void setIntegrationStep(double integrationStep) {
+        this.integrationStep = integrationStep;
+    }
+
+    public double getIntegrationMaxStep() {
+        return integrationMaxStep;
+    }
+
+    public void setIntegrationMaxStep(double integrationMaxStep) {
+        this.integrationMaxStep = integrationMaxStep;
+    }
+
+    public double getCalculateAccuracy() {
+        return calculateAccuracy;
+    }
+
+    public void setCalculateAccuracy(double calculateAccuracy) {
+        this.calculateAccuracy = calculateAccuracy;
     }
 }

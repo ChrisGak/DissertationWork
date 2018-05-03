@@ -65,9 +65,6 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-12">
                             <div class="panel panel-white">
-                                <div class="panel-heading clearfix">
-                                    <h4 class="panel-title">Изменение высоты центра масс над поверхностью Земли</h4>
-                                </div>
                                 <div class="panel-body">
                                     <gwt:HTMLPanel ui:field="systemHeightChart" styleName="custom_chart">
                                     </gwt:HTMLPanel>
@@ -76,9 +73,6 @@
                         </div>
                         <div class="col-lg-4 col-md-12">
                             <div class="panel panel-white">
-                                <div class="panel-heading clearfix">
-                                    <h4 class="panel-title">Большая полуось орбиты</h4>
-                                </div>
                                 <div class="panel-body">
                                     <gwt:HTMLPanel ui:field="semimajorAxisChart" styleName="custom_chart">
                                     </gwt:HTMLPanel>
@@ -89,18 +83,12 @@
                     <div class="row">
                         <div class="col-lg-5 col-md-12">
                             <div class="panel panel-white">
-                                <div class="panel-heading clearfix">
-                                    <h4 class="panel-title">Угловая скорость</h4>
-                                </div>
                                 <gwt:HTMLPanel ui:field="angleSpeedChart" styleName="custom_chart">
                                 </gwt:HTMLPanel>
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-12">
                             <div class="panel panel-white">
-                                <div class="panel-heading clearfix">
-                                    <h4 class="panel-title">Траектория</h4>
-                                </div>
                                 <gwt:HTMLPanel ui:field="trajectoryChart" styleName="panel-body">
                                 </gwt:HTMLPanel>
                             </div>
@@ -109,20 +97,14 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-6">
                             <div class="panel panel-white">
-                                <div class="panel-heading clearfix">
-                                    <h4 class="panel-title">Угол отклонения троса от вертикали</h4>
-                                </div>
                                 <div class="panel-body">
-                                    <gwt:HTMLPanel ui:field="deflectionAngleChart"
-                                                   styleName="custom_chart"></gwt:HTMLPanel>
+                                    <gwt:HTMLPanel ui:field="deflectionAngleChart" styleName="custom_chart">
+                                    </gwt:HTMLPanel>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="panel panel-white">
-                                <div class="panel-heading clearfix">
-                                    <h4 class="panel-title">Истинная аномалия</h4>
-                                </div>
                                 <div class="panel-body">
                                     <gwt:HTMLPanel ui:field="trueAnomalyChart" styleName="custom_chart">
                                     </gwt:HTMLPanel>
@@ -131,9 +113,6 @@
                         </div>
                         <div class="col-lg-4 col-md-12">
                             <div class="panel panel-white">
-                                <div class="panel-heading clearfix">
-                                    <h4 class="panel-title">Эксцентриситет</h4>
-                                </div>
                                 <div class="panel-body">
                                     <gwt:HTMLPanel ui:field="eccentricityChart" styleName="custom_chart">
                                     </gwt:HTMLPanel>

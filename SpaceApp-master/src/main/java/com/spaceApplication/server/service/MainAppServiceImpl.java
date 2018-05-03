@@ -3,9 +3,9 @@ package com.spaceApplication.server.service;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.spaceApplication.client.exception.TetherSystemModelValueException;
 import com.spaceApplication.client.space.controllers.SpaceApplicationService;
-import com.spaceApplication.client.space.ui.components.UIConsts;
 import com.spaceApplication.client.space.model.ElectrodynamicTetherSystemModelClient;
 import com.spaceApplication.client.space.model.OrbitalElementsClient;
+import com.spaceApplication.client.space.ui.components.UIConsts;
 import com.spaceApplication.server.export.ExcelWritter;
 import com.spaceApplication.server.modeling.differentiation.OrbitalElements;
 import com.spaceApplication.server.modeling.differentiation.RungeKuttaMethodImpl;
@@ -46,11 +46,15 @@ public class MainAppServiceImpl extends RemoteServiceServlet implements SpaceApp
     }
 
     public OrbitalElementsClient getCalculationResult(ElectrodynamicTetherSystemModelClient clientModel) throws TetherSystemModelValueException {
-        BareElectrodynamicTether tether = new BareElectrodynamicTether(clientModel.getTether().getMass(), clientModel.getTether().getLength(), clientModel.getTether().getDiameter());
-        ElectrodynamicTetherSystemModel systemModel = new ElectrodynamicTetherSystemModel(tether, clientModel.getMainSatelliteMass(), clientModel.getNanoSatelliteMass(),
-                clientModel.getInitialHeight(), clientModel.getTetherVerticalDeflectionAngleRadians(), clientModel.getInitialTrueAnomalyRadians(), clientModel.getInitialEccentricity());
+        BareElectrodynamicTether tether = new BareElectrodynamicTether(clientModel.getTether().getMass(), clientModel.getTether().getLength(),
+                clientModel.getTether().getDiameter());
+        ElectrodynamicTetherSystemModel systemModel = new ElectrodynamicTetherSystemModel(tether, clientModel.getMainSatelliteMass(),
+                clientModel.getNanoSatelliteMass(),
+                clientModel.getInitialHeight(), clientModel.getTetherVerticalDeflectionAngleRadians(), clientModel.getInitialTrueAnomalyRadians(),
+                clientModel.getInitialEccentricity());
 
-        OrbitalElements serverResult = RungeKuttaMethodImpl.integrateWithVariableStep(systemModel, clientModel.getMaxIter(), clientModel.getStep(), clientModel.getStepMax(), clientModel.getCalcAccuracy());
+        OrbitalElements serverResult = RungeKuttaMethodImpl.integrateWithVariableStep(systemModel, clientModel.getMaxIterations(), clientModel.getIntegrationStep(),
+                clientModel.getIntegrationMaxStep(), clientModel.getCalculateAccuracy());
         /**
          * (Vector time, Vector tetta, Vector omega, Vector eps, Vector A, Vector ex, Vector step, Vector accuracy, Vector iter){
          */

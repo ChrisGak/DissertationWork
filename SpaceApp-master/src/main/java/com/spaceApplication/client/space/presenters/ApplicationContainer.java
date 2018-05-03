@@ -1,17 +1,10 @@
 package com.spaceApplication.client.space.presenters;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.DoubleClickEvent;
-import com.google.gwt.event.dom.client.DoubleClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.spaceApplication.client.space.controllers.RemoteCalculationControl;
-import com.spaceApplication.client.space.ui.components.UIConsts;
 
 
 /**
@@ -19,27 +12,37 @@ import com.spaceApplication.client.space.ui.components.UIConsts;
  */
 public class ApplicationContainer extends Composite {
 
-    interface ApplicationContainerUiBinder extends UiBinder<HTMLPanel, ApplicationContainer> {
-    }
-
     private static ApplicationContainerUiBinder ourUiBinder = GWT.create(ApplicationContainerUiBinder.class);
-
-    public ApplicationContainer() {
-        initWidget(ourUiBinder.createAndBindUi(this));
-        initWidget();
-    }
-
     @UiField
     HTMLPanel pageContainer;
     @UiField
     HTMLPanel pageContent;
     @UiField
-    HTMLPanel pageSidebar;
+    HTMLPanel pageSidebarPanel;
+    private PageSidebar pageSidebarContent;
+      
+    public ApplicationContainer() {
+        initWidget(ourUiBinder.createAndBindUi(this));
+        initWidget();
+    }
 
-    private void initWidget(){
-        PageSidebar pageSidebarContent = new PageSidebar();
-        pageSidebar.add(pageSidebarContent);
+    public void clear() {
+        pageContent.clear();
         final ModelParameterCtrlPresenter tetherModelModelParameterCtrl = new ModelParameterCtrlPresenter();
         pageContent.add(tetherModelModelParameterCtrl.initWidget());
+    }
+
+    public PageSidebar getPageSidebarContent() {
+        return pageSidebarContent;
+    }
+
+    private void initWidget() {
+        pageSidebarContent = new PageSidebar();
+        pageSidebarPanel.add(pageSidebarContent);
+        final ModelParameterCtrlPresenter tetherModelModelParameterCtrl = new ModelParameterCtrlPresenter();
+        pageContent.add(tetherModelModelParameterCtrl.initWidget());
+    }
+
+    interface ApplicationContainerUiBinder extends UiBinder<HTMLPanel, ApplicationContainer> {
     }
 }

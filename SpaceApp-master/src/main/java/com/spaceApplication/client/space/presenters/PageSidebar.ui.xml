@@ -13,13 +13,6 @@
                         <li class="active-page">
                             <a href="index.html">
                                 <i class="menu-icon icon-home4"></i>
-                                <gwt:Anchor ui:field="showTestSample">Тестовый пример</gwt:Anchor>
-                            </a>
-                        </li>
-                        <li class="menu-divider"></li>
-                        <li class="active-page">
-                            <a href="index.html">
-                                <i class="menu-icon icon-home4"></i>
                                 <gwt:Anchor ui:field="importModel">Импорт параметров модели</gwt:Anchor>
                             </a>
                         </li>
@@ -32,13 +25,7 @@
                         <li class="disabled">
                             <a href="index.html">
                                 <i class="menu-icon icon-home4"></i>
-                                <gwt:Anchor ui:field="showCalculationResults">Результаты</gwt:Anchor>
-                            </a>
-                        </li>
-                        <li class="disabled">
-                            <a href="index.html">
-                                <i class="menu-icon icon-home4"></i>
-                                <gwt:Anchor ui:field="exportResults">Экспорт результатов</gwt:Anchor>
+                                <gwt:Anchor ui:field="exportResults">Экспортировать результаты в файл</gwt:Anchor>
                             </a>
                         </li>
                     </ul>

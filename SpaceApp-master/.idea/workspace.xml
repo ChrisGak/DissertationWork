@@ -2,100 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6035307-1ee3-42fc-8d77-e8475fbb6e7f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/SpaceApp_war_exploded.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_gwt_gwt_user_2_8_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_jsinterop_jsinterop_annotations_1_0_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_jsinterop_jsinterop_annotations_sources_1_0_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_1_0_0_GA.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_sources_1_0_0_GA.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_parent_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_w3c_css_sac_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gwt_user.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/BasicLineExample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/ParameterCtrl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/RemoteCalculationControl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/SpaceApplicationService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/SpaceApplicationServiceAsync.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/html/NumbersOnlyKeyPressHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/html/RangeInputElement.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/html/Slider.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/html/UIConsts.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/GraphResult.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/GraphResult.ui.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelConfiguration.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelConfiguration.ui.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/BasicLineExample$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/BasicLineExample.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$10.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$11.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$12.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$13.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl$9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/ParameterCtrl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/RemoteCalculationControl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$3$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$3$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$3$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$3$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceApplicationService$App.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceApplicationService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceApplicationServiceAsync.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/html/NumbersOnlyKeyPressHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/html/RangeInputElement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/html/Slider.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/html/UIConsts.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/presenters/GraphResult$GraphResultUiBinder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/presenters/GraphResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/presenters/ModelConfiguration$ModelConfigurationUiBinder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/presenters/ModelConfiguration.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/consts/SpaceAppConstants.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/consts/SpaceAppConstants.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$1.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$2.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$3.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$4.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$5.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$InfoPopup.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint$InfoPopup.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/SpaceAppEntryPoint.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/model/BareElectrodynamicTetherClient.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/model/BareElectrodynamicTetherClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/model/ElectrodynamicTetherSystemModelClient.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/model/ElectrodynamicTetherSystemModelClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/model/OrbitalElementsClient.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/model/OrbitalElementsClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/presenters/PageSidebar$PageSidebarUiBinder.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/presenters/PageSidebar$PageSidebarUiBinder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/presenters/PageSidebar.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/client/space/presenters/PageSidebar.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/server/modeling/model/ElectrodynamicTetherSystemModel.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/server/modeling/model/ElectrodynamicTetherSystemModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/server/service/MainAppServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/server/service/MainAppServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/spaceApplication/server/test/RungeKuttaTest.class" afterPath="$PROJECT_DIR$/target/classes/com/spaceApplication/server/test/RungeKuttaTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/gwt_user__2_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/gwt_user__2_.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SpaceApp.iml" afterPath="$PROJECT_DIR$/SpaceApp.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TestingLog.html" afterPath="$PROJECT_DIR$/TestingLog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TestingLog.txt" afterPath="$PROJECT_DIR$/TestingLog.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/consts/SpaceAppConstants.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/consts/SpaceAppConstants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/SpaceAppEntryPoint.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/SpaceAppEntryPoint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/BareElectrodynamicTetherClient.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/BareElectrodynamicTetherClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/RemoteCalculationControl.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/RemoteCalculationControl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/ElectrodynamicTetherSystemModelClient.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/ElectrodynamicTetherSystemModelClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/OrbitalElementsClient.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/OrbitalElementsClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.ui.xml" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.ui.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.ui.xml" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.ui.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelParameterCtrlPresenter.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelParameterCtrlPresenter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.ui.xml" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.ui.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/VectorSizeCustomException.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/VectorSizeCustomException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/model/ElectrodynamicTetherSystemModel.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/model/ElectrodynamicTetherSystemModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/service/MainAppServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/service/MainAppServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/test/RungeKuttaTest.java" afterPath="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/test/RungeKuttaTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/index.html" afterPath="$PROJECT_DIR$/web/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/main.css" afterPath="$PROJECT_DIR$/web/main.css" />
     </list>
     <ignored path="SpaceApp.iws" />
@@ -119,41 +37,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ApplicationContainer.ui.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.ui.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CalculationResultsCtrl.ui.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.ui.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="118" column="34" lean-forward="true" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
+            <state relative-caret-position="343">
+              <caret line="96" column="22" lean-forward="false" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="PageSidebar.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="530">
+              <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApplicationContainer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.java">
+      <file leaf-file-name="PageSidebar.ui.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.ui.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="42" column="68" lean-forward="false" selection-start-line="42" selection-start-column="68" selection-end-line="42" selection-end-column="68" />
+            <state relative-caret-position="204">
+              <caret line="12" column="46" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -162,50 +72,22 @@
       <file leaf-file-name="ModelParameterCtrlPresenter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelParameterCtrlPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="279" column="0" lean-forward="false" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
+            <state relative-caret-position="228">
+              <caret line="78" column="74" lean-forward="false" selection-start-line="78" selection-start-column="74" selection-end-line="78" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4540#4790#0" expanded="true" />
-                <element signature="e#4789#4790#0" expanded="true" />
-                <element signature="e#5723#5724#0" expanded="true" />
-                <element signature="e#5765#5766#0" expanded="true" />
-                <element signature="e#5844#5845#0" expanded="true" />
-                <element signature="e#5884#5885#0" expanded="true" />
-                <element signature="e#7150#7430#0" expanded="true" />
-                <element signature="e#7429#7430#0" expanded="true" />
-                <element signature="e#8306#8594#0" expanded="true" />
-                <element signature="e#8593#8594#0" expanded="true" />
-                <element signature="e#9524#9820#0" expanded="true" />
-                <element signature="e#9819#9820#0" expanded="true" />
-                <element signature="e#11097#11326#0" expanded="true" />
-                <element signature="e#11325#11326#0" expanded="true" />
-                <element signature="e#12304#12533#0" expanded="true" />
-                <element signature="e#12532#12533#0" expanded="true" />
-                <element signature="e#13627#13846#0" expanded="true" />
-                <element signature="e#13845#13846#0" expanded="true" />
-                <element signature="e#16620#16929#0" expanded="true" />
-                <element signature="e#16928#16929#0" expanded="true" />
-                <element signature="e#17917#18232#0" expanded="true" />
-                <element signature="e#18231#18232#0" expanded="true" />
-                <element signature="e#19377#19673#0" expanded="true" />
-                <element signature="e#19672#19673#0" expanded="true" />
-                <element signature="e#20591#20886#0" expanded="true" />
-                <element signature="e#20885#20886#0" expanded="true" />
-                <element signature="e#28792#28793#0" expanded="true" />
-                <element signature="e#28837#28838#0" expanded="true" />
-                <marker date="1525271989214" expanded="false" signature="25560:27564" ph="{...}" />
-                <marker date="1525271989214" expanded="false" signature="27597:28753" ph="{...}" />
+                <element signature="method#initTextBoxes#0;class#ModelParameterCtrlPresenter#0" expanded="false" />
+                <element signature="method#initSliders#0;class#ModelParameterCtrlPresenter#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalculationResultsCtrl.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CalculationResultsCtrl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="285">
+              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -214,21 +96,12 @@
       <file leaf-file-name="RemoteCalculationControl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/RemoteCalculationControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="33" column="54" lean-forward="true" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
+            <state relative-caret-position="479">
+              <caret line="184" column="48" lean-forward="false" selection-start-line="184" selection-start-column="7" selection-end-line="184" selection-end-column="48" />
               <folding>
+                <element signature="imports" expanded="false" />
                 <element signature="method#createBigChart#0;class#RemoteCalculationControl#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpaceAppEntryPoint.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/SpaceAppEntryPoint.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-615">
-              <caret line="90" column="52" lean-forward="false" selection-start-line="90" selection-start-column="52" selection-end-line="90" selection-end-column="52" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -236,8 +109,43 @@
       <file leaf-file-name="UIConsts.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/ui/components/UIConsts.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="43" column="44" lean-forward="false" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="44" />
+            <state relative-caret-position="230">
+              <caret line="37" column="25" lean-forward="false" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpaceAppEntryPoint.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/SpaceAppEntryPoint.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="43" column="11" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="43" selection-end-column="11" />
+              <folding>
+                <marker date="1525327100539" expanded="true" signature="1757:1868" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApplicationContainer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="251">
+              <caret line="39" column="47" lean-forward="true" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="47" />
+              <folding>
+                <element signature="e#1065#1066#0" expanded="true" />
+                <element signature="e#1106#1107#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApplicationContainer.ui.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.ui.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="47" lean-forward="false" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -255,12 +163,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mainSatelliteMaxMassLabel</find>
-      <find>tetta</find>
-      <find>startModelingButton</find>
-      <find>calculationStepSlider</find>
-      <find>testModel</find>
-      <find>startComputingClickHandler</find>
       <find>defa</find>
       <find>tetherLengthPanel</find>
       <find>initLabels</find>
@@ -285,6 +187,12 @@
       <find>Total Re</find>
       <find>syste</find>
       <find>deflectionAngleChart</find>
+      <find>exec</find>
+      <find>StepSli</find>
+      <find>maxIterations</find>
+      <find>maxIterationSlider</find>
+      <find>downloadImagePanel</find>
+      <find>SpaceAppEntryPoint</find>
     </findStrings>
     <replaceStrings>
       <replace>parametersCtrlPanel</replace>
@@ -315,7 +223,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/service/MainAppServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/SpaceApplicationService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/BasicLineExample.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/modelConfiguration.java" />
@@ -342,30 +249,31 @@
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/ParameterCtrl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/RemoteCalculationControl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/BareElectrodynamicTetherClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/ElectrodynamicTetherSystemModelClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/ModelParameterCtrl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/BreadcrumbHeader.ui.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/BreadcrumbHeader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/SpaceApplicationServiceAsync.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/ui/components/RangeInputElement.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/ui/components/Slider.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelParameterCtrl.java" />
-        <option value="$PROJECT_DIR$/web/main.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/ModelParameterController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.ui.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/VectorSizeCustomException.java" />
         <option value="$PROJECT_DIR$/web/index.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.ui.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/SpaceAppEntryPoint.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/ui/components/UIConsts.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/RemoteCalculationControl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelParameterCtrlPresenter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.ui.xml" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/ElectrodynamicTetherSystemModelClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/SpaceApplicationServiceAsync.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/server/service/MainAppServiceImpl.java" />
+        <option value="$PROJECT_DIR$/web/main.css" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.ui.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelParameterCtrlPresenter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.ui.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/RemoteCalculationControl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.ui.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/SpaceAppEntryPoint.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.java" />
       </list>
     </option>
   </component>
@@ -418,7 +326,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
@@ -433,8 +340,137 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceApp-master" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spaceApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceApp-master" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spaceApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="space" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceApp-master" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spaceApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="space" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="presenters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceApp-master" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spaceApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -1014,12 +1050,13 @@
       <workItem from="1522655539703" duration="47299000" />
       <workItem from="1523789519917" duration="11793000" />
       <workItem from="1525095176448" duration="44446000" />
-      <workItem from="1525246059798" duration="21169000" />
+      <workItem from="1525246059798" duration="24036000" />
+      <workItem from="1525323602195" duration="3571000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311694000" />
+    <option name="totallyTimeSpent" value="318132000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1045,7 +1082,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35983264" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43933055" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904148" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32357043" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1053,10 +1090,11 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30962342" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51046026" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32775453" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18059126" sideWeight="0.73031497" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21529563" sideWeight="0.73031497" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22107969" sideWeight="0.26968503" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24686192" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22107969" sideWeight="0.270751" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06555091" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1066,7 +1104,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39888424" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1111,9 +1148,21 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="102" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.java</url>
+          <line>78</line>
+          <properties />
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="107" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="GWT.ConfigurationType">
+        <watch expression="tetherSystemModel" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1135,7 +1184,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="43" column="65" lean-forward="false" selection-start-line="43" selection-start-column="65" selection-end-line="43" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1174,7 +1222,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
           <caret line="245" column="40" lean-forward="false" selection-start-line="245" selection-start-column="40" selection-end-line="245" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1192,7 +1239,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1251,120 +1297,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/ElectrodynamicTetherSystemModelClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="61" lean-forward="false" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#5893#5894#0" expanded="false" />
-            <element signature="e#5918#5919#0" expanded="false" />
-            <element signature="e#5949#5950#0" expanded="false" />
-            <element signature="e#5986#5987#0" expanded="false" />
-            <element signature="e#6017#6018#0" expanded="false" />
-            <element signature="e#6054#6055#0" expanded="false" />
-            <element signature="e#6082#6083#0" expanded="false" />
-            <element signature="e#6106#6107#0" expanded="false" />
-            <element signature="e#6135#6136#0" expanded="false" />
-            <element signature="e#6160#6161#0" expanded="false" />
-            <element signature="e#6188#6189#0" expanded="false" />
-            <element signature="e#6212#6213#0" expanded="false" />
-            <element signature="e#6246#6247#0" expanded="false" />
-            <element signature="e#6272#6273#0" expanded="false" />
-            <element signature="e#6300#6301#0" expanded="false" />
-            <element signature="e#6324#6325#0" expanded="false" />
-            <element signature="e#6358#6359#0" expanded="false" />
-            <element signature="e#6379#6380#0" expanded="false" />
-            <element signature="e#6407#6408#0" expanded="false" />
-            <element signature="e#6431#6432#0" expanded="false" />
-            <element signature="e#6459#6460#0" expanded="false" />
-            <element signature="e#6483#6484#0" expanded="false" />
-            <element signature="e#6517#6518#0" expanded="false" />
-            <element signature="e#6538#6539#0" expanded="false" />
-            <element signature="e#6836#6837#0" expanded="false" />
-            <element signature="e#6862#6863#0" expanded="false" />
-            <element signature="e#6891#6892#0" expanded="false" />
-            <element signature="e#6916#6917#0" expanded="false" />
-            <element signature="e#6945#6946#0" expanded="false" />
-            <element signature="e#6970#6971#0" expanded="false" />
-            <element signature="e#7002#7003#0" expanded="false" />
-            <element signature="e#7030#7031#0" expanded="false" />
-            <element signature="e#7180#7181#0" expanded="false" />
-            <element signature="e#7206#7207#0" expanded="false" />
-            <element signature="e#7235#7236#0" expanded="false" />
-            <element signature="e#7260#7261#0" expanded="false" />
-            <element signature="e#7296#7297#0" expanded="false" />
-            <element signature="e#7324#7325#0" expanded="false" />
-            <element signature="e#7352#7353#0" expanded="false" />
-            <element signature="e#7376#7377#0" expanded="false" />
-            <element signature="e#7407#7408#0" expanded="false" />
-            <element signature="e#7437#7438#0" expanded="false" />
-            <element signature="e#7480#7481#0" expanded="false" />
-            <element signature="e#7518#7519#0" expanded="false" />
-            <element signature="e#7549#7550#0" expanded="false" />
-            <element signature="e#7576#7577#0" expanded="false" />
-            <element signature="e#7616#7617#0" expanded="false" />
-            <element signature="e#7648#7649#0" expanded="false" />
-            <element signature="e#7682#7683#0" expanded="false" />
-            <element signature="e#7712#7713#0" expanded="false" />
-            <element signature="e#7758#7759#0" expanded="false" />
-            <element signature="e#7796#7797#0" expanded="false" />
-            <element signature="e#7835#7836#0" expanded="false" />
-            <element signature="e#7870#7871#0" expanded="false" />
-            <element signature="e#10170#10171#0" expanded="false" />
-            <element signature="e#10199#10200#0" expanded="false" />
-            <element signature="e#10239#10240#0" expanded="false" />
-            <element signature="e#10275#10276#0" expanded="false" />
-            <element signature="e#10321#10322#0" expanded="false" />
-            <element signature="e#10363#10364#0" expanded="false" />
-            <element signature="e#11447#11448#0" expanded="false" />
-            <element signature="e#11510#11511#0" expanded="false" />
-            <element signature="e#14919#14920#0" expanded="false" />
-            <element signature="e#14961#14962#0" expanded="false" />
-            <element signature="e#20238#20239#0" expanded="false" />
-            <element signature="e#20272#20273#0" expanded="false" />
-            <element signature="e#20972#20973#0" expanded="false" />
-            <element signature="e#21014#21015#0" expanded="false" />
-            <element signature="e#21084#21085#0" expanded="false" />
-            <element signature="e#21146#21147#0" expanded="false" />
-            <element signature="e#22006#22007#0" expanded="false" />
-            <element signature="e#22046#22047#0" expanded="false" />
-            <element signature="e#22112#22113#0" expanded="false" />
-            <element signature="e#22170#22171#0" expanded="false" />
-            <element signature="e#22214#22215#0" expanded="false" />
-            <element signature="e#22254#22255#0" expanded="false" />
-            <element signature="e#22320#22321#0" expanded="false" />
-            <element signature="e#22378#22379#0" expanded="false" />
-            <element signature="e#22420#22421#0" expanded="false" />
-            <element signature="e#22499#22500#0" expanded="false" />
-            <element signature="e#22698#22699#0" expanded="false" />
-            <element signature="e#22722#22723#0" expanded="false" />
-            <element signature="e#28751#28752#0" expanded="false" />
-            <element signature="e#28810#28811#0" expanded="false" />
-            <element signature="e#28862#28863#0" expanded="false" />
-            <element signature="e#28910#28911#0" expanded="false" />
-            <element signature="e#28970#28971#0" expanded="false" />
-            <element signature="e#29026#29027#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelConfiguration.ui.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="52" lean-forward="true" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelConfiguration.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelConfiguration.ui.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/BreadcrumbHeader.ui.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1389,26 +1323,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/SpaceApplicationServiceAsync.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/ui/components/RangeInputElement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-433">
           <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-          <folding>
-            <marker date="1525258692501" expanded="true" signature="854:909" ph="{...}" />
-            <marker date="1525258692501" expanded="true" signature="960:1006" ph="{...}" />
-            <marker date="1525258692501" expanded="true" signature="1049:1104" ph="{...}" />
-            <marker date="1525258692501" expanded="true" signature="1155:1201" ph="{...}" />
-            <marker date="1525258692501" expanded="true" signature="1245:1301" ph="{...}" />
-            <marker date="1525258692501" expanded="true" signature="1354:1402" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1428,14 +1346,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="80" column="1" lean-forward="false" selection-start-line="80" selection-start-column="1" selection-end-line="80" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://K:/GWT/gwt-2.7.0/gwt-2.7.0/gwt-user.jar!/com/google/gwt/user/client/ui/Widget.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -1448,15 +1358,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="125" column="20" lean-forward="false" selection-start-line="125" selection-start-column="20" selection-end-line="125" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/service/MainAppServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="48" column="9" lean-forward="false" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1464,21 +1365,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-          <folding>
-            <element signature="method#calculateDSMax#0;class#RungeKuttaMethodImpl#0" expanded="false" />
-            <element signature="method#calculateDS#0;class#RungeKuttaMethodImpl#0" expanded="false" />
-            <element signature="method#calculateResY#0;class#RungeKuttaMethodImpl#0" expanded="false" />
-            <element signature="method#integrateWithVariableStep#0;class#RungeKuttaMethodImpl#0" expanded="false" />
-            <element signature="method#integrateWithConstStep#0;class#RungeKuttaMethodImpl#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1513,39 +1399,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="159" column="14" lean-forward="false" selection-start-line="159" selection-start-column="14" selection-end-line="159" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.ui.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="37" column="47" lean-forward="true" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="42" column="68" lean-forward="false" selection-start-line="42" selection-start-column="68" selection-end-line="42" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.ui.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="42" lean-forward="true" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1557,22 +1410,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/ui/components/UIConsts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="43" column="44" lean-forward="false" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/ModelParameterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/ModelParameterController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/OrbitalElementsClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1785">
@@ -1581,84 +1419,148 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/RemoteCalculationControl.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="33" column="54" lean-forward="true" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
+        <state relative-caret-position="0">
+          <caret line="0" column="3" lean-forward="true" selection-start-line="0" selection-start-column="3" selection-end-line="0" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/modeling/differentiation/RungeKuttaMethodImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
           <folding>
-            <element signature="method#createBigChart#0;class#RemoteCalculationControl#0" expanded="false" />
+            <element signature="method#calculateDSMax#0;class#RungeKuttaMethodImpl#0" expanded="false" />
+            <element signature="method#calculateDS#0;class#RungeKuttaMethodImpl#0" expanded="false" />
+            <element signature="method#calculateResY#0;class#RungeKuttaMethodImpl#0" expanded="false" />
+            <element signature="method#integrateWithConstStep#0;class#RungeKuttaMethodImpl#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/SpaceAppEntryPoint.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/model/ElectrodynamicTetherSystemModelClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-615">
-          <caret line="90" column="52" lean-forward="false" selection-start-line="90" selection-start-column="52" selection-end-line="90" selection-end-column="52" />
+        <state relative-caret-position="17">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelParameterCtrlPresenter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/SpaceApplicationServiceAsync.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="279" column="0" lean-forward="false" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4540#4790#0" expanded="true" />
-            <element signature="e#4789#4790#0" expanded="true" />
-            <element signature="e#5723#5724#0" expanded="true" />
-            <element signature="e#5765#5766#0" expanded="true" />
-            <element signature="e#5844#5845#0" expanded="true" />
-            <element signature="e#5884#5885#0" expanded="true" />
-            <element signature="e#7150#7430#0" expanded="true" />
-            <element signature="e#7429#7430#0" expanded="true" />
-            <element signature="e#8306#8594#0" expanded="true" />
-            <element signature="e#8593#8594#0" expanded="true" />
-            <element signature="e#9524#9820#0" expanded="true" />
-            <element signature="e#9819#9820#0" expanded="true" />
-            <element signature="e#11097#11326#0" expanded="true" />
-            <element signature="e#11325#11326#0" expanded="true" />
-            <element signature="e#12304#12533#0" expanded="true" />
-            <element signature="e#12532#12533#0" expanded="true" />
-            <element signature="e#13627#13846#0" expanded="true" />
-            <element signature="e#13845#13846#0" expanded="true" />
-            <element signature="e#16620#16929#0" expanded="true" />
-            <element signature="e#16928#16929#0" expanded="true" />
-            <element signature="e#17917#18232#0" expanded="true" />
-            <element signature="e#18231#18232#0" expanded="true" />
-            <element signature="e#19377#19673#0" expanded="true" />
-            <element signature="e#19672#19673#0" expanded="true" />
-            <element signature="e#20591#20886#0" expanded="true" />
-            <element signature="e#20885#20886#0" expanded="true" />
-            <element signature="e#28792#28793#0" expanded="true" />
-            <element signature="e#28837#28838#0" expanded="true" />
-            <marker date="1525271989214" expanded="false" signature="25560:27564" ph="{...}" />
-            <marker date="1525271989214" expanded="false" signature="27597:28753" ph="{...}" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/server/service/MainAppServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="380">
+          <caret line="74" column="66" lean-forward="true" selection-start-line="74" selection-start-column="66" selection-end-line="74" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="224" column="15" lean-forward="false" selection-start-line="224" selection-start-column="15" selection-end-line="224" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.ui.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="118" column="34" lean-forward="true" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
+        <state relative-caret-position="343">
+          <caret line="96" column="22" lean-forward="false" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.ui.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="204">
+          <caret line="12" column="46" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/PageSidebar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/ui/components/UIConsts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="37" column="25" lean-forward="false" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.ui.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="47" lean-forward="false" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/controllers/RemoteCalculationControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="184" column="48" lean-forward="false" selection-start-line="184" selection-start-column="7" selection-end-line="184" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#createBigChart#0;class#RemoteCalculationControl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ModelParameterCtrlPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="78" column="74" lean-forward="false" selection-start-line="78" selection-start-column="74" selection-end-line="78" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#initTextBoxes#0;class#ModelParameterCtrlPresenter#0" expanded="false" />
+            <element signature="method#initSliders#0;class#ModelParameterCtrlPresenter#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/SpaceAppEntryPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="43" column="11" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="43" selection-end-column="11" />
+          <folding>
+            <marker date="1525327100539" expanded="true" signature="1757:1868" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/ApplicationContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="39" column="47" lean-forward="true" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="47" />
+          <folding>
+            <element signature="e#1065#1066#0" expanded="true" />
+            <element signature="e#1106#1107#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/spaceApplication/client/space/presenters/CalculationResultsCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>

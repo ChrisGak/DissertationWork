@@ -16,13 +16,8 @@ import com.google.gwt.user.client.ui.Widget;
 public class PageSidebar extends Composite {
     interface PageSidebarUiBinder extends UiBinder<Widget, PageSidebar> {
     }
-
-    @UiField
-    Anchor showTestSample;
     @UiField
     Anchor importModel;
-    @UiField
-    Anchor showCalculationResults;
     @UiField
     Anchor exportResults;
 
@@ -40,8 +35,12 @@ public class PageSidebar extends Composite {
         }
     };
 
-    private void initWidget() {
-        showTestSample.addClickHandler(showTestSampleClickHandler);
+    public void enableExportResultsAnchor(String exportResultsHref){
+        exportResults.setHref(exportResultsHref);
+        exportResults.getElement().getParentElement().getParentElement().removeClassName("disables");
+        exportResults.getElement().getParentElement().getParentElement().addClassName("active-page");
+    }
 
+    private void initWidget() {
     }
 }

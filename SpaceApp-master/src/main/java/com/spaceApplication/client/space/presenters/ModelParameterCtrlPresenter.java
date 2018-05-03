@@ -47,6 +47,10 @@ public class ModelParameterCtrlPresenter extends Composite {
     private Label deflectionAngleLabel, initialTrueAnomalyLabel, initialEccentricityLabel;
 
     private HTMLPanel pageContentInnerPanel;
+    private int maxIterations = 1000;
+    private double integrationStep = 10;
+    private double integrationMaxStep = 10;
+    private double integrationAccuracy = 0.001;
     /**
      * UI attributes
      */
@@ -94,7 +98,7 @@ public class ModelParameterCtrlPresenter extends Composite {
         testTether = new BareElectrodynamicTetherClient(0.4, 2000, 0.001);
         tetherSystemModel = new ElectrodynamicTetherSystemModelClient(testTether, 6, 2, 500000,
                 ElectrodynamicTetherSystemModelClient.getDefaultDeflectionAngle(), ElectrodynamicTetherSystemModelClient.getDefaultInitialTrueAnomaly(),
-                ElectrodynamicTetherSystemModelClient.getDefaultInitialEccentricity());
+                ElectrodynamicTetherSystemModelClient.getDefaultInitialEccentricity(), maxIterations, integrationStep, integrationMaxStep, integrationAccuracy);
 
         initTetherModelParamsPanel();
         initTetherSystemModelParamsPanel();
@@ -301,13 +305,13 @@ public class ModelParameterCtrlPresenter extends Composite {
 
         calculationStepSlider.setMin(5.0);
         calculationStepSlider.setMax(10.0);
-        calculationStepSlider.setValue(10.0);
+        calculationStepSlider.setValue(integrationStep);
         calculationStepSlider.setTitle("Шаг интегрирования");
         calculationStepSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
                 calculationStepSliderTextBox.setText(String.valueOf(calculationStepSlider.getValue() + _SEC));
-                tetherSystemModel.setStep(calculationStepSlider.getValue());
+                tetherSystemModel.setIntegrationStep(calculationStepSlider.getValue());
             }
         });
         HorizontalPanel calculationStepPanel = new HorizontalPanel();
@@ -324,12 +328,12 @@ public class ModelParameterCtrlPresenter extends Composite {
 
         maxCalculationStepSlider.setMin(5.0);
         maxCalculationStepSlider.setMax(10.0);
-        maxCalculationStepSlider.setValue(10.0);
+        maxCalculationStepSlider.setValue(integrationMaxStep);
         maxCalculationStepSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
                 maxCalculationStepTextBox.setText(String.valueOf(maxCalculationStepSlider.getValue() + _SEC));
-                tetherSystemModel.setStepMax(maxCalculationStepSlider.getValue());
+                tetherSystemModel.setIntegrationMaxStep(maxCalculationStepSlider.getValue());
             }
         });
         maxCalculationStepLabel.setTitle("Максимальный шаг интегрирования");
@@ -347,13 +351,13 @@ public class ModelParameterCtrlPresenter extends Composite {
 
         maxIterationSlider.setTitle("Максимальное число итераций");
         maxIterationSlider.setMin(50.0);
-        maxIterationSlider.setMax(100.0);
-        maxIterationSlider.setMax(100.0);
+        maxIterationSlider.setMax(maxIterations);
+        maxIterationSlider.setValue(maxIterations);
         maxIterationSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
                 maxIterationTextBox.setText(String.valueOf(maxIterationSlider.getValue()));
-                tetherSystemModel.setMaxIter((int) maxIterationSlider.getValue());
+                tetherSystemModel.setMaxIterations((int) maxIterationSlider.getValue());
             }
         });
         HorizontalPanel maxIterationPanel = new HorizontalPanel();
@@ -371,12 +375,12 @@ public class ModelParameterCtrlPresenter extends Composite {
         calcAccuracySlider.setTitle("Точность вычислений");
         calcAccuracySlider.setMin(0.001);
         calcAccuracySlider.setMax(0.1);
-        calcAccuracySlider.setMax(0.001);
+        calcAccuracySlider.setValue(integrationAccuracy);
         calcAccuracySlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
                 calcAccuracyTextBox.setText(String.valueOf(calcAccuracySlider.getValue()));
-                tetherSystemModel.setCalcAccuracy(calcAccuracySlider.getValue());
+                tetherSystemModel.setCalculateAccuracy(calcAccuracySlider.getValue());
             }
         });
         HorizontalPanel calcAccuracyPanel = new HorizontalPanel();

@@ -28,6 +28,22 @@ import static com.spaceApplication.client.space.ui.components.UIConsts.*;
  */
 public class SpaceAppEntryPoint implements EntryPoint {
     private static final Logger log = Logger.getLogger(String.valueOf(SpaceAppEntryPoint.class));
+    private ApplicationContainer applicationContainer;
+    private static SpaceAppEntryPoint instance;
+    public static SpaceAppEntryPoint getInstance() {
+        if(instance == null){
+            instance = new SpaceAppEntryPoint();
+        }
+
+        return instance;
+    }
+
+    public ApplicationContainer getApplicationContainer(){
+//        if (applicationContainer == null){
+//            applicationContainer = new ApplicationContainer();
+//        }
+        return applicationContainer;
+    }
 
     // create an instance of the service proxy class by calling GWT.create(Class).
     private SpaceApplicationServiceAsync spaceApplicationServiceAsync = GWT.create(SpaceApplicationService.class);
@@ -36,7 +52,11 @@ public class SpaceAppEntryPoint implements EntryPoint {
         @Override
         public void onClick(ClickEvent event) {
             toggleContentBlocks(false);
-            ApplicationContainer applicationContainer = new ApplicationContainer();
+            if(applicationContainer == null){
+                applicationContainer = new ApplicationContainer();
+            } else {
+                applicationContainer.clear();
+            }
             RootPanel.get(APPLICATION_SELECTOR).add(applicationContainer);
         }
     };
@@ -67,7 +87,7 @@ public class SpaceAppEntryPoint implements EntryPoint {
 
         @Override
         public void onSuccess(OrbitalElementsClient result) {
-            mainPanel.add(RemoteCalculationControl.createAllResultPlotsTest(result));
+            //mainPanel.add(RemoteCalculationControl.createAllResultPlotsTest(result));
             RootPanel.get(APPLICATION_SELECTOR).add(mainPanel);
         }
     };
@@ -222,5 +242,4 @@ public class SpaceAppEntryPoint implements EntryPoint {
             this.show();
         }
     }
-
 }
