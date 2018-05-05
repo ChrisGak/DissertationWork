@@ -11,7 +11,6 @@ import com.spaceApplication.client.consts.SpaceAppConstants;
 import com.spaceApplication.client.consts.SpaceAppMessages;
 import com.spaceApplication.client.exception.TetherSystemModelValueException;
 import com.spaceApplication.client.space.controllers.RemoteCalculationControl;
-import com.spaceApplication.client.space.model.BareElectrodynamicTetherClient;
 import com.spaceApplication.client.space.model.ElectrodynamicTetherSystemModelClient;
 import com.spaceApplication.client.space.model.OrbitalElementsClient;
 import com.spaceApplication.client.space.ui.components.Slider;
@@ -26,26 +25,6 @@ public class ModelParameterCtrlPresenter extends Composite {
     private VerticalPanel dynamicParametersCtrlPanel = new VerticalPanel();
     private VerticalPanel staticParametersCtrlPanel = new VerticalPanel();
     private Button executeCalculationButton;
-
-    private Slider tetherMassSlider, tetherLengthSlider, tetherDiameterSlider;
-    private TextBox tetherMassTextBox, tetherLengthTextBox, tetherDiameterTextBox;
-    private Label tetherMassLabel, tetherLengthLabel, tetherDiameterLabel;
-    private Label tetherMassMinLabel, tetherMassMaxLabel, tetherLengthMinLabel, tetherLengthMaxLabel, tetherDiameterMinLabel, tetherDiameterMaxLabel;
-
-    private Slider mainSatelliteMassSlider, nanosatellineMassSlider, systemHeightSlider;
-    private TextBox mainSatelliteMassTextBox, nanosatellineMassTextBox, systemHeightTextBox;
-    private Label mainSatelliteMassLabel, nanosatellineMassLabel, systemHeightLabel;
-    private Label mainSatelliteMinMassLabel, mainSatelliteMaxMassLabel, nanosatellineMinMassLabel, nanosatellineMaxMassLabel, systemHeightMinLabel, systemHeightMaxLabel;
-
-    private Slider calculationStepSlider, maxCalculationStepSlider, maxIterationSlider, calcAccuracySlider;
-    private TextBox calculationStepSliderTextBox, maxCalculationStepTextBox, maxIterationTextBox, calcAccuracyTextBox;
-    private Label calculationStepSliderLabel, maxCalculationStepLabel, maxIterationLabel, calcAccuracyLabel;
-    private Label calculationStepSliderMinLabel, calculationStepSliderMaxLabel, maxCalculationStepMinRangeLabel, maxCalculationStepMaxRangeLabel,
-            maxIterationMinLabel, maxIterationMaxLabel, calcAccuracyMinLabel, calcAccuracyMaxLabel;
-
-    private TextBox deflectionAngleTextBox, initialTrueAnomalyTextBox, initialEccentricityTextBox;
-    private Label deflectionAngleLabel, initialTrueAnomalyLabel, initialEccentricityLabel;
-
     private HTMLPanel pageContentInnerPanel;
     private int maxIterations = 1000;
     private double integrationStep = 10;
@@ -60,8 +39,6 @@ public class ModelParameterCtrlPresenter extends Composite {
     private int spacingAttr = 300;
     private String rangeLabelWidth = "50px";
 
-    private double toKilo = 1000;
-    private BareElectrodynamicTetherClient testTether;
     private ElectrodynamicTetherSystemModelClient tetherSystemModel;
     private AsyncCallback<OrbitalElementsClient> calculationCallback = new AsyncCallback<OrbitalElementsClient>() {
         public void onFailure(Throwable caught) {
@@ -78,7 +55,6 @@ public class ModelParameterCtrlPresenter extends Composite {
             clearVerticalPanel();
             CalculationResultsCtrl calculationResultsCtrl = new CalculationResultsCtrl(result, tetherSystemModel);
             pageContentInnerPanel.add(calculationResultsCtrl);
-//            pageContentInnerPanel.add(RemoteCalculationControl.createAllResultPlots(result, tetherSystemModel));
         }
     };
     ClickHandler executeCalculationClickHandler = new ClickHandler() {
@@ -90,21 +66,20 @@ public class ModelParameterCtrlPresenter extends Composite {
     };
     private SpaceAppConstants constants = GWT.create(SpaceAppConstants.class);
     private SpaceAppMessages messages = GWT.create(SpaceAppMessages.class);
-    public ModelParameterCtrlPresenter() {
-        initTextBoxes();
-        initLabels();
-        initSliders();
 
-        testTether = new BareElectrodynamicTetherClient(0.4, 2000, 0.001);
-        tetherSystemModel = new ElectrodynamicTetherSystemModelClient(testTether, 6, 2, 500000,
-                ElectrodynamicTetherSystemModelClient.getDefaultDeflectionAngle(), ElectrodynamicTetherSystemModelClient.getDefaultInitialTrueAnomaly(),
-                ElectrodynamicTetherSystemModelClient.getDefaultInitialEccentricity(), maxIterations, integrationStep, integrationMaxStep, integrationAccuracy);
+    public ModelParameterCtrlPresenter() {
+        tetherSystemModel = ElectrodynamicTetherSystemModelClient.createDefaultTetherSystemModel();
 
         initTetherModelParamsPanel();
         initTetherSystemModelParamsPanel();
         initCalculationParamsPanel();
 
         printSystemPositionStaticParamsPanel();
+    }
+
+    private static HTML createHeaderBlock(String headerTitle) {
+        return new HTML("<div class=\"page-title\"><h3 class=" + UIConsts.BREADCRUMB_HEADER_STYLE_NAME + ">"
+                + headerTitle + "</h1></div");
     }
 
     public AsyncCallback<OrbitalElementsClient> getCalculationCallback() {
@@ -117,12 +92,12 @@ public class ModelParameterCtrlPresenter extends Composite {
 
     public Widget initWidget() {
         pageContentInnerPanel = new HTMLPanel("");
-        pageContentInnerPanel.addStyleName(PAGE_INNER_SELECTOR);
+        pageContentInnerPanel.addStyleName(PAGE_INNER_STYLE_NAME);
         pageContentInnerPanel.add(dynamicParametersCtrlPanel);
         pageContentInnerPanel.add(staticParametersCtrlPanel);
         HorizontalPanel buttonWrapper = new HorizontalPanel();
         buttonWrapper.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-        executeCalculationButton = new Button("Начать вычисление");
+        executeCalculationButton = new Button(START_CALCULATION_TITLE);
         buttonWrapper.add(executeCalculationButton);
         executeCalculationButton.addClickHandler(executeCalculationClickHandler);
         executeCalculationButton.setStyleName(UIConsts.BUTTON_STYLE_NAME);
@@ -131,18 +106,27 @@ public class ModelParameterCtrlPresenter extends Composite {
     }
 
     private void initTetherModelParamsPanel() {
-        HTML contentHeader = new HTML("<div class=\"page-title\"><h3 class=" + UIConsts.BREADCRUMB_HEADER_STYLE_NAME + ">" + "Параметры троса" + "</h1></div");
-        dynamicParametersCtrlPanel.add(contentHeader);
+        dynamicParametersCtrlPanel.add(createHeaderBlock(TETHER_PARAMS_HEADER_TITLE));
 
-        tetherMassSlider.setMin(0.1);
-        tetherMassSlider.setMax(2.0);
-        tetherMassSlider.setValue(0.4);
-        tetherMassLabel.setText("Масса троса");
+        final Slider tetherMassSlider = new Slider();
+        tetherMassSlider.setPixelSize(sliderWidth, sliderHeight);
+        tetherMassSlider.setMin(constants.minTetherMass());
+        tetherMassSlider.setMax(constants.maxTetherMass());
+        tetherMassSlider.setValue(tetherSystemModel.getTether().getMass());
+        Label tetherMassLabel = new Label(TETHER_MASS_TITLE);
+        tetherMassLabel.setPixelSize(labelWidth, labelHeight);
+        Label tetherMassMinLabel = new Label();
+        tetherMassMinLabel.setWidth(rangeLabelWidth);
+        Label tetherMassMaxLabel = new Label();
+        tetherMassMaxLabel.setWidth(rangeLabelWidth);
+        final TextBox tetherMassTextBox = new TextBox();
+        tetherMassTextBox.setEnabled(false);
+        tetherMassTextBox.setWidth(textBoxWidth);
         tetherMassSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
                 tetherMassTextBox.setText(String.valueOf(tetherMassSlider.getValue() + _KG));
-                testTether.setMass(tetherMassSlider.getValue());
+                tetherSystemModel.getTether().setMass(tetherMassSlider.getValue());
             }
         });
         HorizontalPanel tetherMassPanel = new HorizontalPanel();
@@ -157,19 +141,30 @@ public class ModelParameterCtrlPresenter extends Composite {
         tetherMassTextBox.setText(String.valueOf(tetherMassSlider.getValue() + _KG));
         dynamicParametersCtrlPanel.add(tetherMassPanel);
 
-        tetherLengthSlider.setMin(0.5);
-        tetherLengthSlider.setMax(3.0);
-        tetherLengthSlider.setValue(2.0);
-        tetherLengthSlider.setTitle("Длина троса");
+        final Slider tetherLengthSlider = new Slider();
+        tetherLengthSlider.setPixelSize(sliderWidth, sliderHeight);
+        tetherLengthSlider.setMin(constants.minTetherLength());
+        tetherLengthSlider.setMax(constants.maxTetherLength());
+        tetherLengthSlider.setValue(tetherSystemModel.getTether().getLength());
+        tetherLengthSlider.setTitle(TETHER_LENGTH_TITLE);
+        final TextBox tetherLengthTextBox = new TextBox();
+        tetherLengthTextBox.setEnabled(false);
+        tetherLengthTextBox.setWidth(textBoxWidth);
         tetherLengthSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
                 tetherLengthTextBox.setText(String.valueOf(tetherLengthSlider.getValue() + _KM));
-                testTether.setLength(tetherLengthSlider.getValue());
+                tetherSystemModel.getTether().setLength(tetherLengthSlider.getValue());
             }
         });
         HorizontalPanel tetherLengthPanel = new HorizontalPanel();
         tetherLengthPanel.setSpacing(spacingAttr);
+        Label tetherLengthLabel = new Label(TETHER_LENGTH_TITLE);
+        tetherLengthLabel.setPixelSize(labelWidth, labelHeight);
+        Label tetherLengthMinLabel = new Label();
+        tetherLengthMinLabel.setWidth(rangeLabelWidth);
+        Label tetherLengthMaxLabel = new Label();
+        tetherLengthMaxLabel.setWidth(rangeLabelWidth);
         tetherLengthPanel.add(tetherLengthLabel);
         tetherLengthMinLabel.setText(String.valueOf(tetherLengthSlider.getMin()));
         tetherLengthPanel.add(tetherLengthMinLabel);
@@ -180,19 +175,31 @@ public class ModelParameterCtrlPresenter extends Composite {
         tetherMassTextBox.setText(String.valueOf(tetherLengthSlider.getValue() + _KM));
         dynamicParametersCtrlPanel.add(tetherLengthPanel);
 
-        tetherDiameterSlider.setMin(0.001);
-        tetherDiameterSlider.setMax(0.005);
-        tetherDiameterSlider.setValue(0.001);
-        tetherDiameterSlider.setTitle("Диаметр троса");
+        final Slider tetherDiameterSlider = new Slider();
+        tetherDiameterSlider.setPixelSize(sliderWidth, sliderHeight);
+        tetherDiameterSlider.setMin(constants.minTetherDiameter());
+        tetherDiameterSlider.setMax(constants.maxTetherDiameter());
+        tetherDiameterSlider.setValue(tetherSystemModel.getTether().getDiameter());
+        tetherDiameterSlider.setStep(constants.minTetherDiameter());
+        tetherDiameterSlider.setTitle(TETHER_DIAMETER_TITLE);
+        final TextBox tetherDiameterTextBox = new TextBox();
+        tetherDiameterTextBox.setEnabled(false);
+        tetherDiameterTextBox.setWidth(textBoxWidth);
         tetherDiameterSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
                 tetherDiameterTextBox.setText(String.valueOf(tetherDiameterSlider.getValue() + _KM));
-                testTether.setDiameter(tetherDiameterSlider.getValue());
+                tetherSystemModel.getTether().setDiameter(tetherDiameterSlider.getValue());
             }
         });
         HorizontalPanel tetherDiameterPanel = new HorizontalPanel();
         tetherDiameterPanel.setSpacing(spacingAttr);
+        Label tetherDiameterLabel = new Label(TETHER_DIAMETER_TITLE);
+        tetherDiameterLabel.setPixelSize(labelWidth, labelHeight);
+        Label tetherDiameterMinLabel = new Label();
+        tetherDiameterMinLabel.setWidth(rangeLabelWidth);
+        Label tetherDiameterMaxLabel = new Label();
+        tetherDiameterMaxLabel.setWidth(rangeLabelWidth);
         tetherDiameterPanel.add(tetherDiameterLabel);
         tetherDiameterMinLabel.setText(String.valueOf(tetherDiameterSlider.getMin()));
         tetherDiameterPanel.add(tetherDiameterMinLabel);
@@ -202,24 +209,108 @@ public class ModelParameterCtrlPresenter extends Composite {
         tetherDiameterPanel.add(tetherDiameterTextBox);
         tetherMassTextBox.setText(String.valueOf(tetherDiameterSlider.getValue() + _KM));
         dynamicParametersCtrlPanel.add(tetherDiameterPanel);
+
+        final Slider deflectionAngleSlider = new Slider();
+        deflectionAngleSlider.setPixelSize(sliderWidth, sliderHeight);
+        deflectionAngleSlider.setTitle(DEFLECTION_ANGLE_TITLE);
+        deflectionAngleSlider.setMin(constants.minDeflectionAngle());
+        deflectionAngleSlider.setMax(constants.maxDeflectionAngle());
+        //todo
+        //deflectionAngleSlider.setValue(tetherSystemModel.getTether().getD);
+        deflectionAngleSlider.setStep(constants.minDeflectionAngle());
+        final TextBox deflectionAngleTextBox = new TextBox();
+        deflectionAngleTextBox.setEnabled(false);
+        deflectionAngleTextBox.setWidth(textBoxWidth);
+        deflectionAngleSlider.addChangeHandler(new ChangeHandler() {
+            @Override
+            public void onChange(ChangeEvent event) {
+                deflectionAngleTextBox.setText(String.valueOf(deflectionAngleSlider.getValue() + _DEG));
+                //todo
+                tetherSystemModel.getTether().setDiameter(Math.toRadians(deflectionAngleSlider.getValue()));
+            }
+        });
+        HorizontalPanel deflectionAnglePanel = new HorizontalPanel();
+        deflectionAnglePanel.setSpacing(spacingAttr);
+        Label deflectionAngleLabel = new Label(DEFLECTION_ANGLE_TITLE);
+        deflectionAngleLabel.setPixelSize(labelWidth, labelHeight);
+        Label deflectionAngleMinLabel = new Label();
+        deflectionAngleMinLabel.setWidth(rangeLabelWidth);
+        Label deflectionAngleMaxLabel = new Label();
+        deflectionAngleMaxLabel.setWidth(rangeLabelWidth);
+        deflectionAnglePanel.add(deflectionAngleLabel);
+        deflectionAngleMinLabel.setText(String.valueOf(deflectionAngleSlider.getMin()));
+        deflectionAnglePanel.add(deflectionAngleMinLabel);
+        deflectionAnglePanel.add(deflectionAngleSlider);
+        deflectionAngleMaxLabel.setText(String.valueOf(deflectionAngleSlider.getMax()));
+        deflectionAnglePanel.add(deflectionAngleMaxLabel);
+        deflectionAngleTextBox.setText(String.valueOf(deflectionAngleSlider.getValue() + _DEG));
+        deflectionAnglePanel.add(deflectionAngleTextBox);
+        dynamicParametersCtrlPanel.add(deflectionAnglePanel);
+
+        final Slider electricitySlider = new Slider();
+        electricitySlider.setPixelSize(sliderWidth, sliderHeight);
+        electricitySlider.setTitle(ELECTRICITY_TITLE);
+        electricitySlider.setMin(constants.minElectricity());
+        electricitySlider.setMax(constants.maxElectricity());
+        //todo
+        //electricitySlider.setValue(0.1);
+        electricitySlider.setStep(constants.minElectricity());
+        final TextBox electricityTextBox = new TextBox();
+        electricityTextBox.setEnabled(false);
+        electricityTextBox.setWidth(textBoxWidth);
+        electricitySlider.addChangeHandler(new ChangeHandler() {
+            @Override
+            public void onChange(ChangeEvent event) {
+                electricityTextBox.setText(String.valueOf(electricitySlider.getValue()));
+                //todo
+            }
+        });
+        HorizontalPanel electricityPanel = new HorizontalPanel();
+        electricityPanel.setSpacing(spacingAttr);
+        Label electricityLabel = new Label(ELECTRICITY_TITLE);
+        electricityLabel.setPixelSize(labelWidth, labelHeight);
+        Label electricityMinLabel = new Label();
+        electricityMinLabel.setWidth(rangeLabelWidth);
+        Label electricityMaxLabel = new Label();
+        electricityMaxLabel.setWidth(rangeLabelWidth);
+        electricityPanel.add(electricityLabel);
+        electricityMinLabel.setText(String.valueOf(electricitySlider.getMin()));
+        electricityPanel.add(electricityMinLabel);
+        electricityPanel.add(electricitySlider);
+        electricityMaxLabel.setText(String.valueOf(electricitySlider.getMax()));
+        electricityPanel.add(electricityMaxLabel);
+        electricityTextBox.setText(String.valueOf(electricitySlider.getValue()));
+        electricityPanel.add(electricityTextBox);
+        dynamicParametersCtrlPanel.add(electricityPanel);
     }
 
     private void initTetherSystemModelParamsPanel() {
-        HTML contentHeader = new HTML("<div class=\"page-title\"><h3 class=" + UIConsts.BREADCRUMB_HEADER_STYLE_NAME + ">" + "Параметры тросовой системы" + "</h1></div");
-        dynamicParametersCtrlPanel.add(contentHeader);
+        dynamicParametersCtrlPanel.add(createHeaderBlock(TETHER_SYSTEM_PARAMS_HEADER_TITLE));
 
-        mainSatelliteMassSlider.setMin(2.0);
-        mainSatelliteMassSlider.setMax(10.0);
-        mainSatelliteMassSlider.setValue(6.0);
-        mainSatelliteMassSlider.setTitle("Масса космического аппарата");
+        final Slider mainSatelliteMassSlider = new Slider();
+        mainSatelliteMassSlider.setPixelSize(sliderWidth, sliderHeight);
+        mainSatelliteMassSlider.setMin(constants.minSatelliteMass());
+        mainSatelliteMassSlider.setMax(constants.maxSatelliteMass());
+        mainSatelliteMassSlider.setValue(tetherSystemModel.getMainSatelliteMass());
+        mainSatelliteMassSlider.setTitle(MAIN_SATELLITE_MASS_TITLE);
+        final TextBox mainSatelliteMassTextBox = new TextBox();
+        mainSatelliteMassTextBox.setEnabled(false);
+        mainSatelliteMassTextBox.setWidth(textBoxWidth);
         mainSatelliteMassSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
                 mainSatelliteMassTextBox.setText(String.valueOf(mainSatelliteMassSlider.getValue() + _KG));
+                tetherSystemModel.setMainSatelliteMass(mainSatelliteMassSlider.getValue());
             }
         });
         HorizontalPanel mainSatelliteMassPanel = new HorizontalPanel();
         mainSatelliteMassPanel.setSpacing(spacingAttr);
+        Label mainSatelliteMassLabel = new Label(MAIN_SATELLITE_MASS_TITLE);
+        mainSatelliteMassLabel.setPixelSize(labelWidth, labelHeight);
+        Label mainSatelliteMinMassLabel = new Label();
+        mainSatelliteMinMassLabel.setWidth(rangeLabelWidth);
+        Label mainSatelliteMaxMassLabel = new Label();
+        mainSatelliteMaxMassLabel.setWidth(rangeLabelWidth);
         mainSatelliteMassPanel.add(mainSatelliteMassLabel);
         mainSatelliteMinMassLabel.setText(String.valueOf(mainSatelliteMassSlider.getMin()));
         mainSatelliteMassPanel.add(mainSatelliteMinMassLabel);
@@ -230,16 +321,27 @@ public class ModelParameterCtrlPresenter extends Composite {
         mainSatelliteMassPanel.add(mainSatelliteMassTextBox);
         dynamicParametersCtrlPanel.add(mainSatelliteMassPanel);
 
-        nanosatellineMassSlider.setMin(2.0);
-        nanosatellineMassSlider.setMax(10.0);
-        nanosatellineMassSlider.setValue(2.0);
+        final Slider nanosatellineMassSlider = new Slider();
+        nanosatellineMassSlider.setPixelSize(sliderWidth, sliderHeight);
+        nanosatellineMassSlider.setMin(constants.minSatelliteMass());
+        nanosatellineMassSlider.setMax(constants.maxSatelliteMass());
+        nanosatellineMassSlider.setValue(tetherSystemModel.getNanoSatelliteMass());
+        final TextBox nanosatellineMassTextBox = new TextBox();
+        nanosatellineMassTextBox.setEnabled(false);
+        nanosatellineMassTextBox.setWidth(textBoxWidth);
         nanosatellineMassSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
                 nanosatellineMassTextBox.setText(String.valueOf(nanosatellineMassSlider.getValue() + _KG));
+                tetherSystemModel.setNanoSatelliteMass(nanosatellineMassSlider.getValue());
             }
         });
-        nanosatellineMassLabel.setTitle("Масса наноспутника");
+        Label nanosatellineMassLabel = new Label(NANOSATELLITE_MASS_TITLE);
+        nanosatellineMassLabel.setPixelSize(labelWidth, labelHeight);
+        Label nanosatellineMinMassLabel = new Label();
+        nanosatellineMinMassLabel.setWidth(rangeLabelWidth);
+        Label nanosatellineMaxMassLabel = new Label();
+        nanosatellineMinMassLabel.setWidth(rangeLabelWidth);
         HorizontalPanel nanosatelliteMassPanel = new HorizontalPanel();
         nanosatelliteMassPanel.setSpacing(spacingAttr);
         nanosatelliteMassPanel.add(nanosatellineMassLabel);
@@ -252,19 +354,31 @@ public class ModelParameterCtrlPresenter extends Composite {
         nanosatelliteMassPanel.add(nanosatellineMassTextBox);
         dynamicParametersCtrlPanel.add(nanosatelliteMassPanel);
 
-        systemHeightSlider.setTitle("Высота центра масс системы");
-        systemHeightSlider.setMin(500.0);
-        systemHeightSlider.setMax(1000.0);
-        systemHeightSlider.setValue(500.0);
+        final Slider systemHeightSlider = new Slider();
+        systemHeightSlider.setPixelSize(sliderWidth, sliderHeight);
+        systemHeightSlider.setTitle(INITIAL_SYSTEM_HEIGHT_TITLE);
+        systemHeightSlider.setMin(constants.minSystemHeight());
+        systemHeightSlider.setMax(constants.maxSystemHeight());
+        systemHeightSlider.setValue(tetherSystemModel.getInitialHeight());
+        final TextBox systemHeightTextBox = new TextBox();
+        systemHeightTextBox.setEnabled(false);
+        systemHeightTextBox.setWidth(textBoxWidth);
         systemHeightSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
                 systemHeightTextBox.setText(String.valueOf(systemHeightSlider.getValue() + _KM));
+                //todo
             }
         });
         HorizontalPanel systemHeightPanel = new HorizontalPanel();
         systemHeightPanel.setSpacing(spacingAttr);
+        Label systemHeightLabel = new Label(INITIAL_SYSTEM_HEIGHT_TITLE);
+        systemHeightLabel.setPixelSize(labelWidth, labelHeight);
         systemHeightPanel.add(systemHeightLabel);
+        Label systemHeightMinLabel = new Label();
+        systemHeightMinLabel.setWidth(rangeLabelWidth);
+        Label systemHeightMaxLabel = new Label();
+        systemHeightMaxLabel.setWidth(rangeLabelWidth);
         systemHeightMinLabel.setText(String.valueOf(systemHeightSlider.getMin()));
         systemHeightPanel.add(systemHeightMinLabel);
         systemHeightPanel.add(systemHeightSlider);
@@ -273,40 +387,63 @@ public class ModelParameterCtrlPresenter extends Composite {
         systemHeightTextBox.setText(String.valueOf(systemHeightSlider.getValue() + _KM));
         systemHeightPanel.add(systemHeightTextBox);
         dynamicParametersCtrlPanel.add(systemHeightPanel);
+
+        final Slider eccentricitySlider = new Slider();
+        eccentricitySlider.setPixelSize(sliderWidth, sliderHeight);
+        eccentricitySlider.setTitle(ECCENTRICITY_TITLE);
+        eccentricitySlider.setMin(constants.minEccentricity());
+        eccentricitySlider.setMax(constants.maxEccentricity());
+        eccentricitySlider.setValue(tetherSystemModel.getInitialEccentricity());
+        eccentricitySlider.setStep(constants.minEccentricity());
+        final TextBox eccentricityTextBox = new TextBox();
+        eccentricityTextBox.setEnabled(false);
+        eccentricityTextBox.setWidth(textBoxWidth);
+        eccentricitySlider.addChangeHandler(new ChangeHandler() {
+            @Override
+            public void onChange(ChangeEvent event) {
+                eccentricityTextBox.setText(String.valueOf(eccentricitySlider.getValue()));
+                //todo
+            }
+        });
+        HorizontalPanel eccentricityPanel = new HorizontalPanel();
+        eccentricityPanel.setSpacing(spacingAttr);
+        Label eccentricityLabel = new Label(ECCENTRICITY_TITLE);
+        eccentricityLabel.setPixelSize(labelWidth, labelHeight);
+        Label eccentricityMinLabel = new Label();
+        eccentricityMinLabel.setWidth(rangeLabelWidth);
+        Label eccentricityMaxLabel = new Label();
+        eccentricityMaxLabel.setWidth(rangeLabelWidth);
+        eccentricityPanel.add(eccentricityLabel);
+        eccentricityMinLabel.setText(String.valueOf(eccentricitySlider.getMin()));
+        eccentricityPanel.add(eccentricityMinLabel);
+        eccentricityPanel.add(eccentricitySlider);
+        eccentricityMaxLabel.setText(String.valueOf(eccentricitySlider.getMax()));
+        eccentricityPanel.add(eccentricityMaxLabel);
+        eccentricityTextBox.setText(String.valueOf(eccentricitySlider.getValue()));
+        eccentricityPanel.add(eccentricityTextBox);
+        dynamicParametersCtrlPanel.add(eccentricityPanel);
     }
 
     private void printSystemPositionStaticParamsPanel() {
-        HTML contentHeader = new HTML("<div class=\"page-title\"><h3 class=" + UIConsts.BREADCRUMB_HEADER_STYLE_NAME + ">" + "Фиксированные параметры тросовой системы" + "</h1></div");
-        staticParametersCtrlPanel.add(contentHeader);
+        staticParametersCtrlPanel.add(createHeaderBlock(FIXED_PARAMS_HEADER_TITLE));
         VerticalPanel systemPositionStaticParamsPanel = new VerticalPanel();
         systemPositionStaticParamsPanel.setSpacing(spacingAttr);
-
-        deflectionAngleLabel.setText(UIConsts.DEFLECTION_ANGLE_TITLE);
-        deflectionAngleTextBox.setText(String.valueOf(ElectrodynamicTetherSystemModelClient.getDefaultDeflectionAngle()));
-        systemPositionStaticParamsPanel.add(deflectionAngleLabel);
-        systemPositionStaticParamsPanel.add(deflectionAngleTextBox);
-
-        initialTrueAnomalyLabel.setText(UIConsts.TRUE_ANOMALY_TITLE);
-        initialTrueAnomalyTextBox.setText(String.valueOf(ElectrodynamicTetherSystemModelClient.getDefaultInitialTrueAnomaly()));
-        systemPositionStaticParamsPanel.add(initialTrueAnomalyLabel);
-        systemPositionStaticParamsPanel.add(initialTrueAnomalyTextBox);
-
-        initialEccentricityLabel.setText(UIConsts.ECCENTRICITY_TITLE);
-        initialEccentricityTextBox.setText(String.valueOf(ElectrodynamicTetherSystemModelClient.getDefaultInitialEccentricity()));
-        systemPositionStaticParamsPanel.add(initialEccentricityLabel);
-        systemPositionStaticParamsPanel.add(initialEccentricityTextBox);
 
         staticParametersCtrlPanel.add(systemPositionStaticParamsPanel);
     }
 
     private void initCalculationParamsPanel() {
-        HTML contentHeader = new HTML("<div class=\"page-title\"><h3 class=" + UIConsts.BREADCRUMB_HEADER_STYLE_NAME + ">" + "Параметры метода численного интегрирования" + "</h1></div");
-        dynamicParametersCtrlPanel.add(contentHeader);
+        dynamicParametersCtrlPanel.add(createHeaderBlock(INTEGRATION_PARAMS_HEADER_TITLE));
 
-        calculationStepSlider.setMin(5.0);
-        calculationStepSlider.setMax(10.0);
-        calculationStepSlider.setValue(integrationStep);
-        calculationStepSlider.setTitle("Шаг интегрирования");
+        final Slider calculationStepSlider = new Slider();
+        calculationStepSlider.setPixelSize(sliderWidth, sliderHeight);
+        calculationStepSlider.setMin(constants.minCalculationStep());
+        calculationStepSlider.setMax(constants.maxCalculationStep());
+        calculationStepSlider.setValue(tetherSystemModel.getIntegrationStep());
+        calculationStepSlider.setTitle(INTEGRATION_STEP_TITLE);
+        final TextBox calculationStepSliderTextBox = new TextBox();
+        calculationStepSliderTextBox.setEnabled(false);
+        calculationStepSliderTextBox.setWidth(textBoxWidth);
         calculationStepSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
@@ -316,6 +453,12 @@ public class ModelParameterCtrlPresenter extends Composite {
         });
         HorizontalPanel calculationStepPanel = new HorizontalPanel();
         calculationStepPanel.setSpacing(spacingAttr);
+        Label calculationStepSliderLabel = new Label(INTEGRATION_STEP_TITLE);
+        calculationStepSliderLabel.setPixelSize(labelWidth, labelHeight);
+        Label calculationStepSliderMinLabel = new Label();
+        calculationStepSliderMinLabel.setWidth(rangeLabelWidth);
+        Label calculationStepSliderMaxLabel = new Label();
+        calculationStepSliderMaxLabel.setWidth(rangeLabelWidth);
         calculationStepPanel.add(calculationStepSliderLabel);
         calculationStepSliderMinLabel.setText(String.valueOf(calculationStepSlider.getMin()));
         calculationStepPanel.add(calculationStepSliderMinLabel);
@@ -326,9 +469,14 @@ public class ModelParameterCtrlPresenter extends Composite {
         calculationStepPanel.add(calculationStepSliderTextBox);
         dynamicParametersCtrlPanel.add(calculationStepPanel);
 
-        maxCalculationStepSlider.setMin(5.0);
-        maxCalculationStepSlider.setMax(10.0);
-        maxCalculationStepSlider.setValue(integrationMaxStep);
+        final Slider maxCalculationStepSlider = new Slider();
+        maxCalculationStepSlider.setPixelSize(sliderWidth, sliderHeight);
+        maxCalculationStepSlider.setMin(constants.minCalculationMaxStep());
+        maxCalculationStepSlider.setMax(constants.maxCalculationMaxStep());
+        maxCalculationStepSlider.setValue(tetherSystemModel.getIntegrationMaxStep());
+        final TextBox maxCalculationStepTextBox = new TextBox();
+        maxCalculationStepTextBox.setEnabled(false);
+        maxCalculationStepTextBox.setWidth(textBoxWidth);
         maxCalculationStepSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
@@ -336,7 +484,12 @@ public class ModelParameterCtrlPresenter extends Composite {
                 tetherSystemModel.setIntegrationMaxStep(maxCalculationStepSlider.getValue());
             }
         });
-        maxCalculationStepLabel.setTitle("Максимальный шаг интегрирования");
+        Label maxCalculationStepLabel = new Label(INTEGRATION_MAX_STEP_TITLE);
+        maxCalculationStepLabel.setPixelSize(labelWidth, labelHeight);
+        Label maxCalculationStepMinRangeLabel = new Label();
+        maxCalculationStepMinRangeLabel.setWidth(rangeLabelWidth);
+        Label maxCalculationStepMaxRangeLabel = new Label();
+        maxCalculationStepMaxRangeLabel.setWidth(rangeLabelWidth);
         HorizontalPanel maxCalculationStepPanel = new HorizontalPanel();
         maxCalculationStepPanel.setSpacing(spacingAttr);
         maxCalculationStepPanel.add(maxCalculationStepLabel);
@@ -349,10 +502,15 @@ public class ModelParameterCtrlPresenter extends Composite {
         maxCalculationStepPanel.add(maxCalculationStepTextBox);
         dynamicParametersCtrlPanel.add(maxCalculationStepPanel);
 
-        maxIterationSlider.setTitle("Максимальное число итераций");
-        maxIterationSlider.setMin(50.0);
-        maxIterationSlider.setMax(maxIterations);
+        final Slider maxIterationSlider = new Slider();
+        maxIterationSlider.setPixelSize(sliderWidth, sliderHeight);
+        maxIterationSlider.setTitle(INTEGRATION_MAX_ITERATIONS_TITLE);
+        maxIterationSlider.setMin(constants.minIterations());
+        maxIterationSlider.setMax(constants.maxIterations());
         maxIterationSlider.setValue(maxIterations);
+        final TextBox maxIterationTextBox = new TextBox();
+        maxIterationTextBox.setEnabled(false);
+        maxIterationTextBox.setWidth(textBoxWidth);
         maxIterationSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
@@ -362,6 +520,12 @@ public class ModelParameterCtrlPresenter extends Composite {
         });
         HorizontalPanel maxIterationPanel = new HorizontalPanel();
         maxIterationPanel.setSpacing(spacingAttr);
+        Label maxIterationLabel = new Label(INTEGRATION_MAX_ITERATIONS_TITLE);
+        maxIterationLabel.setPixelSize(labelWidth, labelHeight);
+        Label maxIterationMinLabel = new Label();
+        maxIterationMinLabel.setWidth(rangeLabelWidth);
+        Label maxIterationMaxLabel = new Label();
+        maxIterationMaxLabel.setWidth(rangeLabelWidth);
         maxIterationPanel.add(maxIterationLabel);
         maxIterationMinLabel.setText(String.valueOf(maxIterationSlider.getMin()));
         maxIterationPanel.add(maxIterationMinLabel);
@@ -372,10 +536,15 @@ public class ModelParameterCtrlPresenter extends Composite {
         maxIterationPanel.add(maxIterationTextBox);
         dynamicParametersCtrlPanel.add(maxIterationPanel);
 
-        calcAccuracySlider.setTitle("Точность вычислений");
-        calcAccuracySlider.setMin(0.001);
-        calcAccuracySlider.setMax(0.1);
+        final Slider calcAccuracySlider = new Slider();
+        calcAccuracySlider.setPixelSize(sliderWidth, sliderHeight);
+        calcAccuracySlider.setTitle(INTEGRATION_ACCURACY_TITLE);
+        calcAccuracySlider.setMin(constants.minIntegrationAccuracy());
+        calcAccuracySlider.setMax(constants.maxIntegrationAccuracy());
         calcAccuracySlider.setValue(integrationAccuracy);
+        final TextBox calcAccuracyTextBox = new TextBox();
+        calcAccuracyTextBox.setEnabled(false);
+        calcAccuracyTextBox.setWidth(textBoxWidth);
         calcAccuracySlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
@@ -385,6 +554,12 @@ public class ModelParameterCtrlPresenter extends Composite {
         });
         HorizontalPanel calcAccuracyPanel = new HorizontalPanel();
         calcAccuracyPanel.setSpacing(spacingAttr);
+        Label calcAccuracyLabel = new Label(INTEGRATION_ACCURACY_TITLE);
+        calcAccuracyLabel.setPixelSize(labelWidth, labelHeight);
+        Label calcAccuracyMinLabel = new Label();
+        calcAccuracyMinLabel.setWidth(rangeLabelWidth);
+        Label calcAccuracyMaxLabel = new Label();
+        calcAccuracyMaxLabel.setWidth(rangeLabelWidth);
         calcAccuracyPanel.add(calcAccuracyLabel);
         calcAccuracyMinLabel.setText(String.valueOf(calcAccuracySlider.getMin()));
         calcAccuracyPanel.add(calcAccuracyMinLabel);
@@ -394,148 +569,6 @@ public class ModelParameterCtrlPresenter extends Composite {
         calcAccuracyTextBox.setText(String.valueOf(calcAccuracySlider.getValue()));
         calcAccuracyPanel.add(calcAccuracyTextBox);
         dynamicParametersCtrlPanel.add(calcAccuracyPanel);
-    }
-
-
-    private void initLabels() {
-        tetherMassLabel = new Label("Масса троса");
-        tetherLengthLabel = new Label("Длина троса");
-        tetherDiameterLabel = new Label("Диаметр троса");
-        tetherMassMinLabel = new Label();
-        tetherMassMaxLabel = new Label();
-        tetherLengthMinLabel = new Label();
-        tetherLengthMaxLabel = new Label();
-        tetherDiameterMinLabel = new Label();
-        tetherDiameterMaxLabel = new Label();
-
-        mainSatelliteMassLabel = new Label("Масса космического аппарата");
-        nanosatellineMassLabel = new Label("Масса наноспутника");
-        mainSatelliteMinMassLabel = new Label();
-        mainSatelliteMaxMassLabel = new Label();
-        nanosatellineMinMassLabel = new Label();
-        nanosatellineMaxMassLabel = new Label();
-        systemHeightLabel = new Label("Высота центра масс системы");
-        systemHeightMinLabel = new Label();
-        systemHeightMaxLabel = new Label();
-
-        calculationStepSliderLabel = new Label("Начальный шаг интегрирования, c");
-        maxCalculationStepLabel = new Label("Максимальный шаг интегрирования, c");
-        maxIterationLabel = new Label("Максимальное число итераций");
-        calcAccuracyLabel = new Label("Погрешность интегрирования");
-        calculationStepSliderMinLabel = new Label();
-        calculationStepSliderMaxLabel = new Label();
-        maxCalculationStepMinRangeLabel = new Label();
-        maxCalculationStepMaxRangeLabel = new Label();
-        maxIterationMinLabel = new Label();
-        maxIterationMaxLabel = new Label();
-        calcAccuracyMinLabel = new Label();
-        calcAccuracyMaxLabel = new Label();
-        deflectionAngleLabel = new Label("Угол отклонения троса от вертикали");
-        initialTrueAnomalyLabel = new Label("Истинная аномалия Земли");
-        initialEccentricityLabel = new Label("Эксцентриситет");
-
-        tetherMassMinLabel.setWidth(rangeLabelWidth);
-        tetherMassMaxLabel.setWidth(rangeLabelWidth);
-        tetherLengthMinLabel.setWidth(rangeLabelWidth);
-        tetherLengthMaxLabel.setWidth(rangeLabelWidth);
-        tetherDiameterMinLabel.setWidth(rangeLabelWidth);
-        tetherDiameterMaxLabel.setWidth(rangeLabelWidth);
-        calculationStepSliderMinLabel.setWidth(rangeLabelWidth);
-        calculationStepSliderMaxLabel.setWidth(rangeLabelWidth);
-        maxCalculationStepMinRangeLabel.setWidth(rangeLabelWidth);
-        maxCalculationStepMaxRangeLabel.setWidth(rangeLabelWidth);
-        maxIterationMinLabel.setWidth(rangeLabelWidth);
-        maxIterationMaxLabel.setWidth(rangeLabelWidth);
-        calcAccuracyMinLabel.setWidth(rangeLabelWidth);
-        calcAccuracyMaxLabel.setWidth(rangeLabelWidth);
-        mainSatelliteMinMassLabel.setWidth(rangeLabelWidth);
-        mainSatelliteMaxMassLabel.setWidth(rangeLabelWidth);
-        nanosatellineMinMassLabel.setWidth(rangeLabelWidth);
-        nanosatellineMaxMassLabel.setWidth(rangeLabelWidth);
-        systemHeightMinLabel.setWidth(rangeLabelWidth);
-        systemHeightMaxLabel.setWidth(rangeLabelWidth);
-
-        tetherMassLabel.setPixelSize(labelWidth, labelHeight);
-        tetherLengthLabel.setPixelSize(labelWidth, labelHeight);
-        tetherDiameterLabel.setPixelSize(labelWidth, labelHeight);
-        systemHeightLabel.setPixelSize(labelWidth, labelHeight);
-        mainSatelliteMassLabel.setPixelSize(labelWidth, labelHeight);
-        nanosatellineMassLabel.setPixelSize(labelWidth, labelHeight);
-        calculationStepSliderLabel.setPixelSize(labelWidth, labelHeight);
-        maxCalculationStepLabel.setPixelSize(labelWidth, labelHeight);
-        maxIterationLabel.setPixelSize(labelWidth, labelHeight);
-        calcAccuracyLabel.setPixelSize(labelWidth, labelHeight);
-        deflectionAngleLabel.setPixelSize(labelWidth, labelHeight);
-        initialTrueAnomalyLabel.setPixelSize(labelWidth, labelHeight);
-        initialEccentricityLabel.setPixelSize(labelWidth, labelHeight);
-    }
-
-    private void initTextBoxes() {
-        tetherMassTextBox = new TextBox();
-        tetherLengthTextBox = new TextBox();
-        tetherDiameterTextBox = new TextBox();
-        mainSatelliteMassTextBox = new TextBox();
-        nanosatellineMassTextBox = new TextBox();
-        systemHeightTextBox = new TextBox();
-        calculationStepSliderTextBox = new TextBox();
-        maxCalculationStepTextBox = new TextBox();
-        maxIterationTextBox = new TextBox();
-        calcAccuracyTextBox = new TextBox();
-        deflectionAngleTextBox = new TextBox();
-        initialTrueAnomalyTextBox = new TextBox();
-        initialEccentricityTextBox = new TextBox();
-
-        tetherMassTextBox.setEnabled(false);
-        tetherLengthTextBox.setEnabled(false);
-        tetherDiameterTextBox.setEnabled(false);
-        mainSatelliteMassTextBox.setEnabled(false);
-        nanosatellineMassTextBox.setEnabled(false);
-        systemHeightTextBox.setEnabled(false);
-        calculationStepSliderTextBox.setEnabled(false);
-        maxCalculationStepTextBox.setEnabled(false);
-        maxIterationTextBox.setEnabled(false);
-        calcAccuracyTextBox.setEnabled(false);
-        deflectionAngleTextBox.setEnabled(false);
-        initialTrueAnomalyTextBox.setEnabled(false);
-        initialEccentricityTextBox.setEnabled(false);
-
-        tetherMassTextBox.setWidth(textBoxWidth);
-        tetherLengthTextBox.setWidth(textBoxWidth);
-        tetherDiameterTextBox.setWidth(textBoxWidth);
-        mainSatelliteMassTextBox.setWidth(textBoxWidth);
-        nanosatellineMassTextBox.setWidth(textBoxWidth);
-        systemHeightTextBox.setWidth(textBoxWidth);
-        calculationStepSliderTextBox.setWidth(textBoxWidth);
-        maxCalculationStepTextBox.setWidth(textBoxWidth);
-        maxIterationTextBox.setWidth(textBoxWidth);
-        calcAccuracyTextBox.setWidth(textBoxWidth);
-        deflectionAngleTextBox.setWidth(textBoxWidth);
-        initialTrueAnomalyTextBox.setWidth(textBoxWidth);
-        initialEccentricityTextBox.setWidth(textBoxWidth);
-    }
-
-    private void initSliders() {
-        tetherMassSlider = new Slider();
-        tetherLengthSlider = new Slider();
-        tetherDiameterSlider = new Slider();
-        mainSatelliteMassSlider = new Slider();
-        nanosatellineMassSlider = new Slider();
-        systemHeightSlider = new Slider();
-        calculationStepSlider = new Slider();
-        maxCalculationStepSlider = new Slider();
-        maxIterationSlider = new Slider();
-        calcAccuracySlider = new Slider();
-
-        mainSatelliteMassSlider.setPixelSize(sliderWidth, sliderHeight);
-        nanosatellineMassSlider.setPixelSize(sliderWidth, sliderHeight);
-        systemHeightSlider.setPixelSize(sliderWidth, sliderHeight);
-        tetherMassSlider.setPixelSize(sliderWidth, sliderHeight);
-        tetherLengthSlider.setPixelSize(sliderWidth, sliderHeight);
-        tetherDiameterSlider.setPixelSize(sliderWidth, sliderHeight);
-        calculationStepSlider.setPixelSize(sliderWidth, sliderHeight);
-        maxCalculationStepSlider.setPixelSize(sliderWidth, sliderHeight);
-        maxIterationSlider.setPixelSize(sliderWidth, sliderHeight);
-        calcAccuracySlider.setPixelSize(sliderWidth, sliderHeight);
     }
 
     public void clearVerticalPanel() {

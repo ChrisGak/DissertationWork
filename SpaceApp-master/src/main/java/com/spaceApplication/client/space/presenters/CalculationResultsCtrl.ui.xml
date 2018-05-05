@@ -1,122 +1,91 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:gwt='urn:import:com.google.gwt.user.client.ui'>
     <gwt:HTMLPanel>
-        <div class="page-content">
-            <div class="page-header hidden"></div>
-            <div class="page-inner">
-                <div class="page-title">
-                    <h3 class="breadcrumb-header">Результаты моделирования</h3>
+        <div class="page-inner">
+            <div class="page-title">
+                <h3 class="breadcrumb-header">Результаты моделирования</h3>
+            </div>
+            <div id="main-wrapper">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white stats-widget">
+                            <gwt:HTMLPanel ui:field="forceValue" styleName="panel-body">
+                            </gwt:HTMLPanel>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white stats-widget">
+                            <gwt:HTMLPanel ui:field="momentValue" styleName="panel-body">
+                            </gwt:HTMLPanel>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white stats-widget">
+                            <gwt:HTMLPanel ui:field="transversalAccelerationValue" styleName="panel-body">
+                            </gwt:HTMLPanel>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white stats-widget">
+                            <gwt:HTMLPanel ui:field="radialAccelerationValue" styleName="panel-body">
+                            </gwt:HTMLPanel>
+                        </div>
+                    </div>
                 </div>
-                <div id="main-wrapper">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="panel panel-white stats-widget">
-                                <div class="panel-body">
-                                    <div class="pull-left">
-                                        <span class="stats-number">$781,876</span>
-                                        <p class="stats-info">Total Income</p>
-                                    </div>
-                                    <div class="pull-right">
-                                        <i class="icon-arrow_upward stats-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="panel panel-white stats-widget">
-                                <div class="panel-body">
-                                    <div class="pull-left">
-                                        <span class="stats-number">578,100</span>
-                                        <p class="stats-info">Downloads</p>
-                                    </div>
-                                    <div class="pull-right">
-                                        <i class="icon-arrow_downward stats-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="panel panel-white stats-widget">
-                                <div class="panel-body">
-                                    <div class="pull-left">
-                                        <span class="stats-number">+23,356</span>
-                                        <p class="stats-info">New Registrations</p>
-                                    </div>
-                                    <div class="pull-right">
-                                        <i class="icon-arrow_upward stats-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="panel panel-white stats-widget">
-                                <div class="panel-body">
-                                    <div class="pull-left">
-                                        <span class="stats-number">58%</span>
-                                        <p class="stats-info">Finished Tasks</p>
-                                    </div>
-                                    <div class="pull-right">
-                                        <i class="icon-arrow_upward stats-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-8 col-md-12">
-                            <div class="panel panel-white">
-                                <div class="panel-body">
-                                    <gwt:HTMLPanel ui:field="systemHeightChart" styleName="custom_chart">
-                                    </gwt:HTMLPanel>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="panel panel-white">
-                                <div class="panel-body">
-                                    <gwt:HTMLPanel ui:field="semimajorAxisChart" styleName="custom_chart">
-                                    </gwt:HTMLPanel>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-12">
-                            <div class="panel panel-white">
-                                <gwt:HTMLPanel ui:field="angleSpeedChart" styleName="custom_chart">
-                                </gwt:HTMLPanel>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-md-12">
-                            <div class="panel panel-white">
-                                <gwt:HTMLPanel ui:field="trajectoryChart" styleName="panel-body">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-body">
+                                <gwt:HTMLPanel ui:field="systemHeightChart" styleName="custom_chart">
                                 </gwt:HTMLPanel>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="panel panel-white">
-                                <div class="panel-body">
-                                    <gwt:HTMLPanel ui:field="deflectionAngleChart" styleName="custom_chart">
-                                    </gwt:HTMLPanel>
-                                </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-body">
+                                <gwt:HTMLPanel ui:field="semimajorAxisChart" styleName="custom_chart">
+                                </gwt:HTMLPanel>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="panel panel-white">
-                                <div class="panel-body">
-                                    <gwt:HTMLPanel ui:field="trueAnomalyChart" styleName="custom_chart">
-                                    </gwt:HTMLPanel>
-                                </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-5 col-md-12">
+                        <div class="panel panel-white">
+                            <gwt:HTMLPanel ui:field="angleSpeedChart" styleName="custom_chart">
+                            </gwt:HTMLPanel>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-12">
+                        <div class="panel panel-white">
+                            <gwt:HTMLPanel ui:field="trajectoryChart" styleName="panel-body">
+                            </gwt:HTMLPanel>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="panel panel-white">
+                            <div class="panel-body">
+                                <gwt:HTMLPanel ui:field="deflectionAngleChart" styleName="custom_chart">
+                                </gwt:HTMLPanel>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="panel panel-white">
-                                <div class="panel-body">
-                                    <gwt:HTMLPanel ui:field="eccentricityChart" styleName="custom_chart">
-                                    </gwt:HTMLPanel>
-                                </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="panel panel-white">
+                            <div class="panel-body">
+                                <gwt:HTMLPanel ui:field="trueAnomalyChart" styleName="custom_chart">
+                                </gwt:HTMLPanel>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-body">
+                                <gwt:HTMLPanel ui:field="eccentricityChart" styleName="custom_chart">
+                                </gwt:HTMLPanel>
                             </div>
                         </div>
                     </div>

@@ -18,6 +18,14 @@ import com.spaceApplication.client.space.ui.components.UIConsts;
 public class CalculationResultsCtrl extends Composite {
     private static GraphResultUiBinder ourUiBinder = GWT.create(GraphResultUiBinder.class);
     @UiField
+    HTMLPanel forceValue;
+    @UiField
+    HTMLPanel momentValue;
+    @UiField
+    HTMLPanel transversalAccelerationValue;
+    @UiField
+    HTMLPanel radialAccelerationValue;
+    @UiField
     HTMLPanel systemHeightChart;
     @UiField
     HTMLPanel semimajorAxisChart;
@@ -42,15 +50,20 @@ public class CalculationResultsCtrl extends Composite {
     }
 
     private void initWidget() {
-        systemHeightChart.add(RemoteCalculationControl.createSystemHeightChart(result, tetherSystemModel));
-        semimajorAxisChart.add(RemoteCalculationControl.createSemimajorAxisChart(result, tetherSystemModel));
-        trueAnomalyChart.add(RemoteCalculationControl.createTrueAnomalyChart(result, tetherSystemModel));
-        eccentricityChart.add(RemoteCalculationControl.createEccentricityChart(result, tetherSystemModel));
-        deflectionAngleChart.add(RemoteCalculationControl.createDeflectionAngleChart(result, tetherSystemModel));
-        angleSpeedChart.add(RemoteCalculationControl.createAngularVelocityChart(result, tetherSystemModel));
+        forceValue.add(RemoteCalculationControl.createForceValueWidget(result));
+        momentValue.add(RemoteCalculationControl.createMomentValueWidget(result));
+        transversalAccelerationValue.add(RemoteCalculationControl.createTransversalAccelerationValueWidget(result));
+        radialAccelerationValue.add(RemoteCalculationControl.createRadialAccelerationValueWidget(result));
+
+        systemHeightChart.add(RemoteCalculationControl.createSystemHeightChart(result));
+        semimajorAxisChart.add(RemoteCalculationControl.createSemimajorAxisChart(result));
+        trueAnomalyChart.add(RemoteCalculationControl.createTrueAnomalyChart(result));
+        eccentricityChart.add(RemoteCalculationControl.createEccentricityChart(result));
+        deflectionAngleChart.add(RemoteCalculationControl.createDeflectionAngleChart(result));
+        angleSpeedChart.add(RemoteCalculationControl.createAngularVelocityChart(result));
         trajectoryChart.add(RemoteCalculationControl.createBigChart(result, tetherSystemModel));
 
-        //SpaceAppEntryPoint.getInstance().getApplicationContainer().getPageSidebarContent().enableExportResultsAnchor(UIConsts.fileName);
+        SpaceAppEntryPoint.getInstance().getApplicationContainer().getPageSidebarContent().enableExportResultsAnchor(UIConsts.REPORT_RESULT_HREF);
     }
 
     interface GraphResultUiBinder extends UiBinder<Widget, CalculationResultsCtrl> {

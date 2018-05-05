@@ -3,16 +3,18 @@ package com.spaceApplication.client.space.model;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 /**
- * Created by Chris on 02.04.2018.
+ * Created by Chris
  */
 public class BareElectrodynamicTetherClient implements IsSerializable {
     private double mass;
-    /**
-     * Длина троса,
-     * плечо первого и второго тел
-     */
     private double length;
     private double diameter;
+    /**
+     * Угол отклонения троса от вертикали
+     * tetta
+     */
+    private double deflectionAngleRadians;
+    private double electricity;
 
     public BareElectrodynamicTetherClient() {
     }
@@ -25,10 +27,12 @@ public class BareElectrodynamicTetherClient implements IsSerializable {
         this.diameter = diameter;
     }
 
-    public BareElectrodynamicTetherClient(double mass, double length, double diameter) {
+    public BareElectrodynamicTetherClient(double mass, double length, double diameter, double deflectionAngle, double electricity) {
         this.mass = mass;
         this.length = length;
         this.diameter = diameter;
+        this.deflectionAngleRadians =  Math.toRadians(deflectionAngle);
+        this.electricity = electricity;
     }
 
     public double getMass() {
@@ -47,47 +51,35 @@ public class BareElectrodynamicTetherClient implements IsSerializable {
         this.length = length;
     }
 
+    public double getLengthKM() {
+        return length / 1000.0;
+    }
+
     public double getDensity() {
         return mass / length;
     }
 
     public double getCrossSectionalArea() {
-        return Math.PI * diameter * diameter / 4;
+        return Math.PI * diameter * diameter / 4.0;
     }
 
-    /**
-     * Плечо силы 1
-     *
-     * @param nanoSatelliteMass
-     * @param mainSatelliteMass
-     * @return
-     */
-    public double getMomentArm1(double nanoSatelliteMass, double mainSatelliteMass) {
-        return length * mainSatelliteMass
-                / (nanoSatelliteMass + mainSatelliteMass);
+    public double getDeflectionAngleRadians() {
+        return deflectionAngleRadians;
     }
 
-    /**
-     * Плечо силы 2
-     *
-     * @param nanoSatelliteMass
-     * @param mainSatelliteMass
-     * @return
-     */
-    public double getMomentArm2(double nanoSatelliteMass, double mainSatelliteMass) {
-        return length * nanoSatelliteMass
-                / (nanoSatelliteMass + mainSatelliteMass);
+    public double getDeflectionAngleDegrees() {
+        return Math.toDegrees(deflectionAngleRadians);
     }
 
-    /**
-     * Плечо силы в точке центра масс
-     *
-     * @param nanoSatelliteMass
-     * @param mainSatelliteMass
-     * @return
-     */
-    public double getMassCenterMomentArm(double nanoSatelliteMass, double mainSatelliteMass) {
-        return (length / 2) * (mainSatelliteMass - nanoSatelliteMass)
-                / (nanoSatelliteMass + mainSatelliteMass);
+    public void setDeflectionAngleRadians(double deflectionAngleRadians) {
+        this.deflectionAngleRadians = deflectionAngleRadians;
+    }
+
+    public double getElectricity() {
+        return electricity;
+    }
+
+    public void setElectricity(double electricity) {
+        this.electricity = electricity;
     }
 }

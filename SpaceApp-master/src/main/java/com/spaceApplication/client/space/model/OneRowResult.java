@@ -1,7 +1,7 @@
 package com.spaceApplication.client.space.model;
 
 /**
- * Created by Кристина on 29.02.2016.
+ * Created by Chris
  */
 public class OneRowResult {
     private double time;

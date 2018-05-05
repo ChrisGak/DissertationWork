@@ -20,6 +20,11 @@ public class OrbitalElementsClient implements IsSerializable {
     private Vector<Double> step;
     private Vector<Double> accuracy;
     private Vector<Integer> iter;
+    private int count;
+    private double forceValue;
+    private double momentValue;
+    private double transversalAccelertionValue;
+    private double radialAccelerationValue;
 
     /**
      * Мапа векторов расчитанных значений
@@ -183,4 +188,36 @@ public class OrbitalElementsClient implements IsSerializable {
         }
         return points;
     }
-  }
+
+    public double getForceValue() {
+        return forceValue;
+    }
+
+    public void setForceValue(double forceValue) {
+        this.forceValue = forceValue;
+    }
+
+    public double getMomentValue() {
+        return momentValue;
+    }
+
+    public void setMomentValue(double momentValue) {
+        this.momentValue = momentValue;
+    }
+
+    public double getTransversalAccelertionValue() {
+        return transversalAccelertionValue;
+    }
+
+    public void setTransversalAccelertionValue(double transversalAccelertionValue) {
+        this.transversalAccelertionValue = transversalAccelertionValue;
+    }
+
+    public double getRadialAccelerationValue() {
+        return radialAccelerationValue;
+    }
+
+    public void setRadialAccelerationValue(double radialAccelerationValue) {
+        this.radialAccelerationValue = radialAccelerationValue;
+    }
+}

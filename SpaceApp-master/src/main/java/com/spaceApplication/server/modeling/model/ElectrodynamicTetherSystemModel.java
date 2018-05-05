@@ -48,31 +48,35 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      */
     private double initialEccentricity;
     /**
-     * Угол отклонения троса от вертикали
-     * tetta
-     */
-    private double tetherVerticalDeflectionAngleRadians;
-    /**
      * Истинная аномалия Земли
      */
     private double initialTrueAnomalyRadians;
-    /**
-     * Ток короткого замыкания
-     */
-    private double shortCircuitCurrent = 0.1;
     private Vector startVector;
 
     public ElectrodynamicTetherSystemModel(BareElectrodynamicTether tether, double mainSatelliteMass, double nanoSatelliteMass,
-                                           double initialHeight, double tetherVerticalDeflectionAngle, double initialTrueAnomaly, double initialEccentricity) {
+                                           double initialHeight, double initialTrueAnomaly, double initialEccentricity) {
         this.tether = tether;
         this.mainSatelliteMass = mainSatelliteMass;
         this.nanoSatelliteMass = nanoSatelliteMass;
         this.initialHeight = initialHeight;
         this.initialEccentricity = initialEccentricity;
-        setInitialPositionParameters(initialHeight);
-        this.tetherVerticalDeflectionAngleRadians = Math.toRadians(tetherVerticalDeflectionAngle);
         this.initialTrueAnomalyRadians = Math.toRadians(initialTrueAnomaly);
-        setStartVector(tetherVerticalDeflectionAngle, tetherVerticalDeflectionAngle, initialTrueAnomaly, initialEccentricity, initialSemimajorAxis);
+        setInitialPositionParameters(initialHeight);
+        //todo check this out
+        double tetherVerticalDeflectionAngleDiff = 0;
+        setStartVector(tether.getDeflectionAngleRadians(), tetherVerticalDeflectionAngleDiff, initialTrueAnomaly, initialEccentricity, initialSemimajorAxis);
+    }
+
+    public double getInitialSemimajorAxisKM() {
+        return (initialSemimajorAxis - BasicConsts.EARTH_RADIUS.getValue()) / 1000.0;
+    }
+
+    public double getInitialTrueAnomalyRadians() {
+        return initialTrueAnomalyRadians;
+    }
+
+    public double getInitialTrueAnomalyDegree() {
+        return Math.toDegrees(initialTrueAnomalyRadians);
     }
 
     public double getInitialSemimajorAxis() {
@@ -82,15 +86,16 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
     public void printInitialState() {
         System.out.println("_________________________________________");
         System.out.println("    Tether system model initial state:   ");
-        System.out.println("    tetherVerticalDeflectionAngle = " + tetherVerticalDeflectionAngleRadians);
-        System.out.println("    initialTrueAnomaly = " + initialTrueAnomalyRadians);
-        System.out.println("    initialSemimajorAxis = " + initialSemimajorAxis);
-        System.out.println("    initialEccentricity = " + initialEccentricity);
-        System.out.println("    mainSatelliteMass = " + mainSatelliteMass);
-        System.out.println("    nanoSatelliteMass = " + nanoSatelliteMass);
-        System.out.println("    tether mass = " + tether.getMass());
-        System.out.println("    tether length = " + tether.getLength());
-        System.out.println("    tether diameter = " + tether.getDiameter());
+        System.out.println("    MainSatelliteMass, kg = " + mainSatelliteMass);
+        System.out.println("    NanoSatelliteMass, kg = " + nanoSatelliteMass);
+        System.out.println("    Tether mass, kg = " + tether.getMass());
+        System.out.println("    Tether length, m = " + tether.getLength());
+        System.out.println("    Tether diameter, m = " + tether.getDiameter());
+        System.out.println("    TetherVerticalDeflectionAngle, ° = " + tether.getDeflectionAngleDegrees());
+        System.out.println("    Tether electricity, A = " + tether.getElectricity());
+        System.out.println("    InitialTrueAnomaly, ° = " + getInitialTrueAnomalyDegree());
+        System.out.println("    InitialSemimajorAxis, km = " + getInitialSemimajorAxisKM());
+        System.out.println("    InitialEccentricity = " + initialEccentricity);
         System.out.println("_____________________________");
     }
 
@@ -101,9 +106,13 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
     private void setInitialPositionParameters(double initialHeight) {
         this.R_0 = BasicConsts.EARTH_RADIUS.getValue() + initialHeight;
         this.r_pericentre = R_0;
-        this.r_apocentre = r_pericentre * (1 + initialEccentricity) / (1 - initialEccentricity);
+        this.r_apocentre = r_pericentre * (1.0 + initialEccentricity) / (1.0 - initialEccentricity);
         this.initialSemimajorAxis = (r_apocentre + r_pericentre) / 2.0;
-        this.initialOrbitalParameter = initialSemimajorAxis * (1 - Math.pow(initialEccentricity, 2));
+        setInitialPositionParameter(initialSemimajorAxis, initialEccentricity);
+    }
+
+    private void setInitialPositionParameter(double semimajorAxis, double eccentricity) {
+        this.initialOrbitalParameter = semimajorAxis * (1.0 - Math.pow(eccentricity, 2));
     }
 
     /**
@@ -114,7 +123,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * @return
      */
     public double getOrbitalParameter(double semimajorAxis, double eccentricity) {
-        double result = semimajorAxis * (1 - Math.pow(eccentricity, 2));
+        double result = semimajorAxis * (1.0 - Math.pow(eccentricity, 2));
         return result;
     }
 
@@ -131,8 +140,15 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
         return result;
     }
 
-    public double getNu(double trueAnomaly, double eccentricity) {
-        double result = 1 + eccentricity * Math.cos(trueAnomaly);
+    /**
+     * nu(ex, eps)
+     *
+     * @param trueAnomaly
+     * @param eccentricity
+     * @return
+     */
+    public double getNu(double eccentricity, double trueAnomaly) {
+        double result = 1.0 + eccentricity * Math.cos(trueAnomaly);
         return result;
     }
 
@@ -143,7 +159,8 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * @return R(A, ex, eps)
      */
     public double getCenterMassOrbit(double semimajorAxis, double eccentricity, double trueAnomaly) {
-        double result = getOrbitalParameter(semimajorAxis, eccentricity) / getNu(trueAnomaly, eccentricity);
+        double result = getOrbitalParameter(semimajorAxis, eccentricity)
+                / getNu(eccentricity, trueAnomaly);
         return result;
     }
 
@@ -169,8 +186,8 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * @return
      */
     public double getVelocity(double semimajorAxis, double eccentricity, double trueAnomaly) {
-        double result = Math.sqrt(BasicConsts.K.getValue() /
-                (BasicConsts.EARTH_RADIUS.getValue() + getMassCenterHeight(semimajorAxis, eccentricity, trueAnomaly)));
+        double result = Math.sqrt(BasicConsts.K.getValue()
+                / getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly));
         return result;
     }
 
@@ -184,69 +201,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      */
     public double getRelativeVelocity(double semimajorAxis, double eccentricity, double trueAnomaly) {
         double result = getVelocity(semimajorAxis, eccentricity, trueAnomaly)
-                - BasicConsts.EARTH_ROTATION_ANGULAR_VELOCITY.getValue()
-                * (BasicConsts.EARTH_RADIUS.getValue() + getMassCenterHeight(semimajorAxis, eccentricity, trueAnomaly));
-        return result;
-    }
-
-    /**
-     * Добавим ДУ для возмущенной системы для движения центра масс системы в оскулирующих элементах
-     */
-    public double getTrueAnomalyDiff(double semimajorAxis, double eccentricity, double trueAnomaly, double tetherVerticalDeflectionAngle) {
-        double result = (BasicConsts.K.getValue() / Math.pow(getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly), 2)
-                + getRadialAcceleration(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle) * Math.cos(trueAnomaly) / eccentricity
-                - getTransversalAcceleration(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle)
-                * (1 + getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly) / getOrbitalParameter(semimajorAxis, eccentricity))
-                * Math.sin(trueAnomaly) / eccentricity)
-                * getK(semimajorAxis, eccentricity);
-        return result;
-    }
-
-    public double getTrueAnomalySecondDiff(double semimajorAxis, double eccentricity, double trueAnomaly) {
-        double result = -2 * BasicConsts.K.getValue()
-                * eccentricity
-                * Math.sin(trueAnomaly)
-                / Math.pow(getOrbitalParameter(semimajorAxis, eccentricity), 3);
-        return result;
-    }
-
-    public double getDeflectionAngleSecondDiff(double semimajorAxis, double eccentricity, double tetherVerticalDeflectionAngle, double omega, double trueAnomaly) {
-        double result = (-3.0 / 2.0)
-                * Math.pow(getTrueAnomalyDiff(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle), 2)
-                * Math.pow(getNu(trueAnomaly, eccentricity), -1.0)
-                * Math.sin(2 * tetherVerticalDeflectionAngle)
-                - getTrueAnomalySecondDiff(semimajorAxis, eccentricity, trueAnomaly)
-                + (getFullMoment(semimajorAxis, eccentricity, tetherVerticalDeflectionAngle)
-                / (getReducedMass() * Math.pow(tether.getLength(), 2)));
-        return result;
-    }
-
-    //todo check with the doc
-    public double getDeflectionAngleDiff(double deflectionAngleDiff) {
-        return deflectionAngleDiff;
-    }
-
-    public double getSemimajorAxisDiff(double semimajorAxis, double eccentricity, double trueAnomaly, double tetherVerticalDeflectionAngle) {
-        double result = getK(semimajorAxis, eccentricity)
-                * (getRadialAcceleration(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle)
-                * eccentricity
-                * Math.sin(trueAnomaly)
-                + getTransversalAcceleration(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle)
-                * getOrbitalParameter(semimajorAxis, eccentricity)
-                / getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly))
-                * (2 * semimajorAxis / (1 - Math.pow(eccentricity, 2)));
-        return result;
-    }
-
-    public double getEccentricityDiff(double semimajorAxis, double eccentricity, double trueAnomaly, double tetherVerticalDeflectionAngle) {
-        double result = getK(semimajorAxis, eccentricity)
-                * ((getRadialAcceleration(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle)
-                    * Math.sin(trueAnomaly))
-                    + (getTransversalAcceleration(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle)
-                    * (1 + getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly) / getOrbitalParameter(semimajorAxis, eccentricity))
-                    * Math.cos(trueAnomaly)
-                    + (eccentricity * getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly)) / getOrbitalParameter(semimajorAxis, eccentricity))
-                );
+                - BasicConsts.EARTH_ROTATION_ANGULAR_VELOCITY.getValue() * getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly);
         return result;
     }
 
@@ -261,8 +216,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      */
     public double getMagneticInduction(double semimajorAxis, double eccentricity, double trueAnomaly) {
         double result = BasicConsts.MU.getValue()
-                / Math.pow(BasicConsts.EARTH_RADIUS.getValue()
-                + getMassCenterHeight(semimajorAxis, eccentricity, trueAnomaly), 3);
+                / Math.pow(getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly), 3);
         return result;
     }
 
@@ -280,15 +234,14 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
         return result;
     }
 
-    //todo what's this
     public double getL0(double semimajorAxis, double eccentricity, double trueAnomaly) {
         double result = Math.pow(9 * Math.PI
                 * BasicConsts.ELECTRON_MASS.getValue()
-                * BasicConsts.ALUMINUM_CONDUCTIVITY.getValue() * BasicConsts.ALUMINUM_CONDUCTIVITY.getValue()
+                * Math.pow(BasicConsts.ALUMINUM_CONDUCTIVITY.getValue(), 2)
                 * getElectricFieldStrength(semimajorAxis, eccentricity, trueAnomaly)
                 * tether.getCrossSectionalArea()
-                / (128 * Math.abs(Math.pow(BasicConsts.ELECTON_CHARGE.getValue(), 3))
-                * BasicConsts.PLASMA_CONCENTRATION.getValue() * BasicConsts.PLASMA_CONCENTRATION.getValue()), 1.0 / 3.0);
+                / (128.0 * Math.abs(Math.pow(BasicConsts.ELECTON_CHARGE.getValue(), 3))
+                * Math.pow(BasicConsts.PLASMA_CONCENTRATION.getValue(), 2)), 1.0 / 3.0);
         return result;
     }
 
@@ -321,6 +274,17 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
                 * getElectricFieldStrength(semimajorAxis, eccentricity, trueAnomaly)
                 * tether.getCrossSectionalArea();
         return result;
+    }
+
+    public void setStartVector(double tetherVerticalDeflectionAngle, double tetherVerticalDeflectionAngleDiff, double trueAnomaly, double semimajorAxis, double eccentricity) {
+        startVector = new Vector();
+        startVector.add(0, tetherVerticalDeflectionAngle);
+        startVector.add(1, tetherVerticalDeflectionAngleDiff);
+        startVector.add(2, trueAnomaly);
+        startVector.add(3, semimajorAxis);
+        startVector.add(4, eccentricity);
+        double iteration = 0;
+        startVector.add(5, iteration);
     }
 
     /**
@@ -358,31 +322,8 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
         return startVector;
     }
 
-    public void setStartVector(double tetherVerticalDeflectionAngle, double tetherVerticalDeflectionAngleDiff, double trueAnomaly, double eccentricity, double semimajorAxis) {
-        startVector = new Vector();
-        // tetta
-        startVector.add(0, tetherVerticalDeflectionAngle);
-        // omega
-        startVector.add(1, tetherVerticalDeflectionAngleDiff);
-        startVector.add(2, trueAnomaly);
-        // A
-        startVector.add(3, semimajorAxis);
-        // ex
-        startVector.add(4, eccentricity);
-        double iteration = 0;
-        startVector.add(5, iteration);
-    }
-
-    public double getShortCircuitCurrent() {
-        return shortCircuitCurrent;
-    }
-
-    public void setShortCircuitCurrent(double shortCircuitCurrent) {
-        this.shortCircuitCurrent = shortCircuitCurrent;
-    }
-
     /**
-     * Переход к безразмерным величинам
+     * Переход к характерным величинам величинам, чтобы избавиться от размерностей
      */
     /**
      * Безразмерный ток в точке С
@@ -394,7 +335,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * @return
      */
     public double getiC(double semimajorAxis, double eccentricity, double trueAnomaly) {
-        double result = getShortCircuitCurrent()
+        double result = tether.getElectricity()
                 / getElectricCurrent(semimajorAxis, eccentricity, trueAnomaly);
         return result;
     }
@@ -409,7 +350,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      */
     public double getPotentialA(double semimajorAxis, double eccentricity, double trueAnomaly) {
         double iC = getiC(semimajorAxis, eccentricity, trueAnomaly);
-        return Math.pow(2 * iC - iC * iC, 2.0 / 3.0);
+        return Math.pow(2.0 * iC - iC * iC, 2.0 / 3.0);
     }
 
     public double getNanoSatelliteMass() {
@@ -433,19 +374,18 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
     }
 
     /**
-     * Todo
      * Зависимость длины участка троса от потенциала - интеграл
      */
     public double getS(double semimajorAxis, double eccentricity, double trueAnomaly, double potential) throws IllegalArgumentException {
         SimpsonIntegrator integrator = new SimpsonIntegrator();
         double potentialA = getPotentialA(semimajorAxis, eccentricity, trueAnomaly);
+        double degree = 1.5;
+        double fullDegree = -0.5;
 
         UnivariateFunction function = new UnivariateFunction() {
 
             public double value(double p) {
-                return Math.pow((Math.pow(p, 3.0 / 2.0)
-                        - Math.pow(potentialA, 3.0 / 2.0)
-                        + 1), -1.0 / 2.0);
+                return Math.pow((Math.pow(p, degree) - Math.pow(potentialA, degree) + 1.0), fullDegree);
             }
         };
         double result = integrator.integrate(64, function, potential, potentialA);
@@ -459,8 +399,8 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * @return
      */
     public double getMassCenterRelativePosition() {
-        double mC = nanoSatelliteMass;
         double mA = mainSatelliteMass;
+        double mC = nanoSatelliteMass;
         double result = (1.0 / getTotalSystemMass())
                 * (mC + tether.getMass() / 2.0)
                 * tether.getLength();
@@ -489,7 +429,8 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * @return
      */
     public double getLB(double semimajorAxis, double eccentricity, double trueAnomaly) {
-        double result = getS(semimajorAxis, eccentricity, trueAnomaly, 0) * getL0(semimajorAxis, eccentricity, trueAnomaly);
+        double minPotential = 0;
+        double result = getS(semimajorAxis, eccentricity, trueAnomaly, minPotential) * getL0(semimajorAxis, eccentricity, trueAnomaly);
         return result;
     }
 
@@ -515,7 +456,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * @return
      */
     public double getForce1(double semimajorAxis, double eccentricity, double trueAnomaly) {
-        double result = (1.0 / 2.0) * getShortCircuitCurrent()
+        double result = 0.5 * tether.getElectricity()
                 * getLB(semimajorAxis, eccentricity, trueAnomaly)
                 * getMagneticInduction(semimajorAxis, eccentricity, trueAnomaly);
         return result;
@@ -530,15 +471,14 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * @return
      */
     public double getForce2(double semimajorAxis, double eccentricity, double trueAnomaly) {
-        double result = getShortCircuitCurrent()
+        double result = tether.getElectricity()
                 * (getLC(semimajorAxis, eccentricity, trueAnomaly) - getLB(semimajorAxis, eccentricity, trueAnomaly))
                 * getMagneticInduction(semimajorAxis, eccentricity, trueAnomaly);
         return result;
     }
 
     public double getFullForce(double semimajorAxis, double eccentricity, double trueAnomaly) {
-        double result = getForce1(semimajorAxis, eccentricity, trueAnomaly) + getForce2(semimajorAxis, eccentricity, trueAnomaly);
-        return result;
+        return getForce1(semimajorAxis, eccentricity, trueAnomaly) + getForce2(semimajorAxis, eccentricity, trueAnomaly);
     }
 
     /**
@@ -551,8 +491,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      */
     public double getMoment1(double semimajorAxis, double eccentricity, double trueAnomaly) {
         double result = getForce1(semimajorAxis, eccentricity, trueAnomaly)
-                * ((2.0 / 3.0) * getLB(semimajorAxis, eccentricity, trueAnomaly)
-                - getMassCenterRelativePosition());
+                * ((2.0 / 3.0) * getLB(semimajorAxis, eccentricity, trueAnomaly) - getMassCenterRelativePosition());
         return result;
     }
 
@@ -572,8 +511,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
     }
 
     public double getFullMoment(double semimajorAxis, double eccentricity, double trueAnomaly) {
-        double result = getMoment1(semimajorAxis, eccentricity, trueAnomaly) + getMoment2(semimajorAxis, eccentricity, trueAnomaly);
-        return result;
+        return getMoment1(semimajorAxis, eccentricity, trueAnomaly) + getMoment2(semimajorAxis, eccentricity, trueAnomaly);
     }
 
     /**
@@ -645,11 +583,10 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      */
     public double getReducedMass() {
         double result = ((mainSatelliteMass * nanoSatelliteMass)
-                + ((mainSatelliteMass + nanoSatelliteMass) * tether.getMass()) / 3
-                +(tether.getMass() * tether.getMass() / 12))
+                + ((mainSatelliteMass + nanoSatelliteMass) * tether.getMass()) / 3.0
+                + (tether.getMass() * tether.getMass() / 12.0))
                 / (mainSatelliteMass + nanoSatelliteMass + tether.getMass());
         return result;
-
     }
 
     public double getInitialHeight() {
@@ -659,4 +596,60 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
     public double getInitialOrbitalParameter() {
         return initialOrbitalParameter;
     }
+
+    /**
+     * Добавим ДУ для возмущенной системы для движения центра масс системы в оскулирующих элементах
+     */
+    public double getTrueAnomalyDiff(double semimajorAxis, double eccentricity, double trueAnomaly, double tetherVerticalDeflectionAngle) {
+        double result = (BasicConsts.K.getValue() / Math.pow(getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly), 2)
+                + getRadialAcceleration(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle) * Math.cos(trueAnomaly) / eccentricity
+                - getTransversalAcceleration(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle)
+                * (1.0 + getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly) / getOrbitalParameter(semimajorAxis, eccentricity))
+                * Math.sin(trueAnomaly) / eccentricity)
+                * getK(semimajorAxis, eccentricity);
+        return result;
+    }
+
+    public double getTrueAnomalySecondDiff(double semimajorAxis, double eccentricity, double trueAnomaly) {
+        double result = -2.0 * BasicConsts.K.getValue()
+                * eccentricity
+                * Math.sin(trueAnomaly)
+                / Math.pow(getOrbitalParameter(semimajorAxis, eccentricity), 3);
+        return result;
+    }
+
+    public double getDeflectionAngleSecondDiff(double semimajorAxis, double eccentricity, double tetherVerticalDeflectionAngle, double omega, double trueAnomaly) {
+        double result = -1.5 * Math.pow(getTrueAnomalyDiff(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle), 2)
+                * Math.pow(getNu(trueAnomaly, eccentricity), -1.0)
+                * Math.sin(2.0 * tetherVerticalDeflectionAngle)
+                - getTrueAnomalySecondDiff(semimajorAxis, eccentricity, trueAnomaly)
+                + (getFullMoment(semimajorAxis, eccentricity, tetherVerticalDeflectionAngle)
+                / (getReducedMass() * Math.pow(tether.getLength(), 2)));
+        return result;
+    }
+
+    public double getSemimajorAxisDiff(double semimajorAxis, double eccentricity, double trueAnomaly, double tetherVerticalDeflectionAngle) {
+        double result = getK(semimajorAxis, eccentricity)
+                * (getRadialAcceleration(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle)
+                * eccentricity
+                * Math.sin(trueAnomaly)
+                + getTransversalAcceleration(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle)
+                * getOrbitalParameter(semimajorAxis, eccentricity)
+                / getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly))
+                * (2 * semimajorAxis / (1.0 - Math.pow(eccentricity, 2)));
+        return result;
+    }
+
+    public double getEccentricityDiff(double semimajorAxis, double eccentricity, double trueAnomaly, double tetherVerticalDeflectionAngle) {
+        double result = getK(semimajorAxis, eccentricity)
+                * ((getRadialAcceleration(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle)
+                * Math.sin(trueAnomaly))
+                + (getTransversalAcceleration(semimajorAxis, eccentricity, trueAnomaly, tetherVerticalDeflectionAngle)
+                * (1.0 + getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly) / getOrbitalParameter(semimajorAxis, eccentricity))
+                * Math.cos(trueAnomaly)
+                + (eccentricity * getCenterMassOrbit(semimajorAxis, eccentricity, trueAnomaly)) / getOrbitalParameter(semimajorAxis, eccentricity))
+        );
+        return result;
+    }
+
 }

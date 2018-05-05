@@ -1,6 +1,6 @@
 package com.spaceApplication.server.modeling.model;
 
-import java.io.Serializable;
+        import java.io.Serializable;
 
 /**
  * Created by Chris
@@ -8,17 +8,21 @@ import java.io.Serializable;
 
 public class BareElectrodynamicTether implements Serializable {
     private double mass;
-    /**
-     * Длина троса,
-     * плечо первого и второго тел
-     */
     private double length;
     private double diameter;
+    /**
+     * Угол отклонения троса от вертикали
+     * tetta
+     */
+    private double deflectionAngleRadians;
+    private double electricity;
 
-    public BareElectrodynamicTether(double mass, double length, double diameter) {
+    public BareElectrodynamicTether(double mass, double length, double diameter, double deflectionAngle, double electricity) {
         this.mass = mass;
         this.length = length;
         this.diameter = diameter;
+        this.deflectionAngleRadians =  Math.toRadians(deflectionAngle);
+        this.electricity = electricity;
     }
 
     public double getDiameter() {
@@ -83,5 +87,25 @@ public class BareElectrodynamicTether implements Serializable {
     public double getMassCenterMomentArm(double nanoSatelliteMass, double mainSatelliteMass) {
         return (length / 2.0) * (mainSatelliteMass - nanoSatelliteMass)
                 / (nanoSatelliteMass + mainSatelliteMass);
+    }
+
+    public double getDeflectionAngleRadians() {
+        return deflectionAngleRadians;
+    }
+
+    public void setDeflectionAngleRadians(double deflectionAngleRadians) {
+        this.deflectionAngleRadians = deflectionAngleRadians;
+    }
+
+    public double getDeflectionAngleDegrees(){
+        return Math.toDegrees(deflectionAngleRadians);
+    }
+
+    public double getElectricity() {
+        return electricity;
+    }
+
+    public void setElectricity(double electricity) {
+        this.electricity = electricity;
     }
 }

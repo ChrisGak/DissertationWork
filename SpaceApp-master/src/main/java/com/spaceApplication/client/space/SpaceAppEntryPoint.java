@@ -39,9 +39,9 @@ public class SpaceAppEntryPoint implements EntryPoint {
     }
 
     public ApplicationContainer getApplicationContainer(){
-//        if (applicationContainer == null){
-//            applicationContainer = new ApplicationContainer();
-//        }
+        if (applicationContainer == null){
+            applicationContainer = new ApplicationContainer();
+        }
         return applicationContainer;
     }
 
@@ -68,7 +68,7 @@ public class SpaceAppEntryPoint implements EntryPoint {
     };
     private SpaceAppConstants constants = GWT.create(SpaceAppConstants.class);
     private SpaceAppMessages messages = GWT.create(SpaceAppMessages.class);
-    private Label errorMsgLabel = new Label(constants.testExample());
+    private Label errorMsgLabel = new Label();
     // Set up the callback object.
     AsyncCallback<OrbitalElementsClient> calculationCallback = new AsyncCallback<OrbitalElementsClient>() {
         public void onFailure(Throwable caught) {

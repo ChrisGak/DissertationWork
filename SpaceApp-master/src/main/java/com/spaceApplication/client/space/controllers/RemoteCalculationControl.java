@@ -1,11 +1,12 @@
 package com.spaceApplication.client.space.controllers;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.SpanElement;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.*;
 import com.spaceApplication.client.space.model.ElectrodynamicTetherSystemModelClient;
 import com.spaceApplication.client.space.model.OrbitalElementsClient;
 import com.spaceApplication.client.space.ui.components.UIConsts;
@@ -13,7 +14,7 @@ import org.moxieapps.gwt.highcharts.client.Chart;
 import org.moxieapps.gwt.highcharts.client.Legend;
 import org.moxieapps.gwt.highcharts.client.Series;
 
-import static com.spaceApplication.client.space.ui.components.UIConsts.SYSTEM_HEIGHT_TITLE;
+import static com.spaceApplication.client.space.ui.components.UIConsts.*;
 
 /**
  * Created by Chris
@@ -65,7 +66,59 @@ public class RemoteCalculationControl {
         return contentPanel;
     }
 
-    public static Widget createSystemHeightChart(OrbitalElementsClient results, ElectrodynamicTetherSystemModelClient model) {
+    public static Widget createForceValueWidget(OrbitalElementsClient results){
+        double fullForceValue = results.getForceValue();
+        HTMLPanel infoElement = new HTMLPanel(LAST_FORCE_VALUE_TITLE);
+        infoElement.addStyleName(SHORT_WIDGET_INFO_STYLE_NAME);
+        HTMLPanel spanNumberElement = new HTMLPanel(fullForceValue + _A);
+        spanNumberElement.addStyleName(SHORT_WIDGET_NUMBER_STYLE_NAME);
+        HTMLPanel wrapperPanel = new HTMLPanel("");
+        wrapperPanel.addStyleName(SHORT_WIDGET_STYLE_NAME);
+        wrapperPanel.add(spanNumberElement);
+        wrapperPanel.add(infoElement);
+        return wrapperPanel;
+    }
+
+    public static Widget createMomentValueWidget(OrbitalElementsClient results){
+        double momentValue = results.getMomentValue();
+        HTMLPanel infoElement = new HTMLPanel(LAST_MOMENT_VALUE_TITLE);
+        infoElement.addStyleName(SHORT_WIDGET_INFO_STYLE_NAME);
+        HTMLPanel spanNumberElement = new HTMLPanel(momentValue + _MOMENT);
+        spanNumberElement.addStyleName(SHORT_WIDGET_NUMBER_STYLE_NAME);
+        HTMLPanel wrapperPanel = new HTMLPanel("");
+        wrapperPanel.addStyleName(SHORT_WIDGET_STYLE_NAME);
+        wrapperPanel.add(spanNumberElement);
+        wrapperPanel.add(infoElement);
+        return wrapperPanel;
+    }
+
+    public static Widget createTransversalAccelerationValueWidget(OrbitalElementsClient results){
+        double transversalAccelerationValue = results.getTransversalAccelertionValue();
+        HTMLPanel infoElement = new HTMLPanel(LAST_TRANSVERSAL_ACCELERATION_VALUE_TITLE);
+        infoElement.addStyleName(SHORT_WIDGET_INFO_STYLE_NAME);
+        HTMLPanel spanNumberElement = new HTMLPanel(transversalAccelerationValue + _ACCELERATION);
+        spanNumberElement.addStyleName(SHORT_WIDGET_NUMBER_STYLE_NAME);
+        HTMLPanel wrapperPanel = new HTMLPanel("");
+        wrapperPanel.addStyleName(SHORT_WIDGET_STYLE_NAME);
+        wrapperPanel.add(spanNumberElement);
+        wrapperPanel.add(infoElement);
+        return wrapperPanel;
+    }
+
+    public static Widget createRadialAccelerationValueWidget(OrbitalElementsClient results){
+        double radialAccelerationValue = results.getRadialAccelerationValue();
+        HTMLPanel infoElement = new HTMLPanel(LAST_RADIAL_ACCELERATION_VALUE_TITLE);
+        infoElement.addStyleName(SHORT_WIDGET_INFO_STYLE_NAME);
+        HTMLPanel spanNumberElement = new HTMLPanel(radialAccelerationValue + _ACCELERATION);
+        spanNumberElement.addStyleName(SHORT_WIDGET_NUMBER_STYLE_NAME);
+        HTMLPanel wrapperPanel = new HTMLPanel("");
+        wrapperPanel.addStyleName(SHORT_WIDGET_STYLE_NAME);
+        wrapperPanel.add(spanNumberElement);
+        wrapperPanel.add(infoElement);
+        return wrapperPanel;
+    }
+
+    public static Widget createSystemHeightChart(OrbitalElementsClient results) {
         Chart chart = new Chart()
                 .setType(Series.Type.LINE)
                 .setChartTitleText(SYSTEM_HEIGHT_TITLE)
@@ -80,7 +133,7 @@ public class RemoteCalculationControl {
         return chart;
     }
 
-    public static Widget createAngularVelocityChart(OrbitalElementsClient results, ElectrodynamicTetherSystemModelClient model) {
+    public static Widget createAngularVelocityChart(OrbitalElementsClient results) {
         Chart chart = new Chart()
                 .setType(Series.Type.LINE)
                 .setChartTitleText(UIConsts.ANGULAR_VELOCITY_TITLE)
@@ -96,7 +149,7 @@ public class RemoteCalculationControl {
         return chart;
     }
 
-    public static Widget createTrueAnomalyChart(OrbitalElementsClient results, ElectrodynamicTetherSystemModelClient model) {
+    public static Widget createTrueAnomalyChart(OrbitalElementsClient results) {
         Chart chart = new Chart()
                 .setType(Series.Type.LINE)
                 .setChartTitleText(UIConsts.TRUE_ANOMALY_TITLE)
@@ -112,7 +165,7 @@ public class RemoteCalculationControl {
         return chart;
     }
 
-    public static Widget createEccentricityChart(OrbitalElementsClient results, ElectrodynamicTetherSystemModelClient model) {
+    public static Widget createEccentricityChart(OrbitalElementsClient results) {
         Chart chart = new Chart()
                 .setType(Series.Type.LINE)
                 .setChartTitleText(UIConsts.ECCENTRICITY_TITLE)
@@ -128,7 +181,7 @@ public class RemoteCalculationControl {
         return chart;
     }
 
-    public static Widget createDeflectionAngleChart(OrbitalElementsClient results, ElectrodynamicTetherSystemModelClient model) {
+    public static Widget createDeflectionAngleChart(OrbitalElementsClient results) {
         Chart chart = new Chart()
                 .setType(Series.Type.LINE)
                 .setChartTitleText(UIConsts.DEFLECTION_ANGLE_TITLE)
@@ -144,7 +197,7 @@ public class RemoteCalculationControl {
         return chart;
     }
 
-    public static Widget createSemimajorAxisChart(OrbitalElementsClient results, ElectrodynamicTetherSystemModelClient model) {
+    public static Widget createSemimajorAxisChart(OrbitalElementsClient results) {
         Chart chart = new Chart()
                 .setType(Series.Type.LINE)
                 .setChartTitleText(UIConsts.SEMIMAJOR_AXIS_TITLE)
@@ -182,7 +235,7 @@ public class RemoteCalculationControl {
         downloadImage.setTitle("Скачать результаты моделирования");
         downloadImagePanel.add(downloadImage);
         Anchor downloadHref = new Anchor();
-        downloadHref.setHref(UIConsts.fileName);
+//        downloadHref.setHref(UIConsts.fileName);
         downloadHref.setText("Скачать результаты моделирования в формате Excel-файла");
         downloadImagePanel.add(downloadHref);
     }

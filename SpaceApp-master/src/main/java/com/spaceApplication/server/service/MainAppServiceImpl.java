@@ -24,8 +24,8 @@ public class MainAppServiceImpl extends RemoteServiceServlet implements SpaceApp
 
 
     public OrbitalElementsClient getTestModelIntegrationResult() throws TetherSystemModelValueException {
-        BareElectrodynamicTether tether = new BareElectrodynamicTether(0.4, 2000, 0.001);
-        ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(tether, 6, 2, 500000, 0, 0, 0.0167);
+        BareElectrodynamicTether tether = new BareElectrodynamicTether(0.4, 2000, 0.001, 0, 0.1);
+        ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(tether, 6, 2, 500000, 0, 0.0167);
 
         OrbitalElements serverResult = RungeKuttaMethodImpl.integrateWithVariableStep(testModel, 100, 10, 10, 0.001);
         /**
@@ -47,10 +47,10 @@ public class MainAppServiceImpl extends RemoteServiceServlet implements SpaceApp
 
     public OrbitalElementsClient getCalculationResult(ElectrodynamicTetherSystemModelClient clientModel) throws TetherSystemModelValueException {
         BareElectrodynamicTether tether = new BareElectrodynamicTether(clientModel.getTether().getMass(), clientModel.getTether().getLength(),
-                clientModel.getTether().getDiameter());
+                clientModel.getTether().getDiameter(), clientModel.getTether().getDeflectionAngleDegrees(), clientModel.getTether().getElectricity());
         ElectrodynamicTetherSystemModel systemModel = new ElectrodynamicTetherSystemModel(tether, clientModel.getMainSatelliteMass(),
                 clientModel.getNanoSatelliteMass(),
-                clientModel.getInitialHeight(), clientModel.getTetherVerticalDeflectionAngleRadians(), clientModel.getInitialTrueAnomalyRadians(),
+                clientModel.getInitialHeight(), clientModel.getInitialTrueAnomalyRadians(),
                 clientModel.getInitialEccentricity());
 
         OrbitalElements serverResult = RungeKuttaMethodImpl.integrateWithVariableStep(systemModel, clientModel.getMaxIterations(), clientModel.getIntegrationStep(),
@@ -68,12 +68,16 @@ public class MainAppServiceImpl extends RemoteServiceServlet implements SpaceApp
                 serverResult.getStep(),
                 serverResult.getAccuracy(),
                 serverResult.getIteration());
+        clientResult.setForceValue(systemModel.getFullForce(serverResult.getLastSemimajor(), serverResult.getLastEccentricity(), serverResult.getLastTrueAnomaly()));
+        clientResult.setMomentValue(systemModel.getFullMoment(serverResult.getLastSemimajor(), serverResult.getLastEccentricity(), serverResult.getLastTrueAnomaly()));
+        clientResult.setTransversalAccelertionValue(systemModel.getTransversalAcceleration(serverResult.getLastSemimajor(), serverResult.getLastEccentricity(), serverResult.getLastTrueAnomaly(), serverResult.getLastTetherVerticalDeflectionAngle()));
+        clientResult.setRadialAccelerationValue(systemModel.getRadialAcceleration(serverResult.getLastSemimajor(), serverResult.getLastEccentricity(), serverResult.getLastTrueAnomaly(), serverResult.getLastTetherVerticalDeflectionAngle()));
 
         return clientResult;
     }
 
     private void printIntegrResultToFile(OrbitalElements result) {
-        test.createFileIfNotExists(UIConsts.fileName);
+        test.createFileIfNotExists(UIConsts.REPORT_RESULT_HREF);
         try {
             test.writeRungeKuttaResult(result);
         } catch (IOException e) {

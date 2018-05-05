@@ -179,6 +179,10 @@ public class OrbitalElements implements Serializable {
         return tetherVerticalDeflectionAngle;
     }
 
+    public double getLastTetherVerticalDeflectionAngle() {
+        return tetherVerticalDeflectionAngle.get(tetherVerticalDeflectionAngle.size() - 1);
+    }
+
     public Vector getTetherVerticalDeflectionAngleDegrees() {
         Vector degrees = new Vector(tetherVerticalDeflectionAngle.size());
         for (double elem : tetherVerticalDeflectionAngle
@@ -207,12 +211,24 @@ public class OrbitalElements implements Serializable {
         return degrees;
     }
 
+    public double getLastTrueAnomaly() {
+        return trueAnomaly.get(trueAnomaly.size() - 1);
+    }
+
     public Vector getSemimajorAxis() {
         return semimajorAxis;
     }
 
+    public double getLastSemimajor() {
+        return semimajorAxis.get(semimajorAxis.size() - 1);
+    }
+
     public Vector getEccentricity() {
         return eccentricity;
+    }
+
+    public double getLastEccentricity() {
+        return eccentricity.get(eccentricity.size() - 1);
     }
 
     public Vector getStep() {
@@ -225,27 +241,5 @@ public class OrbitalElements implements Serializable {
 
     public Vector getIteration() {
         return iteration;
-    }
-
-    public enum DESCRIPTIONS {
-        TIME("Время"),
-        TETTA("Угол отклонения троса от вертикали"),
-        OMEGA("Производная угла отклонения троса от вертикали"),
-        EPS("Истинная аномалия"),
-        A("Большая полуось"),
-        EX("Эксцентриситет"),
-        STEP("Шаг"),
-        ACCURACY("Точность"),
-        ITERATION("Итерация");
-
-        private final String value;
-
-        DESCRIPTIONS(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
     }
 }

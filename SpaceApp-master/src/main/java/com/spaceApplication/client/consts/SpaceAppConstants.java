@@ -6,27 +6,6 @@ import com.google.gwt.i18n.client.Constants;
  * Created by Chris
  */
 public interface SpaceAppConstants extends Constants {
-    @DefaultStringValue("Space Application")
-    String spaceApp();
-
-    @DefaultStringValue("Start calculation")
-    String startCalc();
-
-    @DefaultStringValue("Тестовый пример")
-    String testCalculationTitle();
-
-    @DefaultStringValue("Интегрирование методом Рунге-Кутты 4 порядка")
-    String testCalculationInfo();
-
-    @DefaultStringValue("Моделирование движения ЭДКТС")
-    String modelingTitle();
-
-    @DefaultStringValue("Скачать образец файла")
-    String downloadSample();
-
-    @DefaultStringValue("Необходимо ввести начальные параметры, либо из файла, либо вручную")
-    String modelingInfo();
-
     @DefaultStringValue("Создать модель")
     String modelCreation();
 
@@ -42,33 +21,75 @@ public interface SpaceAppConstants extends Constants {
     @DefaultStringValue("Сохраненные результаты")
     String saved();
 
-    @DefaultStringValue("Show")
-    String show();
+    @DefaultDoubleValue(2)
+    double minSatelliteMass();
 
-    @DefaultStringValue("Name")
-    String name();
+    @DefaultDoubleValue(10)
+    double maxSatelliteMass();
 
-    @DefaultStringValue("Symbol")
-    String symbol();
+    @DefaultDoubleValue(0.1)
+    double minTetherMass();
 
-    @DefaultStringValue("Price")
-    String price();
+    @DefaultDoubleValue(2)
+    double maxTetherMass();
 
-    @DefaultStringValue("Change")
-    String change();
+    @DefaultDoubleValue(0.5)
+    double minTetherLength();
 
-    @DefaultStringValue("Remove")
-    String remove();
+    @DefaultDoubleValue(3)
+    double maxTetherLength();
 
-    @DefaultStringValue("Add")
-    String add();
+    @DefaultDoubleValue(0.001)
+    double minTetherDiameter();
 
-    @DefaultStringValue("Home")
-    String home();
+    @DefaultDoubleValue(0.005)
+    double maxTetherDiameter();
 
-    @DefaultStringValue("Test Example")
-    String testExample();
+    @DefaultDoubleValue(0)
+    double minDeflectionAngle();
 
-    @DefaultStringValue("Contacts")
-    String contacts();
+    @DefaultDoubleValue(45)
+    double maxDeflectionAngle();
+
+    @DefaultDoubleValue(0.00001)
+    double minElectricity();
+
+    @DefaultDoubleValue(0.1)
+    double maxElectricity();
+
+    @DefaultDoubleValue(500.0)
+    double minSystemHeight();
+
+    @DefaultDoubleValue(1000.0)
+    double maxSystemHeight();
+
+    @DefaultDoubleValue(0.00001)
+    double minEccentricity();
+
+    @DefaultDoubleValue(0.1)
+    double maxEccentricity();
+
+    @DefaultDoubleValue(5.0)
+    double minCalculationStep();
+
+    @DefaultDoubleValue(10.0)
+    double maxCalculationStep();
+
+    @DefaultDoubleValue(5.0)
+    double minCalculationMaxStep();
+
+    @DefaultDoubleValue(10.0)
+    double maxCalculationMaxStep();
+
+    @DefaultDoubleValue(50.0)
+    double minIterations();
+
+    @DefaultDoubleValue(1000.0)
+    double maxIterations();
+
+    @DefaultDoubleValue(0.001)
+    double minIntegrationAccuracy();
+
+    @DefaultDoubleValue(0.1)
+    double maxIntegrationAccuracy();
 }

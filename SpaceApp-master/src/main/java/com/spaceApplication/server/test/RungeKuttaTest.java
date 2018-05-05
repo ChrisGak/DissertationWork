@@ -36,9 +36,9 @@ public class RungeKuttaTest {
     }
 
     private static void testReducedMass(){
-        BareElectrodynamicTether testTether = new BareElectrodynamicTether(0.4, 2000, 0.001);
+        BareElectrodynamicTether testTether = new BareElectrodynamicTether(0.4, 2000, 0.001, 0, 0.1);
         ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(testTether,
-                6, 2, 500000, 0, 0, 0.0167);
+                6, 2, 500000, 0,  0.0167);
 
         System.out.println("    testReducedMass           ");
         System.out.println("me = " + testModel.getReducedMass());
@@ -46,9 +46,9 @@ public class RungeKuttaTest {
 
 
     public static void testFullModel() {
-        BareElectrodynamicTether testTether = new BareElectrodynamicTether(0.4, 2000, 0.001);
+        BareElectrodynamicTether testTether = new BareElectrodynamicTether(0.4, 2000, 0.001, 45, 1);
         ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(testTether,
-                6, 2, 500000, 0, 0, 0.0167);
+                6, 2, 500000, 0, 0.0167);
 
         System.out.println("_____________________________");
         System.out.println("    testFullModel1           ");
@@ -62,9 +62,9 @@ public class RungeKuttaTest {
 
 
     public static void testEquations(){
-        BareElectrodynamicTether testTether = new BareElectrodynamicTether(0.4, 2000, 0.001);
+        BareElectrodynamicTether testTether = new BareElectrodynamicTether(1, 1000, 0.001, 0, 0.1);
         ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(testTether,
-                6, 2, 500000, 0, 0, BasicConsts.INITIAL_ECCENTICITY.getValue());
+                6, 2, 500000, 0, BasicConsts.INITIAL_ECCENTICITY.getValue());
 
         System.out.println("_____________________________");
         System.out.println("    Model1: test equations           ");

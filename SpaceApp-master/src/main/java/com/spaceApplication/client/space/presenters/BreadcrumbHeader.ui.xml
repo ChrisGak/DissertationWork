@@ -1,6 +1,0 @@
-<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
->
-<div class="page-title">
-    <h3 id="headerTitle" class="breadcrumb-header"></h3>
-</div>
-</ui:UiBinder>

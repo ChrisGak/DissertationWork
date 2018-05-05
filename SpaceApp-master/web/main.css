@@ -63,6 +63,10 @@ header .header-content .header-content-inner #appTitle h1 {
     padding: 5px 40px 40px 45px;
 }
 
+.dynamic-section .page-content .page-inner table .gwt-Label {
+    font-size: 16px;
+}
+
 /**
     Forms and widgets with highcharts graphics
  */
@@ -185,7 +189,7 @@ header .header-content .header-content-inner #appTitle h1 {
 }
 
 .breadcrumb-header {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 500;
     color: rgba(0, 0, 0, .6);
     margin-bottom: 24px;
@@ -216,6 +220,7 @@ header .header-content .header-content-inner #appTitle h1 {
 .stats-widget .stats-info {
     margin: 0;
     color: #637282;
+    font-size: 20px;
 }
 
 .stats-widget .stats-icon {
