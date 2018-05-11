@@ -51,7 +51,7 @@ public interface SpaceAppConstants extends Constants {
     @DefaultDoubleValue(45)
     double maxDeflectionAngle();
 
-    @DefaultDoubleValue(0.00001)
+    @DefaultDoubleValue(0.01)
     double minElectricity();
 
     @DefaultDoubleValue(0.1)

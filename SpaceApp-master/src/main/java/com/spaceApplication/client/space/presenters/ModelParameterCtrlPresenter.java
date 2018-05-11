@@ -15,6 +15,7 @@ import com.spaceApplication.client.space.model.ElectrodynamicTetherSystemModelCl
 import com.spaceApplication.client.space.model.OrbitalElementsClient;
 import com.spaceApplication.client.space.ui.components.Slider;
 import com.spaceApplication.client.space.ui.components.UIConsts;
+import com.spaceApplication.shared.calculation.BasicConsts;
 
 import static com.spaceApplication.client.space.ui.components.UIConsts.*;
 
@@ -35,9 +36,9 @@ public class ModelParameterCtrlPresenter extends Composite {
      */
     private String textBoxWidth = "90px";
     private int labelWidth = 400, labelHeight = 50;
-    private int sliderWidth = 450, sliderHeight = 50;
+    private int sliderWidth = 350, sliderHeight = 50;
     private int spacingAttr = 300;
-    private String rangeLabelWidth = "50px";
+    private String rangeLabelWidth = "70px";
 
     private ElectrodynamicTetherSystemModelClient tetherSystemModel;
     private AsyncCallback<OrbitalElementsClient> calculationCallback = new AsyncCallback<OrbitalElementsClient>() {
@@ -74,7 +75,7 @@ public class ModelParameterCtrlPresenter extends Composite {
         initTetherSystemModelParamsPanel();
         initCalculationParamsPanel();
 
-        printSystemPositionStaticParamsPanel();
+        initSystemPositionStaticParamsPanel();
     }
 
     private static HTML createHeaderBlock(String headerTitle) {
@@ -93,11 +94,14 @@ public class ModelParameterCtrlPresenter extends Composite {
     public Widget initWidget() {
         pageContentInnerPanel = new HTMLPanel("");
         pageContentInnerPanel.addStyleName(PAGE_INNER_STYLE_NAME);
+        dynamicParametersCtrlPanel.addStyleName(COLUMN_LEFT_STYLE_NAME);
         pageContentInnerPanel.add(dynamicParametersCtrlPanel);
+        staticParametersCtrlPanel.addStyleName(COLUMN_RIGHT_STYLE_NAME);
         pageContentInnerPanel.add(staticParametersCtrlPanel);
         HorizontalPanel buttonWrapper = new HorizontalPanel();
         buttonWrapper.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
         executeCalculationButton = new Button(START_CALCULATION_TITLE);
+        buttonWrapper.addStyleName(CLEAR_FLOAT_STYLE_NAME);
         buttonWrapper.add(executeCalculationButton);
         executeCalculationButton.addClickHandler(executeCalculationClickHandler);
         executeCalculationButton.setStyleName(UIConsts.BUTTON_STYLE_NAME);
@@ -110,6 +114,7 @@ public class ModelParameterCtrlPresenter extends Composite {
 
         final Slider tetherMassSlider = new Slider();
         tetherMassSlider.setPixelSize(sliderWidth, sliderHeight);
+        tetherMassSlider.setStep(constants.minTetherMass());
         tetherMassSlider.setMin(constants.minTetherMass());
         tetherMassSlider.setMax(constants.maxTetherMass());
         tetherMassSlider.setValue(tetherSystemModel.getTether().getMass());
@@ -143,6 +148,7 @@ public class ModelParameterCtrlPresenter extends Composite {
 
         final Slider tetherLengthSlider = new Slider();
         tetherLengthSlider.setPixelSize(sliderWidth, sliderHeight);
+        tetherLengthSlider.setStep(0.1);
         tetherLengthSlider.setMin(constants.minTetherLength());
         tetherLengthSlider.setMax(constants.maxTetherLength());
         tetherLengthSlider.setValue(tetherSystemModel.getTether().getLength());
@@ -172,7 +178,7 @@ public class ModelParameterCtrlPresenter extends Composite {
         tetherLengthMaxLabel.setText(String.valueOf(tetherLengthSlider.getMax()));
         tetherLengthPanel.add(tetherLengthMaxLabel);
         tetherLengthPanel.add(tetherLengthTextBox);
-        tetherMassTextBox.setText(String.valueOf(tetherLengthSlider.getValue() + _KM));
+        tetherLengthTextBox.setText(String.valueOf(tetherLengthSlider.getValue() + _KM));
         dynamicParametersCtrlPanel.add(tetherLengthPanel);
 
         final Slider tetherDiameterSlider = new Slider();
@@ -207,7 +213,7 @@ public class ModelParameterCtrlPresenter extends Composite {
         tetherDiameterMaxLabel.setText(String.valueOf(tetherDiameterSlider.getMax()));
         tetherDiameterPanel.add(tetherDiameterMaxLabel);
         tetherDiameterPanel.add(tetherDiameterTextBox);
-        tetherMassTextBox.setText(String.valueOf(tetherDiameterSlider.getValue() + _KM));
+        tetherDiameterTextBox.setText(String.valueOf(tetherDiameterSlider.getValue() + _KM));
         dynamicParametersCtrlPanel.add(tetherDiameterPanel);
 
         final Slider deflectionAngleSlider = new Slider();
@@ -215,8 +221,7 @@ public class ModelParameterCtrlPresenter extends Composite {
         deflectionAngleSlider.setTitle(DEFLECTION_ANGLE_TITLE);
         deflectionAngleSlider.setMin(constants.minDeflectionAngle());
         deflectionAngleSlider.setMax(constants.maxDeflectionAngle());
-        //todo
-        //deflectionAngleSlider.setValue(tetherSystemModel.getTether().getD);
+        deflectionAngleSlider.setValue(tetherSystemModel.getTether().getDeflectionAngleDegrees());
         deflectionAngleSlider.setStep(constants.minDeflectionAngle());
         final TextBox deflectionAngleTextBox = new TextBox();
         deflectionAngleTextBox.setEnabled(false);
@@ -225,7 +230,6 @@ public class ModelParameterCtrlPresenter extends Composite {
             @Override
             public void onChange(ChangeEvent event) {
                 deflectionAngleTextBox.setText(String.valueOf(deflectionAngleSlider.getValue() + _DEG));
-                //todo
                 tetherSystemModel.getTether().setDiameter(Math.toRadians(deflectionAngleSlider.getValue()));
             }
         });
@@ -252,9 +256,8 @@ public class ModelParameterCtrlPresenter extends Composite {
         electricitySlider.setTitle(ELECTRICITY_TITLE);
         electricitySlider.setMin(constants.minElectricity());
         electricitySlider.setMax(constants.maxElectricity());
-        //todo
-        //electricitySlider.setValue(0.1);
         electricitySlider.setStep(constants.minElectricity());
+        electricitySlider.setValue(tetherSystemModel.getTether().getElectricity());
         final TextBox electricityTextBox = new TextBox();
         electricityTextBox.setEnabled(false);
         electricityTextBox.setWidth(textBoxWidth);
@@ -262,7 +265,7 @@ public class ModelParameterCtrlPresenter extends Composite {
             @Override
             public void onChange(ChangeEvent event) {
                 electricityTextBox.setText(String.valueOf(electricitySlider.getValue()));
-                //todo
+                tetherSystemModel.getTether().setElectricity(electricitySlider.getValue());
             }
         });
         HorizontalPanel electricityPanel = new HorizontalPanel();
@@ -289,6 +292,7 @@ public class ModelParameterCtrlPresenter extends Composite {
 
         final Slider mainSatelliteMassSlider = new Slider();
         mainSatelliteMassSlider.setPixelSize(sliderWidth, sliderHeight);
+        mainSatelliteMassSlider.setValue(0.5);
         mainSatelliteMassSlider.setMin(constants.minSatelliteMass());
         mainSatelliteMassSlider.setMax(constants.maxSatelliteMass());
         mainSatelliteMassSlider.setValue(tetherSystemModel.getMainSatelliteMass());
@@ -323,6 +327,7 @@ public class ModelParameterCtrlPresenter extends Composite {
 
         final Slider nanosatellineMassSlider = new Slider();
         nanosatellineMassSlider.setPixelSize(sliderWidth, sliderHeight);
+        nanosatellineMassSlider.setStep(0.5);
         nanosatellineMassSlider.setMin(constants.minSatelliteMass());
         nanosatellineMassSlider.setMax(constants.maxSatelliteMass());
         nanosatellineMassSlider.setValue(tetherSystemModel.getNanoSatelliteMass());
@@ -341,7 +346,7 @@ public class ModelParameterCtrlPresenter extends Composite {
         Label nanosatellineMinMassLabel = new Label();
         nanosatellineMinMassLabel.setWidth(rangeLabelWidth);
         Label nanosatellineMaxMassLabel = new Label();
-        nanosatellineMinMassLabel.setWidth(rangeLabelWidth);
+        nanosatellineMaxMassLabel.setWidth(rangeLabelWidth);
         HorizontalPanel nanosatelliteMassPanel = new HorizontalPanel();
         nanosatelliteMassPanel.setSpacing(spacingAttr);
         nanosatelliteMassPanel.add(nanosatellineMassLabel);
@@ -367,7 +372,7 @@ public class ModelParameterCtrlPresenter extends Composite {
             @Override
             public void onChange(ChangeEvent event) {
                 systemHeightTextBox.setText(String.valueOf(systemHeightSlider.getValue() + _KM));
-                //todo
+                tetherSystemModel.setInitialHeight(systemHeightSlider.getValue());
             }
         });
         HorizontalPanel systemHeightPanel = new HorizontalPanel();
@@ -402,7 +407,7 @@ public class ModelParameterCtrlPresenter extends Composite {
             @Override
             public void onChange(ChangeEvent event) {
                 eccentricityTextBox.setText(String.valueOf(eccentricitySlider.getValue()));
-                //todo
+                tetherSystemModel.setInitialEccentricity(eccentricitySlider.getValue());
             }
         });
         HorizontalPanel eccentricityPanel = new HorizontalPanel();
@@ -424,17 +429,124 @@ public class ModelParameterCtrlPresenter extends Composite {
         dynamicParametersCtrlPanel.add(eccentricityPanel);
     }
 
-    private void printSystemPositionStaticParamsPanel() {
+    private void initSystemPositionStaticParamsPanel() {
         staticParametersCtrlPanel.add(createHeaderBlock(FIXED_PARAMS_HEADER_TITLE));
         VerticalPanel systemPositionStaticParamsPanel = new VerticalPanel();
         systemPositionStaticParamsPanel.setSpacing(spacingAttr);
 
-        staticParametersCtrlPanel.add(systemPositionStaticParamsPanel);
+        HorizontalPanel trueAnomalyPanel = new HorizontalPanel();
+        trueAnomalyPanel.setSpacing(spacingAttr);
+        Label trueAnomalyLabel = new Label(BasicConsts.TRUE_ANOMALY.getDescription());
+        trueAnomalyLabel.addStyleName(PARAM_LABEL_STYLE_NAME);
+        final TextBox trueAnomalyTextBox = new TextBox();
+        trueAnomalyTextBox.setEnabled(false);
+        trueAnomalyTextBox.addStyleName(PARAM_TEXT_BOX_STYLE_NAME);
+        trueAnomalyPanel.add(trueAnomalyLabel);
+        trueAnomalyTextBox.setText(String.valueOf(BasicConsts.TRUE_ANOMALY.getValue()));
+        trueAnomalyPanel.add(trueAnomalyTextBox);
+        staticParametersCtrlPanel.add(trueAnomalyPanel);
+
+        HorizontalPanel earthRadiusPanel = new HorizontalPanel();
+        earthRadiusPanel.setSpacing(spacingAttr);
+        Label earthRadiusLabel = new Label(BasicConsts.EARTH_RADIUS.getDescription());
+        earthRadiusLabel.addStyleName(PARAM_LABEL_STYLE_NAME);
+        earthRadiusPanel.add(earthRadiusLabel);
+        final TextBox earthRadiusTextBox = new TextBox();
+        earthRadiusTextBox.setEnabled(false);
+        earthRadiusTextBox.addStyleName(PARAM_TEXT_BOX_STYLE_NAME);
+        earthRadiusTextBox.setText(String.valueOf(BasicConsts.EARTH_RADIUS.getValue() + BasicConsts.EARTH_RADIUS.getUnitMeasurement()));
+        earthRadiusPanel.add(earthRadiusTextBox);
+        staticParametersCtrlPanel.add(earthRadiusPanel);
+
+        HorizontalPanel earthRotationAngularVelocityPanel = new HorizontalPanel();
+        earthRotationAngularVelocityPanel.setSpacing(spacingAttr);
+        Label earthRotationAngularVelocityLabel = new Label(BasicConsts.EARTH_ROTATION_ANGULAR_VELOCITY.getDescription());
+        earthRotationAngularVelocityLabel.addStyleName(PARAM_LABEL_STYLE_NAME);
+        earthRotationAngularVelocityPanel.add(earthRotationAngularVelocityLabel);
+        final TextBox earthRotationAngularVelocityTextBox = new TextBox();
+        earthRotationAngularVelocityTextBox.setEnabled(false);
+        earthRotationAngularVelocityTextBox.addStyleName(PARAM_TEXT_BOX_STYLE_NAME);
+        earthRotationAngularVelocityTextBox.setText(String.valueOf(BasicConsts.EARTH_ROTATION_ANGULAR_VELOCITY.getValue() + BasicConsts.EARTH_ROTATION_ANGULAR_VELOCITY.getUnitMeasurement()));
+        earthRotationAngularVelocityPanel.add(earthRotationAngularVelocityTextBox);
+        staticParametersCtrlPanel.add(earthRotationAngularVelocityPanel);
+
+        HorizontalPanel earthGravitationalConstPanel = new HorizontalPanel();
+        earthGravitationalConstPanel.setSpacing(spacingAttr);
+        Label earthGravitationalConstLabel = new Label(BasicConsts.K.getDescription());
+        earthGravitationalConstLabel.addStyleName(PARAM_LABEL_STYLE_NAME);
+        earthGravitationalConstPanel.add(earthGravitationalConstLabel);
+        final TextBox earthGravitationalConstTextBox = new TextBox();
+        earthGravitationalConstTextBox.setEnabled(false);
+        earthGravitationalConstTextBox.addStyleName(PARAM_TEXT_BOX_STYLE_NAME);
+        earthGravitationalConstTextBox.setText(String.valueOf(BasicConsts.K.getValue() + BasicConsts.K.getUnitMeasurement()));
+        earthGravitationalConstPanel.add(earthGravitationalConstTextBox);
+        staticParametersCtrlPanel.add(earthGravitationalConstPanel);
+
+        HorizontalPanel dipoleMagneticMomentPanel = new HorizontalPanel();
+        dipoleMagneticMomentPanel.setSpacing(spacingAttr);
+        Label dipoleMagneticMomentLabel = new Label(BasicConsts.MU.getDescription());
+        dipoleMagneticMomentLabel.addStyleName(PARAM_LABEL_STYLE_NAME);
+        dipoleMagneticMomentPanel.add(dipoleMagneticMomentLabel);
+        final TextBox dipoleMagneticMomentTextBox = new TextBox();
+        dipoleMagneticMomentTextBox.setEnabled(false);
+        dipoleMagneticMomentTextBox.addStyleName(PARAM_TEXT_BOX_STYLE_NAME);
+        dipoleMagneticMomentTextBox.setText(String.valueOf(BasicConsts.MU.getValue() + BasicConsts.MU.getUnitMeasurement()));
+        dipoleMagneticMomentPanel.add(dipoleMagneticMomentTextBox);
+        staticParametersCtrlPanel.add(dipoleMagneticMomentPanel);
+
+        HorizontalPanel electronMassPanel = new HorizontalPanel();
+        electronMassPanel.setSpacing(spacingAttr);
+        Label electronMassLabel = new Label(BasicConsts.ELECTRON_MASS.getDescription());
+        electronMassLabel.addStyleName(PARAM_LABEL_STYLE_NAME);
+        electronMassPanel.add(electronMassLabel);
+        final TextBox electronMassTextBox = new TextBox();
+        electronMassTextBox.setEnabled(false);
+        electronMassTextBox.addStyleName(PARAM_TEXT_BOX_STYLE_NAME);
+        electronMassTextBox.setText(String.valueOf(BasicConsts.ELECTRON_MASS.getValue() + BasicConsts.ELECTRON_MASS.getUnitMeasurement()));
+        electronMassPanel.add(electronMassTextBox);
+        staticParametersCtrlPanel.add(electronMassPanel);
+
+        HorizontalPanel electronChargePanel = new HorizontalPanel();
+        electronChargePanel.setSpacing(spacingAttr);
+        Label electronChargeLabel = new Label(BasicConsts.ELECTON_CHARGE.getDescription());
+        electronChargeLabel.addStyleName(PARAM_LABEL_STYLE_NAME);
+        electronChargePanel.add(electronChargeLabel);
+        final TextBox electronChargeTextBox = new TextBox();
+        electronChargeTextBox.setEnabled(false);
+        electronChargeTextBox.addStyleName(PARAM_TEXT_BOX_STYLE_NAME);
+        electronChargeTextBox.setText(String.valueOf(BasicConsts.ELECTON_CHARGE.getValue() + BasicConsts.ELECTON_CHARGE.getUnitMeasurement()));
+        electronChargePanel.add(electronChargeTextBox);
+        staticParametersCtrlPanel.add(electronChargePanel);
+
+        HorizontalPanel plasmaConcentrationPanel = new HorizontalPanel();
+        plasmaConcentrationPanel.setSpacing(spacingAttr);
+        Label plasmaConcentrationLabel = new Label(BasicConsts.PLASMA_CONCENTRATION.getDescription());
+        plasmaConcentrationLabel.addStyleName(PARAM_LABEL_STYLE_NAME);
+        plasmaConcentrationPanel.add(plasmaConcentrationLabel);
+        final TextBox plasmaConcentrationTextBox = new TextBox();
+        plasmaConcentrationTextBox.setEnabled(false);
+        plasmaConcentrationTextBox.addStyleName(PARAM_TEXT_BOX_STYLE_NAME);
+        plasmaConcentrationTextBox.setText(String.valueOf(BasicConsts.PLASMA_CONCENTRATION.getValue() + BasicConsts.PLASMA_CONCENTRATION.getUnitMeasurement()));
+        plasmaConcentrationPanel.add(plasmaConcentrationTextBox);
+        staticParametersCtrlPanel.add(plasmaConcentrationPanel);
+
+        HorizontalPanel aluminumConductivityPanel = new HorizontalPanel();
+        aluminumConductivityPanel.setSpacing(spacingAttr);
+        Label aluminumConductivityLabel = new Label(BasicConsts.ALUMINUM_CONDUCTIVITY.getDescription());
+        aluminumConductivityLabel.addStyleName(PARAM_LABEL_STYLE_NAME);
+        aluminumConductivityPanel.add(aluminumConductivityLabel);
+        final TextBox aluminumConductivityTextBox = new TextBox();
+        aluminumConductivityTextBox.setEnabled(false);
+        aluminumConductivityTextBox.addStyleName(PARAM_TEXT_BOX_STYLE_NAME);
+        aluminumConductivityTextBox.setText(String.valueOf(BasicConsts.ALUMINUM_CONDUCTIVITY.getValue() + BasicConsts.ALUMINUM_CONDUCTIVITY.getUnitMeasurement()));
+        aluminumConductivityPanel.add(aluminumConductivityTextBox);
+        staticParametersCtrlPanel.add(aluminumConductivityPanel);
     }
 
     private void initCalculationParamsPanel() {
         dynamicParametersCtrlPanel.add(createHeaderBlock(INTEGRATION_PARAMS_HEADER_TITLE));
 
+        final Slider maxCalculationStepSlider = new Slider();
         final Slider calculationStepSlider = new Slider();
         calculationStepSlider.setPixelSize(sliderWidth, sliderHeight);
         calculationStepSlider.setMin(constants.minCalculationStep());
@@ -447,6 +559,9 @@ public class ModelParameterCtrlPresenter extends Composite {
         calculationStepSlider.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
+                if (calculationStepSlider.getValue() > maxCalculationStepSlider.getValue()) {
+                    calculationStepSlider.setValue(maxCalculationStepSlider.getValue());
+                }
                 calculationStepSliderTextBox.setText(String.valueOf(calculationStepSlider.getValue() + _SEC));
                 tetherSystemModel.setIntegrationStep(calculationStepSlider.getValue());
             }
@@ -469,7 +584,6 @@ public class ModelParameterCtrlPresenter extends Composite {
         calculationStepPanel.add(calculationStepSliderTextBox);
         dynamicParametersCtrlPanel.add(calculationStepPanel);
 
-        final Slider maxCalculationStepSlider = new Slider();
         maxCalculationStepSlider.setPixelSize(sliderWidth, sliderHeight);
         maxCalculationStepSlider.setMin(constants.minCalculationMaxStep());
         maxCalculationStepSlider.setMax(constants.maxCalculationMaxStep());
@@ -539,6 +653,7 @@ public class ModelParameterCtrlPresenter extends Composite {
         final Slider calcAccuracySlider = new Slider();
         calcAccuracySlider.setPixelSize(sliderWidth, sliderHeight);
         calcAccuracySlider.setTitle(INTEGRATION_ACCURACY_TITLE);
+        calcAccuracySlider.setStep(constants.minIntegrationAccuracy());
         calcAccuracySlider.setMin(constants.minIntegrationAccuracy());
         calcAccuracySlider.setMax(constants.maxIntegrationAccuracy());
         calcAccuracySlider.setValue(integrationAccuracy);

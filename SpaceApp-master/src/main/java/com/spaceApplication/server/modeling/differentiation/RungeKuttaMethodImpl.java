@@ -1,7 +1,6 @@
 package com.spaceApplication.server.modeling.differentiation;
 
 import com.spaceApplication.server.modeling.model.ElectrodynamicTetherSystemModel;
-import com.spaceApplication.server.service.MainAppServiceImpl;
 import com.spaceApplication.shared.calculation.CalculationUtils;
 
 import java.util.Vector;
@@ -35,7 +34,7 @@ public class RungeKuttaMethodImpl {
     private static Vector calculateResY(double step, Vector y, Vector k1, Vector k2, Vector k3, Vector k4) {
         Vector result = new Vector(capacity);
         for (int i = 0; i < k1.size(); i++) {
-            result.add((double) y.get(i) + step / 6.0 * ((double) k1.get(i) + 2.0 * (double) k2.get(i) + 2.0 * (double) k3.get(i) + (double) k4.get(i)));
+            result.add((double) y.get(i) + (step / 6.0) * ((double) k1.get(i) + 2.0 * (double) k2.get(i) + 2.0 * (double) k3.get(i) + (double) k4.get(i)));
         }
         return result;
     }
@@ -80,7 +79,7 @@ public class RungeKuttaMethodImpl {
 
 
         while (iteration < maxIteration) {
-            iteration+=step;
+            iteration += step;
 
             k1 = tetherSystemModel.getDiffVector(y);
             k2 = tetherSystemModel.getDiffVector(CalculationUtils.scalarMultiplyAndAddVectors(k1, y, step / 2.0));
@@ -106,7 +105,6 @@ public class RungeKuttaMethodImpl {
             i++;
 
             step = calculateAccuracy(step, DSMax, stepMax);
-
         }
 
         return result;

@@ -33,6 +33,11 @@ header .header-content .header-content-inner #appTitle h1 {
     float: right;
 }
 
+.clear {
+    clear: both;
+    width: 100%;
+}
+
 .contact .promo-item {
     max-width: 400px;
     padding: 25px 20px;
@@ -65,6 +70,20 @@ header .header-content .header-content-inner #appTitle h1 {
 
 .dynamic-section .page-content .page-inner table .gwt-Label {
     font-size: 16px;
+    padding: 0 7px;
+}
+
+.dynamic-section .page-content .page-inner table .param_title {
+    width: 300px;
+    height: 40px;
+}
+.dynamic-section .page-content .page-inner table .param_value {
+    width: 170px;
+    height: 35px;
+}
+
+.dynamic-section .page-content .page-inner table input[type="range"] {
+    cursor: pointer;
 }
 
 /**

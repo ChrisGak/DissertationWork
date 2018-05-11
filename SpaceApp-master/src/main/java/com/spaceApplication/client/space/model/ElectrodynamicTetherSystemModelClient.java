@@ -26,6 +26,10 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
      * Hci
      */
     private double initialHeight;
+
+    public void setInitialHeight(double initialHeight){
+        this.initialHeight = initialHeight;
+    }
     /**
      * Расстояние центра масс системы до центра Земли
      */
@@ -45,6 +49,10 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
      * ex
      */
     private double initialEccentricity;
+
+    public void setInitialEccentricity(double initialEccentricity){
+        this.initialEccentricity = initialEccentricity;
+    }
     /**
      * Истинная аномалия Земли
      */

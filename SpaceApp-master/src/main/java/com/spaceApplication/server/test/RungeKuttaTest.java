@@ -32,11 +32,11 @@ public class RungeKuttaTest {
         LOGGER.info("Тестирование результатов интегрирования: \n");
         //testFullModel();
         testReducedMass();
-
+        testFullModel1();
     }
 
     private static void testReducedMass(){
-        BareElectrodynamicTether testTether = new BareElectrodynamicTether(0.4, 2000, 0.001, 0, 0.1);
+        BareElectrodynamicTether testTether = new BareElectrodynamicTether(0.4, 2000, 0.001, 0, 0.01);
         ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(testTether,
                 6, 2, 500000, 0,  0.0167);
 
@@ -45,18 +45,20 @@ public class RungeKuttaTest {
     }
 
 
-    public static void testFullModel() {
-        BareElectrodynamicTether testTether = new BareElectrodynamicTether(0.4, 2000, 0.001, 45, 1);
+    public static void testFullModel1() {
+        BareElectrodynamicTether testTether = new BareElectrodynamicTether(0.4, 2000, 0.001, 0, 0.01);
         ElectrodynamicTetherSystemModel testModel = new ElectrodynamicTetherSystemModel(testTether,
                 6, 2, 500000, 0, 0.0167);
 
         System.out.println("_____________________________");
         System.out.println("    testFullModel1           ");
         testModel.printInitialState();
+        int hours = 30;
+        int seconds = hours * 60 * 60;
         OrbitalElements integrationTestResult = RungeKuttaMethodImpl.integrateWithVariableStep(testModel,
-                50, 5, 10, 0.001);
-//        OrbitalElements.printFirstAndLastResults(integrationTestResult);
-        OrbitalElements.printResultToConsole(integrationTestResult);
+                seconds, 50, 50, 0.01);
+        OrbitalElements.printFirstAndLastResults(integrationTestResult);
+//        OrbitalElements.printResultToConsole(integrationTestResult);
         System.out.println("_____________________________");
     }
 

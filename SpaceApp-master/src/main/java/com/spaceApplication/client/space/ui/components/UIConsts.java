@@ -17,12 +17,19 @@ public class UIConsts {
     public static final String HEADER_STYLE_NAME = "section-header";
     public static final String BREADCRUMB_HEADER_STYLE_NAME = "breadcrumb-header";
 
+    public static final String COLUMN_LEFT_STYLE_NAME = "column_left";
+    public static final String COLUMN_RIGHT_STYLE_NAME = "column_right";
+    public static final String CLEAR_FLOAT_STYLE_NAME = "clear";
+
     public static final String ACTIVE_ELEMENT = "active-page";
     public static final String PAGE_CONTENT_SELECTOR = "page-content";
     public static final String PAGE_INNER_STYLE_NAME = "page-inner";
     public static final String SHORT_WIDGET_NUMBER_STYLE_NAME = "stats-number";
     public static final String SHORT_WIDGET_INFO_STYLE_NAME = "stats-info";
     public static final String SHORT_WIDGET_STYLE_NAME = "pull-left";
+
+    public static final String PARAM_LABEL_STYLE_NAME = "param_title";
+    public static final String PARAM_TEXT_BOX_STYLE_NAME = "param_value";
     /**
      * Id selectors
      */
