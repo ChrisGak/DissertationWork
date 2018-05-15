@@ -1,10 +1,7 @@
 package com.spaceApplication.client.space.controllers;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.SpanElement;
-import com.google.gwt.user.client.DOM;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.spaceApplication.client.space.model.ElectrodynamicTetherSystemModelClient;
@@ -24,6 +21,8 @@ public class RemoteCalculationControl {
     private static RemoteCalculationControl instance;
     // create an instance of the service proxy class by calling GWT.create(Class).
     private SpaceApplicationServiceAsync spaceApplicationServiceAsync = GWT.create(SpaceApplicationService.class);
+
+    private static NumberFormat formater = NumberFormat.getFormat("0.000000");
 
 
     protected RemoteCalculationControl() {
@@ -67,7 +66,7 @@ public class RemoteCalculationControl {
     }
 
     public static Widget createForceValueWidget(OrbitalElementsClient results){
-        double fullForceValue = results.getForceValue();
+        String fullForceValue = formater.format(results.getForceValue());
         HTMLPanel infoElement = new HTMLPanel(LAST_FORCE_VALUE_TITLE);
         infoElement.addStyleName(SHORT_WIDGET_INFO_STYLE_NAME);
         HTMLPanel spanNumberElement = new HTMLPanel(fullForceValue + _A);
@@ -80,7 +79,7 @@ public class RemoteCalculationControl {
     }
 
     public static Widget createMomentValueWidget(OrbitalElementsClient results){
-        double momentValue = results.getMomentValue();
+        String momentValue = formater.format(results.getMomentValue());
         HTMLPanel infoElement = new HTMLPanel(LAST_MOMENT_VALUE_TITLE);
         infoElement.addStyleName(SHORT_WIDGET_INFO_STYLE_NAME);
         HTMLPanel spanNumberElement = new HTMLPanel(momentValue + _MOMENT);
@@ -93,7 +92,7 @@ public class RemoteCalculationControl {
     }
 
     public static Widget createTransversalAccelerationValueWidget(OrbitalElementsClient results){
-        double transversalAccelerationValue = results.getTransversalAccelertionValue();
+        String transversalAccelerationValue = formater.format(results.getTransversalAccelertionValue());
         HTMLPanel infoElement = new HTMLPanel(LAST_TRANSVERSAL_ACCELERATION_VALUE_TITLE);
         infoElement.addStyleName(SHORT_WIDGET_INFO_STYLE_NAME);
         HTMLPanel spanNumberElement = new HTMLPanel(transversalAccelerationValue + _ACCELERATION);
@@ -106,7 +105,7 @@ public class RemoteCalculationControl {
     }
 
     public static Widget createRadialAccelerationValueWidget(OrbitalElementsClient results){
-        double radialAccelerationValue = results.getRadialAccelerationValue();
+        String radialAccelerationValue = formater.format(results.getRadialAccelerationValue());
         HTMLPanel infoElement = new HTMLPanel(LAST_RADIAL_ACCELERATION_VALUE_TITLE);
         infoElement.addStyleName(SHORT_WIDGET_INFO_STYLE_NAME);
         HTMLPanel spanNumberElement = new HTMLPanel(radialAccelerationValue + _ACCELERATION);
@@ -211,14 +210,6 @@ public class RemoteCalculationControl {
         chart.addSeries(pointsSeries);
         chart.getYAxis().setAxisTitleText("N");
         return chart;
-    }
-
-    public void callRPCTest(ElectrodynamicTetherSystemModelClient model, AsyncCallback<OrbitalElementsClient> calculationCallback) {
-        if (spaceApplicationServiceAsync == null)
-            spaceApplicationServiceAsync = GWT.create(SpaceApplicationService.class);
-
-
-        spaceApplicationServiceAsync.getCalculationResult(model, calculationCallback);
     }
 
     public void callRemoteCalculation(AsyncCallback<OrbitalElementsClient> calculationCallback, ElectrodynamicTetherSystemModelClient model) {

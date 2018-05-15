@@ -160,7 +160,7 @@ public class ModelParameterCtrlPresenter extends Composite {
             @Override
             public void onChange(ChangeEvent event) {
                 tetherLengthTextBox.setText(String.valueOf(tetherLengthSlider.getValue() + _KM));
-                tetherSystemModel.getTether().setLength(tetherLengthSlider.getValue());
+                tetherSystemModel.getTether().setLength(tetherLengthSlider.getValue() * 1000);
             }
         });
         HorizontalPanel tetherLengthPanel = new HorizontalPanel();

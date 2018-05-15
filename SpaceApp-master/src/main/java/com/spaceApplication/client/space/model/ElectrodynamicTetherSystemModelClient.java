@@ -67,6 +67,8 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
     private double integrationMaxStep;
     private double calculateAccuracy;
 
+    private static double KILO = 1000;
+
     public ElectrodynamicTetherSystemModelClient() {
     }
 
@@ -87,15 +89,16 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
     }
 
     public static ElectrodynamicTetherSystemModelClient createDefaultTetherSystemModel() {
-        BareElectrodynamicTetherClient tetherClient = new BareElectrodynamicTetherClient(0.4, 2000, 0.001, 0, 0.1);
-        return new ElectrodynamicTetherSystemModelClient(tetherClient, 6, 2, 500000, 0, 0.0167, 100, 5, 10, 0.1);
+        BareElectrodynamicTetherClient tetherClient = new BareElectrodynamicTetherClient(0.4, 2000, 0.001, 0, 0.01);
+        return new ElectrodynamicTetherSystemModelClient(tetherClient, 6, 2, 500000, 0, 0.00001, 100, 5, 10, 0.01);
     }
 
     public Vector getXNB1(Vector<Double> tetta) {
         Vector xnb1 = new Vector();
-        double m2_e = getMainSatelliteMass();
+        double m1 = getNanoSatelliteMass();
+        double m2 = getMainSatelliteMass();
         for (double value : tetta) {
-            xnb1.add(m2_e * tether.getLength() * Math.sin(value));
+            xnb1.add(m2 * (tether.getLength() / KILO) * Math.sin(value) / (m1 + m2));
         }
         return xnb1;
     }
@@ -112,9 +115,10 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
 
     public Vector getXNB2(Vector<Double> tetta) {
         Vector xnb2 = new Vector();
-        double m1_e = -getNanoSatelliteMass();
+        double m1 = getNanoSatelliteMass();
+        double m2 = getMainSatelliteMass();
         for (double value : tetta) {
-            xnb2.add(m1_e * tether.getLength() * Math.sin(value));
+            xnb2.add((-m1 / (m1 + m2)) * (tether.getLength()/KILO) * Math.sin(value));
         }
         return xnb2;
 
@@ -132,9 +136,10 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
 
     public Vector getYNB1(Vector<Double> tetta) {
         Vector ynb1 = new Vector();
-        double m2_e = -getMainSatelliteMass();
+        double m1 = getNanoSatelliteMass();
+        double m2 = getMainSatelliteMass();
         for (double value : tetta) {
-            ynb1.add(m2_e * tether.getLength() * Math.cos(value));
+            ynb1.add((-m2 / (m1+m2)) * (tether.getLength()/KILO) * Math.cos(value));
         }
         return ynb1;
     }
@@ -151,9 +156,10 @@ public class ElectrodynamicTetherSystemModelClient implements Serializable {
 
     public Vector getYNB2(Vector<Double> tetta) {
         Vector ynb2 = new Vector();
-        double m1_e = getNanoSatelliteMass();
+        double m1 = getNanoSatelliteMass();
+        double m2 = getMainSatelliteMass();
         for (double value : tetta) {
-            ynb2.add(m1_e * tether.getLength() * Math.cos(value));
+            ynb2.add((m1 / (m1+m2)) * (tether.getLength()/KILO) * Math.cos(value));
         }
         return ynb2;
     }

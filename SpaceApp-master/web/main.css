@@ -231,6 +231,10 @@ header .header-content .header-content-inner #appTitle h1 {
     border: 1px solid #E6E8EB;
 }
 
+.stats-widget {
+    height: 170px;
+}
+
 .stats-widget .stats-number {
     color: #637282;
     font-size: 25px;

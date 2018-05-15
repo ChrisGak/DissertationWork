@@ -53,6 +53,15 @@ public class MainAppServiceImpl extends RemoteServiceServlet implements SpaceApp
                 clientModel.getInitialHeight(), clientModel.getInitialTrueAnomalyRadians(),
                 clientModel.getInitialEccentricity());
 
+//        BareElectrodynamicTether tether = new BareElectrodynamicTether(0.4, 2000, 0.001, 0, 0.01);
+//        ElectrodynamicTetherSystemModel systemModel = new ElectrodynamicTetherSystemModel(tether,
+//                6, 2, 500000, 0, 0.00001);
+
+//        int hours = 30;
+//        int seconds = hours * 60 * 60;
+//        seconds = 3600;
+//        OrbitalElements serverResult = RungeKuttaMethodImpl.integrateWithVariableStep(systemModel,
+//                seconds, 5, 10, 0.01);
         OrbitalElements serverResult = RungeKuttaMethodImpl.integrateWithVariableStep(systemModel, clientModel.getMaxIterations(), clientModel.getIntegrationStep(),
                 clientModel.getIntegrationMaxStep(), clientModel.getCalculateAccuracy());
         /**
@@ -70,8 +79,10 @@ public class MainAppServiceImpl extends RemoteServiceServlet implements SpaceApp
                 serverResult.getIteration());
         clientResult.setForceValue(systemModel.getFullForce(serverResult.getLastSemimajor(), serverResult.getLastEccentricity(), serverResult.getLastTrueAnomaly()));
         clientResult.setMomentValue(systemModel.getFullMoment(serverResult.getLastSemimajor(), serverResult.getLastEccentricity(), serverResult.getLastTrueAnomaly()));
-        clientResult.setTransversalAccelertionValue(systemModel.getTransversalAcceleration(serverResult.getLastSemimajor(), serverResult.getLastEccentricity(), serverResult.getLastTrueAnomaly(), serverResult.getLastTetherVerticalDeflectionAngle()));
-        clientResult.setRadialAccelerationValue(systemModel.getRadialAcceleration(serverResult.getLastSemimajor(), serverResult.getLastEccentricity(), serverResult.getLastTrueAnomaly(), serverResult.getLastTetherVerticalDeflectionAngle()));
+        clientResult.setTransversalAccelertionValue(systemModel.getTransversalAcceleration(serverResult.getLastSemimajor(),
+                                serverResult.getLastEccentricity(), serverResult.getLastTrueAnomaly(), serverResult.getLastTetherVerticalDeflectionAngle()));
+        clientResult.setRadialAccelerationValue(systemModel.getRadialAcceleration(serverResult.getLastSemimajor(), serverResult.getLastEccentricity(),
+                                serverResult.getLastTrueAnomaly(), serverResult.getLastTetherVerticalDeflectionAngle()));
 
         return clientResult;
     }

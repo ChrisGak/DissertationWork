@@ -4,7 +4,6 @@ import com.spaceApplication.server.modeling.VectorSizeCustomException;
 import com.spaceApplication.shared.calculation.BasicConsts;
 import org.apache.commons.math3.analysis.UnivariateFunction;
 import org.apache.commons.math3.analysis.integration.IterativeLegendreGaussIntegrator;
-import org.apache.commons.math3.analysis.integration.SimpsonIntegrator;
 
 import java.io.Serializable;
 import java.util.Vector;
@@ -452,7 +451,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
      * @return
      */
     public double getForce1(double semimajorAxis, double eccentricity, double trueAnomaly) {
-        double result1 =  0.5 * tether.getElectricity();
+        double result1 = 0.5 * tether.getElectricity();
         double result2 = getLB(semimajorAxis, eccentricity, trueAnomaly) * getMagneticInduction(semimajorAxis, eccentricity, trueAnomaly);
         double result = result1 * result2;
         return result;
@@ -488,7 +487,7 @@ public class ElectrodynamicTetherSystemModel implements Serializable {
         double result1 = getForce1(semimajorAxis, eccentricity, trueAnomaly);
         double result2 = (2.0 / 3.0) * getLB(semimajorAxis, eccentricity, trueAnomaly);
         double result3 = getMassCenterRelativePosition();
-        double result = result1* (result2 - result3);
+        double result = result1 * (result2 - result3);
         return result;
     }
 

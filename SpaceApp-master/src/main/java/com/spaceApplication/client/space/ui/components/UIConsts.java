@@ -94,6 +94,6 @@ public class UIConsts {
     public static String _SEC = " с";
     public static String _DEG = " °";
     public static String _A = " А";
-    public static String _MOMENT = " Нм";
+    public static String _MOMENT = " Н*м";
     public static String _ACCELERATION = " м/с²";
 }

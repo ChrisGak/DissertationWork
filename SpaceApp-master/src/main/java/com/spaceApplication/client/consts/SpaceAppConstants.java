@@ -57,10 +57,10 @@ public interface SpaceAppConstants extends Constants {
     @DefaultDoubleValue(0.1)
     double maxElectricity();
 
-    @DefaultDoubleValue(500.0)
+    @DefaultDoubleValue(500000.0)
     double minSystemHeight();
 
-    @DefaultDoubleValue(1000.0)
+    @DefaultDoubleValue(1000000.0)
     double maxSystemHeight();
 
     @DefaultDoubleValue(0.00001)
@@ -81,10 +81,10 @@ public interface SpaceAppConstants extends Constants {
     @DefaultDoubleValue(10.0)
     double maxCalculationMaxStep();
 
-    @DefaultDoubleValue(50.0)
+    @DefaultDoubleValue(1000.0)
     double minIterations();
 
-    @DefaultDoubleValue(1000.0)
+    @DefaultDoubleValue(3600.0)
     double maxIterations();
 
     @DefaultDoubleValue(0.001)

@@ -4,7 +4,7 @@ package com.spaceApplication.shared.calculation;
  * Created by Chris
  */
 public enum BasicConsts {
-    EARTH_RADIUS(6371.02E3, "Радиус Земли", "м"),
+    EARTH_RADIUS(6371.02E3, "Радиус Земли", " м"),
     EARTH_ROTATION_ANGULAR_VELOCITY(7.2921158553E-5, "Угловая скорость вращения Земли", " м/c"),
     INITIAL_ECCENTICITY(0.0167, "Эксцентриситет орбиты", ""),
     TRUE_ANOMALY(0, "Истинная аномалия Земли", ""),
